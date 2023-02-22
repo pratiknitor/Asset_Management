@@ -1,0 +1,150 @@
+<section class="container">
+  <div class="card" style="padding: 5%; border-radius: 2%">
+    <h1>Add Asset</h1>
+    <form class="form" (ngSubmit)="SubmitAsset()">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="type of asset"
+          name="Type"
+          class="form-control"
+          required
+          [(ngModel)]="asset.tyape"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Name"
+          name="Name"
+          class="form-control"
+          required
+          [(ngModel)]="asset.name"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="proprietary"
+          name="Proprietary"
+          class="form-control"
+          required
+          [(ngModel)]="asset.proprietary"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="configuration"
+          name="configuration"
+          class="form-control"
+          required
+          [(ngModel)]="asset.configuration"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="serviceTag"
+          name="serviceTag"
+          class="form-control"
+          required
+          [(ngModel)]="asset.serviceTag"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="model"
+          name="model"
+          class="form-control"
+          required
+          [(ngModel)]="asset.model"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="hostName"
+          name="hostName"
+          class="form-control"
+          required
+          [(ngModel)]="asset.hostName"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="oem"
+          name="oem"
+          class="form-control"
+          required
+          [(ngModel)]="asset.oem"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="date"
+          placeholder="expiryDate"
+          name="expiryDate"
+          class="form-control"
+          required
+          [(ngModel)]="asset.expiryDate"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="owner"
+          name="owner"
+          class="form-control"
+          required
+          [(ngModel)]="asset.owner"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="remarks"
+          name="remarks"
+          class="form-control"
+          required
+          [(ngModel)]="asset.remarks"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="ram"
+          name="ram"
+          class="form-control"
+          required
+          [(ngModel)]="asset.ram"
+        />
+      </div>
+      <div class="form-group">
+        <select [(ngModel)]="asset.vendorId" name="vendorId">
+          <option *ngFor="let item of vendors" value="{{ item.id }}">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group" *ngIf="!updateflag; else elseBlock">
+        <input
+          type="submit"
+          class="btn btn-primary"
+          style="position: relative; left: 40%"
+          value="Submit"
+        />
+      </div>
+      <ng-template #elseBlock>
+        <input
+          type="submit"
+          class="btn btn-success"
+          style="position: relative; left: 40%"
+          value="Update"
+        />
+      </ng-template>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<section class="container">
+    <h1 class="large text-primary">Sign Up</h1>
+    <p class="lead"><i class="fas fa-user"></i> Create Your Account</p>
+    <form class="form" (ngSubmit)="registerSubmit()">
+      
+      <div class="form-group">
+        <input type="Email" placeholder="Email Address" name="Email" [(ngModel)]="register.Email"
+        [ngClass]="{'is-invalid':error.Email,
+        'form-control form-control-lg' : true}"
+        />
+        <small class="form-text"
+          >This site uses Gravatar so if you want a profile image, use a
+          Gravatar email</small
+        >
+        <div class="d-block invalid-feedback">{{error.Email}}</div>
+      </div>
+      <div class="form-group">
+        <input
+          type="Password"
+          placeholder="Password"
+          name="Password"
+          minLength="6"
+          [(ngModel)]="register.Password"
+          [ngClass]="{'is-invalid':error.Password,
+        'form-control form-control-lg' : true}"
+        />
+      </div>
+      <div class="d-block invalid-feedback">{{error.Password}}</div>
+      <div class="form-group">
+        <input
+          type="Password"
+          placeholder="Confirm Password"
+          name="confirmPassword"
+          minLength="6"
+          [(ngModel)]="register.confirmPassword"
+          [ngClass]="{'is-invalid':error.confirmPassword,
+        'form-control form-control-lg' : true}"
+        />
+      </div>
+      <div>
+      <span class="d-block invalid-feedback" *ngIf="bool">Password Not Match</span>
+      <div class="d-block invalid-feedback">{{error.confirmPassword}}</div>
+    </div>
+      <br/>
+      
+      <input type="submit" class="btn btn-primary" value="Register" />
+    </form>
+    <p class="my-1">
+      Already have an account? <a [routerLink]="['/users/login/']" routerLinkActive="router-link-active" >Sign In</a>
+    </p>
+  </section>

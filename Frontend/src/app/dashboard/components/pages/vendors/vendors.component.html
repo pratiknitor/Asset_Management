@@ -1,0 +1,55 @@
+<section class="TableContainer">
+<div class="centre-text">
+    <button
+      [routerLink]="['/dashboard/AddVendor']"
+      routerLinkActive="router-link-active"
+      class="btn btn-success"
+  
+      >Add New Vendor</button
+    >
+</div><br/>
+<div class="centre-text">
+    <input type="text" class="search-box"
+   [(ngModel)]="searchText" placeholder="   🔍Start searching......">
+</div>
+  <br/>
+  <table class="table tableScroll">
+    <thead>
+      <th>Name</th>
+      <th>ContactNo</th>
+      <th>Address</th>
+      <th>RegistrationDate</th>
+      <th>TerminationDate</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of vendors | filter:searchText">
+        
+        <td>{{ item.name }}</td>
+        <td>{{ item.contactNo }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.registrationDate | date }}</td>
+        <td>{{ item.terminationDate | date }}</td>
+        <td>
+          <button
+            type="submit"
+            value="{{ item.id }}"
+            (click)="DeleteVender(item.id)"
+            class="btn btn-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <div class="centre-text">
+  <button
+    [routerLink]="['/dashboard']"
+    routerLinkActive="router-link-active"
+    class="btn btn-warning"
+    >Back</button
+  >
+</div>
+</section>

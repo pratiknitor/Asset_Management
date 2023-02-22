@@ -1,0 +1,90 @@
+<section class="TableContainer">
+  <button
+    [routerLink]="['/dashboard/AddAsset']"
+    routerLinkActive="router-link-active"
+    class="btn btn-success"
+
+    >Add New Asset</button
+  >
+  <select [(ngModel)] = "selectModel" (change)="sortByModel()">
+    <option value="All" selected >All</option>
+    <option *ngFor="let item of myset" [value]="item">{{item}}</option>
+  </select>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="search" #searchString placeholder="Search model.." (blur)="searchBox()" >
+  <button type="button" class="btn btn-secondary btn-sm" (click)="searchBox()" >🔍
+  </button>
+  <br />
+  <br/>
+  <div class="centre-text">
+    <input type="text" class="search-box"
+   [(ngModel)]="searchText" placeholder="   🔍Start searching......">
+</div>
+  
+  <br/>
+  <table class="table tableScroll">
+    <thead>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Proprietary</th>
+      <th>Configuration</th>
+      <th>ServiceTag</th>
+      <th>Model</th>
+      <th>HostName</th>
+      <th>Oem</th>
+      <th>ExpiryDate</th>
+      <th>Owner</th>
+      <th>Remarks</th>
+      <th>Ram</th>
+      <th>Vendor Name</th>
+      <th style="text-align: center;">Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of assets | filter:searchText">
+        <td>{{ item.tyape }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.proprietary }}</td>
+        <td>{{ item.configuration }}</td>
+        <td>{{ item.serviceTag }}</td>
+        <td>{{ item.model }}</td>
+        <td>{{ item.hostName }}</td>
+        <td>{{ item.oem }}</td>
+        <td>{{ item.expiryDate | date }}</td>
+        <td>{{ item.owner }}</td>
+        <td>{{ item.remarks }}</td>
+        <td>{{ item.ram }}</td>
+        <td>{{ item.vendorId | vendorsName : vendors}}</td>
+        <td>
+          <button
+            type="submit"
+            value="{{ item.id }}"
+            (click)="EditAsset(item.id)"
+            class="btn btn-info"
+          >
+            Edit
+          </button>
+          <button
+            type="submit"
+            value="{{ item.id }}"
+            (click)="DeleteAsset(item.id)"
+            class="btn btn-danger"
+          >
+            Delete
+          </button>
+        </td>
+                 
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <app-items [headers]="headers" [data]="data"></app-items> -->
+  <br>
+  <div class="centre-text">
+    <button
+      [routerLink]="['/dashboard']"
+      routerLinkActive="router-link-active"
+      class="btn btn-warning"
+      >Back</button
+    >
+  </div>
+</section>

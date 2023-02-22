@@ -1,0 +1,152 @@
+<section class="container">
+  <h1>Asset Transaction</h1>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >Select Asset</label
+    >
+    <div class="col-sm-3">
+      <select name="" id="" [(ngModel)]="transaction.assetId">
+        <option value="" *ngFor="let item of assets" [value]="item.id">
+          {{ item.tyape }}&emsp;{{ item.name }}&emsp;{{ item.ram }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >User Name</label
+    >
+    <div class="col-sm-3">
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="colFormLabelLg"
+        placeholder=""
+        [(ngModel)]="transaction.userName"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >Emp Id</label
+    >
+    <div class="col-sm-3">
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="colFormLabelLg"
+        placeholder=""
+        [(ngModel)]="transaction.empId"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >Email</label
+    >
+    <div class="col-sm-3">
+      <input
+        type="email"
+        class="form-control form-control-lg"
+        id="colFormLabelLg"
+        placeholder=""
+        [(ngModel)]="transaction.email"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >Location</label
+    >
+    <div class="col-sm-3">
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="colFormLabelLg"
+        placeholder=""
+        [(ngModel)]="transaction.location"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >Issue Date</label
+    >
+    <div class="col-sm-3">
+      <input
+        type="date"
+        class="form-control form-control-lg"
+        id="colFormLabelLg"
+        placeholder=""
+        [(ngModel)]="transaction.issueDate"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >Submit Date</label
+    >
+    <div class="col-sm-3">
+      <input
+        type="date"
+        class="form-control form-control-lg"
+        id="colFormLabelLg"
+        placeholder=""
+        [(ngModel)]="transaction.submitDate"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >Issued By</label
+    >
+    <div class="col-sm-3">
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="colFormLabelLg"
+        placeholder=""
+        [(ngModel)]="transaction.issuedBy"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <label
+      for="colFormLabelLg"
+      class="col-sm-2 col-form-label col-form-label-lg"
+      >Department</label
+    >
+    <div class="col-sm-3">
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="colFormLabelLg"
+        placeholder=""
+        [(ngModel)]="transaction.department"
+      />
+    </div>
+  </div>
+
+  <div>
+    <button (click)="addAssetTransaction()" class="btn btn-primary">
+      Submit
+    </button>
+  </div>
+  
+</section>

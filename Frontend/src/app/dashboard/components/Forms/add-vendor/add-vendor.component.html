@@ -1,0 +1,70 @@
+<section class="container">
+  <div class="card form-format">
+    <h1>Add Vendor</h1>
+    <form (ngSubmit)="submitVendorDetails()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          required
+          [(ngModel)]="vendor.name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contact No</label>
+        <input
+          type="text"
+          class="form-control"
+          name="contact"
+          required
+          [(ngModel)]="vendor.contactNo"
+        />
+      </div>
+      <div class="mb-2">
+        <label for="address" class="form-label">Address</label>
+        <textarea
+          type="textarea"
+          class="form-control"
+          name="address"
+          [(ngModel)]="vendor.address"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="registration">Registration Date</label>
+        <input
+          type="date"
+          class="form-control"
+          name="registration"
+          required
+          [(ngModel)]="vendor.registrationDate"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="termination">Termination Date</label>
+        <input
+          type="date"
+          class="form-control"
+          name="termination"
+          [(ngModel)]="vendor.terminationDate"
+        />
+      </div>
+      <div class="centre-text mb-3">
+        <input
+          type="submit"
+          class="btn btn-primary"
+          value="Submit"
+        />
+      </div>
+    </form>
+    <div class="centre-text">
+      <button
+        [routerLink]="['/dashboard']"
+        routerLinkActive="router-link-active"
+        class="btn btn-warning"
+        >Back</button
+      >
+    </div>
+  </div>
+</section>
