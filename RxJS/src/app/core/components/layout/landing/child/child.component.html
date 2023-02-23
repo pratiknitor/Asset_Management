@@ -1,0 +1,16 @@
+<div class="card">
+<table class="table table-primary">
+    <tbody>
+    <tr>
+        <th>Amount</th>
+        <th>Colour</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let item of items">
+        <td>{{item.Amount}}</td>
+        <td>{{item.Colour}}</td>
+        <td><button (click)="PassToParent(item)" class="btn btn-info">Edit</button></td>
+    </tr>
+</tbody>
+</table>
+</div>

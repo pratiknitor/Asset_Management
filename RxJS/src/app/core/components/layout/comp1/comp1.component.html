@@ -1,0 +1,59 @@
+<body [style.background-color]="subj.Colour">
+<div *ngIf="subj.Amount; else elseBlock" style="font-style: italic;">
+
+
+<div class="card " style="padding: 3%; border-radius: 10px;" [style.background-color]="subj.Colour">
+    <h2 style="text-align: center;">Currency Conversion</h2>
+    <div class="card a" >
+        <h4>
+        Currency India : {{subj.Amount | currency:'INR'}}
+        </h4>
+    </div>
+    <div class="card b">
+        <h4>
+            America Currency : {{(subj.Amount * dollerInRupies)| number:'1.4' | currency}}
+        </h4>
+    </div>
+    <div class="card c">
+        <h4>
+            Japanese Currency : {{(subj.Amount * dollerInYen) | number:'1.4' | currency:'KRW'}}
+        </h4>
+    </div>
+    <div class="card d" >
+        <h4>
+            Philippine Currency : {{(subj.Amount * peso) | number:'1.4' | currency:'PHP'}}
+        </h4>
+    </div>
+    <div class="card e">
+        <h4>
+            Pound sterling Currency : {{(subj.Amount * Pound) | number:'1.4' | currency:'GBP'}}
+        </h4>
+    </div>
+    <div class="card f">
+        <h4>
+            Euro Currency : {{(subj.Amount * Eur) | number:'1.4' | currency:'EUR'}}
+        </h4>
+    </div>
+    <div class="card g">
+        <h4>
+            Uzbekistani Currency : {{(subj.Amount * som) | number:'1.4' | currency:'UZS'}}
+        </h4>
+    </div>
+    <h3>
+        Colour : {{subj.Colour}}
+    </h3>
+</div>
+</div>
+<div class="card">
+    <ng-template #elseBlock>
+        <h3>In Component 1</h3>
+        <h4>
+            Amount : {{subj.Amount}}
+        </h4>
+        <h4>
+            Colour : {{subj.Colour}}
+        </h4>
+    </ng-template>
+</div>
+
+</body>

@@ -1,0 +1,43 @@
+<body>
+    
+    <h3>Landing Component</h3>
+    <div class="card" style="padding: 5%;">
+        <form (ngSubmit)="sendSubject()">
+            <input class="form-control" type="number" name="n" [(ngModel)]="user.Amount"/>
+            <input class="form-control" type="text" name="n1" [(ngModel)]="user.Colour"/>
+            <div style="padding-left: 45%;"><input class="btn btn-primary"  type="submit" /></div>
+        </form>
+    </div>
+<br/><br/>
+<hr/>
+<h3 style="text-align: center;">Add To List</h3>
+<table class=" table table-warning">
+    <tbody>
+        <tr>
+            <td>Amount</td>
+            <td><input type="number" name="n" [(ngModel)]="user.Amount"/></td>
+        </tr>
+        <tr>
+            <td>Colour</td>
+            <td><input type="text" name="n1" [(ngModel)]="user.Colour"/></td>
+        </tr>
+        
+    </tbody>
+</table>
+<div style="padding-left: 40%;">
+<div *ngIf="!flag; else elseBlock">
+    <button type="button" class="btn btn-primary" (click)="passToChild()">Submit</button>
+</div>
+<ng-template #elseBlock>
+    <button type="button" class="btn btn-warning" (click)="update()">Update</button>&nbsp;
+    <button type="button" class="btn btn-danger" (click)="update()">Cancle</button>
+</ng-template>
+</div>
+<div>
+    Date Of Birth : <input type="date" #dateOfBirth (blur)="CalculateAge()"><br/>
+    Running Age   : <input type="text" #age>
+</div>
+<br/>
+<app-child [items]="userList" (eventEmit)="outputMethod($event)"></app-child>
+{{childComp.toViewChild()}}
+</body>
