@@ -3,10 +3,11 @@
       <a [routerLink]="['']" ><i class="fas fa-code"></i> Asset Management</a>
     </h1>
     <ul *ngIf="!flag">
-      <li><a [routerLink]="['/users/register']" routerLinkActive="router-link-active" >Register</a></li>
-      <li><a [routerLink]="['/users/login']" routerLinkActive="router-link-active">Login</a></li>
+      <!-- <li><button [routerLink]="['/users/register']" routerLinkActive="router-link-active" class="btn btn-dark">Register</button></li>
+      <li><a [routerLink]="['/users/login']" routerLinkActive="router-link-active">Login</a></li> -->
+      <li><button type="button" class="btn btn-dark" (click)="login()">Login</button></li>
     </ul>
     <ul *ngIf="flag">
-      <button type="button" class="btn btn-dark" (click)="logout()">Logout</button>
+      <button type="button" class="btn btn-dark" (click)="logout()" >Logout</button>
     </ul>
   </nav>

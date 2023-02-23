@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MsalGuard } from '@azure/msal-angular';
 import { LandingComponent } from './core/components/layouts/landing/landing.component';
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),canActivate:[MsalGuard]
   },
 ];
 

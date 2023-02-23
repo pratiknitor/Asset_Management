@@ -9,7 +9,7 @@ export class VendorsNamePipe implements PipeTransform {
   name: string = '';
 
   transform(value: number, vendorList: any): string {
-    vendorList.forEach(( element : IVendor) => {
+    vendorList.forEach(( element : any) => {
       if (element.id  === value) {
         this.name = element.name;
       }

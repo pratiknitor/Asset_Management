@@ -29,7 +29,7 @@ export class RegisterComponent {
           (res) => {
             console.log(JSON.stringify(res));
 
-            this.router.navigate(['users/login']);
+            this.router.navigate(['']);
           },
           (err) => {
             this.error = {};
