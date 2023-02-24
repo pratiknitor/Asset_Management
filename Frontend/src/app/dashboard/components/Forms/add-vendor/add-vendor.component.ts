@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
-import { IVendor } from 'src/app/dashboard/components/Forms/Models/ivendor';
+import { IVendor } from 'src/app/dashboard/Models/ivendor';
 
 @Component({
   selector: 'app-add-vendor',

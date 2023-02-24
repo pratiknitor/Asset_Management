@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
-import { IVendor} from 'src/app/dashboard/components/Forms/Models/ivendor';
+import { IVendor} from 'src/app/dashboard/Models/ivendor';
 
 @Component({
   selector: 'app-vendors',
@@ -14,6 +14,11 @@ export class VendorsComponent implements OnInit {
   vendors!: IVendor;
   searchText! : string;
 
+  headingArray = ['id', 'name', 'contactNo', 'address', 'registrationDate', 'terminationDate'];
+  vendorList: any[] = [];
+  tableSize = 2;
+  classStyle: string = 'table tableScroll';
+
   constructor(
     private dashboardService: ApplicationService,
     private router: Router
@@ -23,7 +28,9 @@ export class VendorsComponent implements OnInit {
   ngOnInit(): void {
     this.dashboardService.GetVendors().subscribe(
       (res) => {
-        this.vendors = res
+        this.vendors = res;
+        this.vendorList = res;
+        console.log(this.vendorList);
       }
     );
   }

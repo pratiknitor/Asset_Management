@@ -2,7 +2,7 @@ import { JsonpInterceptor } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
-import { IAsset } from '../Models/iasset';
+import { IAsset } from '../../../Models/iasset';
 
 @Component({
   selector: 'app-add-asset',

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IVendor } from 'src/app/dashboard/components/Forms/Models/ivendor';
+import { IVendor } from 'src/app/dashboard/Models/ivendor';
 
 @Pipe({
   name: 'vendorsName'

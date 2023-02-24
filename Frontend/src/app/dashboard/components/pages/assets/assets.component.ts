@@ -3,8 +3,8 @@ import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } fr
 import { Route, Router } from '@angular/router';
 import { filter, from } from 'rxjs';
 import { ApplicationService } from 'src/app/services/application.service';
-import { IAsset } from '../../Forms/Models/iasset';
-import { IVendor } from '../../Forms/Models/ivendor';
+import { IAsset } from '../../../Models/iasset';
+import { IVendor } from '../../../Models/ivendor';
 
 @Component({
   selector: 'app-assets',
@@ -26,14 +26,18 @@ export class AssetsComponent implements OnInit, OnChanges {
   vendors!: IVendor;
 
 
-  
+  headingArray = ['id', 'tyape', 'name', 'proprietary', 'configuration', 'serviceTag', 'model', 'hostName', 'oem', 'expiryDate', 'owner', 'remarks', 'ram', 'vendorId'];
+  assetList: any[] = [];
+  tableSize = 2;
+  classStyle: string = 'table tableScroll';
 
   ngOnInit(): void {
     this.dashboardService.GetAssets().subscribe((res) => {
       this.assets = res;
+      this.assetList = res;
+      console.log(this.assetList)
       for (let i = 0; i < this.assets.length; i++) {
         console.log(this.assets[i].model);
-        //this.dropdown.push(this.assets[i].model);
         if(!this.myset.has(this.assets[i].model))
         {
           this.myset.add(this.assets[i].model);

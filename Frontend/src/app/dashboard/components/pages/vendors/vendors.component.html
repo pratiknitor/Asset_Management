@@ -15,6 +15,7 @@
   <br/>
   <table class="table tableScroll">
     <thead>
+      <th>ID</th>
       <th>Name</th>
       <th>ContactNo</th>
       <th>Address</th>
@@ -24,7 +25,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of vendors | filter:searchText">
-        
+        <td>{{ item.id }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.contactNo }}</td>
         <td>{{ item.address }}</td>
@@ -53,3 +54,17 @@
   >
 </div>
 </section>
+
+
+<br/>
+<div class="centre-text"><h3>Table Using Reusable Table Component</h3></div>
+
+
+<app-re-table
+[class]="classStyle"
+[heading]="headingArray"
+[data]="vendorList"
+[tableSize]="tableSize"
+(fetch)="ngOnInit()"
+>
+</app-re-table>

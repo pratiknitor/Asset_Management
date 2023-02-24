@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
-import { IAssetTransaction } from '../Models/iasset-transaction';
+import { IAssetTransaction } from '../../../Models/iasset-transaction';
 
 @Component({
   selector: 'app-asset-transaction',

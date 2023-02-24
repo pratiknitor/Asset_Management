@@ -87,4 +87,17 @@
       >Back</button
     >
   </div>
+
+  <br/>
+<div class="centre-text"><h3>Table Using Reusable Table Component</h3></div>
+
+
+<app-re-table
+[class]="classStyle"
+[heading]="headingArray"
+[data]="assetList"
+[tableSize]="tableSize"
+(fetch)="ngOnInit()"
+>
+</app-re-table>
 </section>

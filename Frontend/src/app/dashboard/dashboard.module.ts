@@ -15,6 +15,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { VendorsComponent } from './components/pages/vendors/vendors.component';
 import { AddVendorComponent } from './components/Forms/add-vendor/add-vendor.component';
 import { VendorsNamePipe } from '../shared/custom-pipe/vendors-name.pipe';
+import { ReTableComponent } from './components/reusable/re-table/re-table.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,14 @@ import { VendorsNamePipe } from '../shared/custom-pipe/vendors-name.pipe';
     AddVendorComponent,
     VendorsComponent,
     VendorsNamePipe,
+    ReTableComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
+    NgxPaginationModule,
     DashboardRoutingModule,
   ],
   providers: [],

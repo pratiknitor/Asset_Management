@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { IAsset } from '../dashboard/components/Forms/Models/iasset';
-import { IAssetTransaction } from '../dashboard/components/Forms/Models/iasset-transaction';
-import { IVendor } from '../dashboard/components/Forms/Models/ivendor';
+import { IAsset } from '../dashboard/Models/iasset';
+import { IAssetTransaction } from '../dashboard/Models/iasset-transaction';
+import { IVendor } from '../dashboard/Models/ivendor';
 import { ILogin } from '../users/models/ilogin';
 import { IRegister } from '../users/models/iregister';
 
