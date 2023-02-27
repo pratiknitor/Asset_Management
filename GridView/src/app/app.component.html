@@ -1,0 +1,22 @@
+<!-- <div *ngFor="let item of data">
+  <p>{{item.name}}</p>
+</div> -->
+<div style="text-align: center;"><h2>User Table</h2></div>
+
+<kendo-grid  [kendoGridBinding]="data"
+[pageSize]="5"
+[pageable]="true"
+[filterable]="true"
+[sortable]="true"
+[groupable]="true"
+[height]="350">
+<!-- filterable="menu"> -->
+  <kendo-grid-column field="id" title="ID" [width]="150" filter="numeric"></kendo-grid-column>
+  <kendo-grid-column field="name" title="Name" [width]="150"></kendo-grid-column>
+  <kendo-grid-column field="username" title="UserName" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="email" title="Email" ></kendo-grid-column>
+  <kendo-grid-column field="address.city" title="City"></kendo-grid-column>
+  <kendo-grid-column field="phone" title="Phone" ></kendo-grid-column>
+  <kendo-grid-column field="website" title="Website"></kendo-grid-column>
+  <kendo-grid-column field="company.name" title="Company"></kendo-grid-column>
+</kendo-grid>

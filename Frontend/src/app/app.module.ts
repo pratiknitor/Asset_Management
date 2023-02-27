@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 
 
 //get browser information
@@ -26,7 +27,12 @@ const IisIE = window.navigator.userAgent.indexOf('MSIE')>-1
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
       multi: true
-    },MsalGuard
+    },MsalGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
   imports: [BrowserModule, CoreModule,
@@ -62,7 +68,8 @@ const IisIE = window.navigator.userAgent.indexOf('MSIE')>-1
         interactionType:InteractionType.Redirect,
         protectedResourceMap:new Map(
           [
-            ['https://graph.microsoft.com/v1.0/me',['user.Read']]
+            ['https://graph.microsoft.com/v1.0/me',['user.Read']],
+            ['localhost',['api://dd9aac19-d0bb-47d7-a7a3-f236efb5d79b/api.scope']]
           ]
         )
       }

@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () =>
-      import('./users/users.module').then((m) => m.UsersModule),
+      import('./users/users.module').then((m) => m.UsersModule),canActivate:[MsalGuard]
   },
   {
     path: 'dashboard',

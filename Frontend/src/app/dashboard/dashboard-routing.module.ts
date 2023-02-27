@@ -7,31 +7,32 @@ import { AssetTransactionComponent } from './components/Forms/asset-transaction/
 import { SubmitAssetComponent } from './components/Forms/submit-asset/submit-asset.component';
 import { AssetsComponent } from './components/pages/assets/assets.component';
 import { VendorsComponent } from './components/pages/vendors/vendors.component';
+import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminDashboardComponent,
+    component: AdminDashboardComponent,canActivate:[MsalGuard]
   },
   {
     path: 'AssetTransaction',
-    component: AssetTransactionComponent,
+    component: AssetTransactionComponent,canActivate:[MsalGuard]
   },
   {
     path: 'AddAsset',
-    component: AddAssetComponent,
+    component: AddAssetComponent,canActivate:[MsalGuard]
   },
   {
     path: 'Assets',
-    component: AssetsComponent,
+    component: AssetsComponent,canActivate:[MsalGuard]
   },
   {
     path: 'AddVendor',
-    component: AddVendorComponent,
+    component: AddVendorComponent,canActivate:[MsalGuard]
   },
   {
     path: 'ShowVenders',
-    component: VendorsComponent,
+    component: VendorsComponent,canActivate:[MsalGuard]
   },
 ];
 

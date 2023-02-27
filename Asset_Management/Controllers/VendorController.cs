@@ -3,6 +3,9 @@ using Asset_Management.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Asset_Management.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Microsoft.Identity.Web.Resource;
 
 namespace Asset_Management.Controllers
 {
@@ -21,6 +24,8 @@ namespace Asset_Management.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Manager")]
+        [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:scopes")]
         public async Task<IActionResult> GetAllVender()
         {
             var record = await vendorService.GetAsync();

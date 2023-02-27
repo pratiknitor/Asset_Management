@@ -18,6 +18,7 @@ export class ApplicationService {
   constructor(private httpClient: HttpClient) {}
 
   public subject = new Subject<any>();
+  public errorSubject = new Subject<string>();
 
   registerUser(register: IRegister): Observable<any> {
     return this.httpClient.post('/api/User', register, headers);
@@ -71,22 +72,27 @@ export class ApplicationService {
    return this.httpClient.get(`api/AssetTransaction/GetAssetTransactionById/${id}`);}
 
   GetAsset(id: any): Observable<any> {
-     return this.httpClient.get(`api/AssetDetails/GetAssetById/${id}`); }
+    return this.httpClient.get(`api/AssetDetails/GetAssetById/${id}`); }
 
-     EditAsset(id: any, asset: IAsset): Observable<any> {
-       return this.httpClient.put(`api/AssetDetails/UpdateAsset/${id}`, asset); }
-emitAsset = new Subject<IAsset>();
- emitupdateflag = new Subject<boolean>();
+  EditAsset(id: any, asset: IAsset): Observable<any> {
+    return this.httpClient.put(`api/AssetDetails/UpdateAsset/${id}`, asset); }
+
+  emitAsset = new Subject<IAsset>();
+  emitupdateflag = new Subject<boolean>();
   emitTransaction = new Subject<IAssetTransaction>();
  EmitAsset(Asset: IAsset){
    console.log('emitting asset');
    console.log(Asset);
    this.emitAsset.next(Asset);
   }
-  
   EmitFlag(flag: boolean) {
   this.emitupdateflag.next(flag);
  }
+
+ GetReport(): Observable<any> {
+  return this.httpClient.get(`api/Report/GetReprot`); }
+ GetReportStatus(): Observable<any> {
+  return this.httpClient.get(`api/Report/GetReportStatus`); }
 
 
 }

@@ -24,6 +24,7 @@ export class VendorsComponent implements OnInit {
     private router: Router
   ) {}
 
+  error : any = {};
 
   ngOnInit(): void {
     this.dashboardService.GetVendors().subscribe(
@@ -31,6 +32,12 @@ export class VendorsComponent implements OnInit {
         this.vendors = res;
         this.vendorList = res;
         console.log(this.vendorList);
+      },
+      (err) => {
+        console.log("Vendors List Error"+JSON.stringify(err));
+        this.error = {};
+        this.error = err;
+        this.error[err.param] = err.msg;
       }
     );
   }
