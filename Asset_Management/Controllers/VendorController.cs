@@ -24,7 +24,7 @@ namespace Asset_Management.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Manager")]
+        [Authorize]
         [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:scopes")]
         public async Task<IActionResult> GetAllVender()
         {

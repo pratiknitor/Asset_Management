@@ -20,3 +20,84 @@
   <kendo-grid-column field="website" title="Website"></kendo-grid-column>
   <kendo-grid-column field="company.name" title="Company"></kendo-grid-column>
 </kendo-grid>
+
+<br/>
+<div style="text-align: center;"><h2>GridView (CRUD)</h2></div>
+
+<form novalidate #myForm="ngForm">
+<kendo-grid 
+[navigable]="true"
+[kendoGridBinding]="posts"
+[height]="550"
+[groupable]="true"
+[kendoGridTemplateEditing]="createNewProduct"
+>
+<ng-template kendoGridToolbarTemplate>
+  <button kendoGridAddCommand type="button">Add new</button>
+</ng-template>
+<kendo-grid-column field="id" title="ID">
+  <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+    <input
+      [(ngModel)]="dataItem.id"
+      kendoGridFocusable
+      name="id"
+      type="number"
+      class="k-textbox k-input k-rounded-md"
+      required
+    />
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="userId" title="User Id">
+  <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+    <input
+      [(ngModel)]="dataItem.userId"
+      kendoGridFocusable
+      name="userId"
+      type="number"
+      class="k-textbox k-input k-rounded-md"
+      required
+    />
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="title" title="Title">
+  <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+    <input
+      [(ngModel)]="dataItem.title"
+      kendoGridFocusable
+      name="title"
+      class="k-textbox k-input k-rounded-md"
+      required
+    />
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="body" title="body">
+  <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+    <input
+      [(ngModel)]="dataItem.body"
+      kendoGridFocusable
+      name="body"
+      class="k-textbox k-input k-rounded-md"
+      required
+    />
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-command-column title="command" [width]="220">
+  <ng-template kendoGridCellTemplate let-isNew="isNew">
+    <button kendoGridEditCommand type="button" [primary]="true" >
+      Edit
+    </button>
+    <button kendoGridRemoveCommand type="button">Remove</button>
+    <button
+      kendoGridSaveCommand
+      type="button"
+      (click)="test()"
+    >
+      {{ isNew ? "Add" : "Update" }}
+    </button>
+    <button kendoGridCancelCommand type="button">
+      {{ isNew ? "Discard changes" : "Cancel" }}
+    </button>
+  </ng-template>
+</kendo-grid-command-column>
+</kendo-grid>
+</form>
