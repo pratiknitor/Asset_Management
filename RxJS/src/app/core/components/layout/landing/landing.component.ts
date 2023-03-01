@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/core/models/iuser';
 import { ApiService } from 'src/app/core/services/api.service';
@@ -10,7 +10,7 @@ import { ChildComponent } from './child/child.component';
   styleUrls: ['./landing.component.css']
 })
 
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnChanges, OnDestroy {
 staffs : any;
 user : IUser = {
   Colour : '',
@@ -21,9 +21,15 @@ flag : boolean = false;
 
   constructor(public service : ApiService,private router:Router){}
   ngOnInit(): void {
-   
-
+    console.log("In ngOnChanges of ParentComponent");
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    console.log("In ngOnChanges of ParentComponent");
+    }
+  ngOnDestroy(): void {
+    console.log("In NgOnDestroy of ParentComponent");
+    }
 
   sendSubject(){
     console.log("In Landing : "+this.user);

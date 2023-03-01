@@ -1,0 +1,193 @@
+<kendo-grid 
+[kendoGridBinding]="assets"
+[height]="300"
+[groupable]="true"
+[kendoGridTemplateEditing]="ceateNewAsset">
+<ng-template kendoGridToolbarTemplate>
+    <button kendoGridAddCommand type="button">Add new</button>
+  </ng-template>
+    <kendo-grid-column field="id" title="ID" [width]="80" [editable]="false">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.id"
+              kendoGridFocusable
+              name="id"
+              type="number"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="tyape" title="Type" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.tyape"
+              kendoGridFocusable
+              name="tyape"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="name" title="Name" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.name"
+              kendoGridFocusable
+              name="name"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="proprietary" title="Proprietary" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.proprietary"
+              kendoGridFocusable
+              name="proprietary"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="configuration" title="Configuration" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.configuration"
+              kendoGridFocusable
+              name="configuration"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="serviceTag" title="Service Tag" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.serviceTag"
+              kendoGridFocusable
+              name="serviceTag"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="model" title="Model" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.model"
+              kendoGridFocusable
+              name="model"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="hostName" title="Host Name" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.hostName"
+              kendoGridFocusable
+              name="hostName"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="oem" title="OEM" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.oem"
+              kendoGridFocusable
+              name="oem"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="expiryDate" title="Expiry Date" [width]="100" format="MM/dd/yyyy" filter="date">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.expiryDate"
+              kendoGridFocusable
+              name="expiryDate"
+              class="k-textbox k-input k-rounded-md"
+              type="date"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="owner" title="Owner" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.owner"
+              kendoGridFocusable
+              name="owner"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="remarks" title="Remarks" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.remarks"
+              kendoGridFocusable
+              name="remarks"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="ram" title="Ram" [width]="100">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.ram"
+              kendoGridFocusable
+              name="ram"
+              type="number"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="vendorId" title="Vendor Id" [width]="80">
+        <ng-template kendoGridEditTemplate let-dataItem ="dataItem">
+            <input
+              [(ngModel)]="dataItem.vendorId"
+              kendoGridFocusable
+              name="vendorId"
+              type="number"
+              class="k-textbox k-input k-rounded-md"
+              required
+            />
+          </ng-template>
+    </kendo-grid-column>
+    
+    <kendo-grid-command-column title="command" [width]="220">
+        <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem="dataItem">
+          <button kendoGridEditCommand type="button" [primary]="true" >
+            Edit
+          </button>
+          <button kendoGridRemoveCommand type="button" (click)="deleteAsset(dataItem.id)">Remove</button>
+          <button
+            kendoGridSaveCommand
+            type="button" *ngIf="isNew"
+            (click)="addAsset(dataItem)"
+          >
+            Add
+          </button>
+          <button
+            kendoGridSaveCommand
+            type="button" *ngIf="!isNew"
+            (click)="editAsset(dataItem)"
+          >
+            Update
+          </button>
+          <button kendoGridCancelCommand type="button">
+            {{ isNew ? "Discard changes" : "Cancel" }}
+          </button>
+        </ng-template>
+      </kendo-grid-command-column>
+</kendo-grid>

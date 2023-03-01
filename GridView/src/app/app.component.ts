@@ -36,7 +36,8 @@ export class AppComponent implements OnInit {
 createNewProduct(){
   return new Post();
 }
-test(){
+test(myform : Post) {
+  console.log(myform.id)
   console.log("first")
 }
 

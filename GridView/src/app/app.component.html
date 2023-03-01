@@ -1,6 +1,10 @@
 <!-- <div *ngFor="let item of data">
   <p>{{item.name}}</p>
 </div> -->
+<div style="text-align: center;">
+  <button [routerLink]="['/assets/vendors']" routerLinkActive="router-link-active">Show Vendors</button>
+</div>
+<router-outlet></router-outlet>
 <div style="text-align: center;"><h2>User Table</h2></div>
 
 <kendo-grid  [kendoGridBinding]="data"
@@ -21,7 +25,9 @@
   <kendo-grid-column field="company.name" title="Company"></kendo-grid-column>
 </kendo-grid>
 
+
 <br/>
+
 <div style="text-align: center;"><h2>GridView (CRUD)</h2></div>
 
 <form novalidate #myForm="ngForm">
@@ -82,7 +88,7 @@
   </ng-template>
 </kendo-grid-column>
 <kendo-grid-command-column title="command" [width]="220">
-  <ng-template kendoGridCellTemplate let-isNew="isNew">
+  <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem="dataItem">
     <button kendoGridEditCommand type="button" [primary]="true" >
       Edit
     </button>
@@ -90,7 +96,7 @@
     <button
       kendoGridSaveCommand
       type="button"
-      (click)="test()"
+      (click)="test(dataItem)"
     >
       {{ isNew ? "Add" : "Update" }}
     </button>

@@ -7,6 +7,8 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AssetManagementModule } from './asset-management/asset-management.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -15,8 +17,10 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    AssetManagementModule,
     HttpClientModule,
     AppRoutingModule,
+    RouterModule,
     FormsModule,
     GridModule,
     BrowserAnimationsModule
