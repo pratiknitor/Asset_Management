@@ -7,9 +7,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ReTableComponent {
 
+  @Input() class: string = '';
   @Input() heading: string[] = [];
   @Input() data: any[] = [];
-  @Input() class: string = '';
   @Input() tableSize: number = 10;
   @Output() fetch = new EventEmitter();
 

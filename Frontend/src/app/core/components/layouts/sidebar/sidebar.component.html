@@ -1,0 +1,96 @@
+<div class="sidebar navbar1 bg-dark" [ngClass]="{ expanded: isExpanded }">
+    <div class="header">
+        <h1 class="title">Menu</h1>
+        <input type="checkbox" id="hamburger" (click)="handleSidebarToggle()">
+        <label for="hamburger" class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </label>
+
+    </div>
+    <div class="content">
+        <div class="link">
+            <div class="content" [routerLink]="['']" [routerLinkActive]="'active'">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle opacity="0.5" fill="#000000" cx="12" cy="11" r="5">
+                        </circle>
+                    </svg>
+                </div>
+                <div class="title">Home</div>
+            </div>
+        </div>
+        <div class="link with-children">
+            <div class="content" [routerLink]="['/dashboard']" [routerLinkActive]="'active'">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle opacity="0.5" fill="#000000" cx="12" cy="11" r="5">
+                        </circle>
+                    </svg>
+                </div>
+                <div class="title">Dashboard</div>
+            </div>
+            <div class="children">
+                <div class="link">
+                    <div class="content" [routerLink]="['/dashboard/Assets']" [queryParams]="{ child: '1' }"
+                        [routerLinkActive]="'active'">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle opacity="0.5" fill="#000000" cx="12" cy="11" r="5">
+                                </circle>
+                            </svg>
+                        </div>
+                        <div class="title">Assets</div>
+                    </div>
+                </div>
+
+                <div class="link">
+                    <div class="content" [routerLink]="['/dashboard/ShowVenders']" [queryParams]="{ child: '2' }"
+                        [routerLinkActive]="'active'">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle opacity="0.5" fill="#000000" cx="12" cy="11" r="5">
+                                </circle>
+                            </svg>
+                        </div>
+                        <div class="title">Vendors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="link">
+            <div class="content" [routerLink]="['/dashboard/AssetTransaction']" [routerLinkActive]="'active'">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle opacity="0.5" fill="#000000" cx="12" cy="11" r="5">
+                        </circle>
+                    </svg>
+                </div>
+                <div class="title">Assign Asset</div>
+            </div>
+        </div>
+        <div class="link">
+            <div class="content" [routerLink]="['/dashboard/AddAsset']" [routerLinkActive]="'active'">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle opacity="0.5" fill="#000000" cx="12" cy="11" r="5">
+                        </circle>
+                    </svg>
+                </div>
+                <div class="title">Add Asset</div>
+            </div>
+        </div>
+        <div class="link">
+            <div class="content" [routerLink]="['/dashboard/AddVendor']" [routerLinkActive]="'active'">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle opacity="0.5" fill="#000000" cx="12" cy="11" r="5">
+                        </circle>
+                    </svg>
+                </div>
+                <div class="title">Add Vendor</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -25,9 +25,9 @@
     </tbody>
 </table>
 <div style="padding-left: 40%;">
-<div *ngIf="!flag; else elseBlock">
-    <button type="button" class="btn btn-primary" (click)="passToChild()">Submit</button>
-</div>
+<ng-container  *ngIf="!flag; else elseBlock">
+    <button type="button" class="btn btn-primary" (click)="passToChild()">Add</button>
+</ng-container>
 <ng-template #elseBlock>
     <button type="button" class="btn btn-warning" (click)="update()">Update</button>&nbsp;
     <button type="button" class="btn btn-danger" (click)="update()">Cancle</button>
@@ -38,6 +38,7 @@
     Running Age   : <input type="text" #age>
 </div>
 <br/>
+<!-- pass to child  and eventEmit is come from child  -->
 <app-child [items]="userList" (eventEmit)="outputMethod($event)"></app-child>
-{{childComp.toViewChild()}}
+<!-- {{childComp.toViewChild()}} -->
 </body>

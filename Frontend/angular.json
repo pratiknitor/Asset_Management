@@ -90,26 +90,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"            ]
           }
         }
       }
     }
   },
   "cli": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "analytics": false
-=======
-    "analytics": "bf8af79e-18d3-475b-aab1-bcd23718ae54"
->>>>>>> Ajit
-=======
-    "analytics": "256b108e-c204-424c-ab78-204521afd1be"
-=======
-    "analytics": false
->>>>>>> da4a4173d4f5b1364e9f80552940434143fd6117
->>>>>>> onkar
   }
 }

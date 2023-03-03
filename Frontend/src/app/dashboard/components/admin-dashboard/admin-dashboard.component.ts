@@ -16,26 +16,18 @@ export class AdminDashboardComponent implements OnInit,AfterViewInit {
   }
 
   ngOnInit(): void {
-    // this.service.errorSubject.subscribe(
-    //   (res) => {
-    //     console.log(JSON.stringify(res));
-    //     this.error = res;
-    //     console.log(JSON.stringify(this.error.statusText));
-    //     this.errorMessage = this.error.statusText;
-    //   }
-    // )
-  }
-
-  ionViewWillLoad(){
     this.service.errorSubject.subscribe(
       (res) => {
         console.log(JSON.stringify(res));
         this.error = res;
         console.log(JSON.stringify(this.error.statusText));
         this.errorMessage = this.error.statusText;
+        
       }
     )
   }
+
+  
 
 
 }

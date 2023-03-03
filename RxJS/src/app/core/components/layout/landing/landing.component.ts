@@ -20,6 +20,7 @@ user : IUser = {
 flag : boolean = false;
 
   constructor(public service : ApiService,private router:Router){}
+  
   ngOnInit(): void {
     console.log("In ngOnChanges of ParentComponent");
   }

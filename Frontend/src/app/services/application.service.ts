@@ -31,7 +31,7 @@ export class ApplicationService {
 
   assignAsset(obj: any) {
     console.log('Inside assignAsset');
-    return this.httpClient.post(`api/AssetTransaction`, obj);
+    return this.httpClient.post(`api/AssetTransaction/CreateAssetTransaction`, obj);
   }
 
   GetVendors(): Observable<any> {
@@ -51,7 +51,7 @@ export class ApplicationService {
   }
   submitAsset(obj: any, id: number) {
     console.log('Inside submitAsset');
-    return this.httpClient.put(`api/AssetTransaction/${id}`, obj);
+    return this.httpClient.put(`api/AssetTransaction/UpdateAssetTransaction/${id}`, obj);
   }
   getUserList() {
     return this.httpClient.get(`api/User`);
@@ -88,11 +88,6 @@ export class ApplicationService {
   EmitFlag(flag: boolean) {
   this.emitupdateflag.next(flag);
  }
-
- GetReport(): Observable<any> {
-  return this.httpClient.get(`api/Report/GetReprot`); }
- GetReportStatus(): Observable<any> {
-  return this.httpClient.get(`api/Report/GetReportStatus`); }
 
 
 }

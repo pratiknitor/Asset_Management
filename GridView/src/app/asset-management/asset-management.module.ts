@@ -8,12 +8,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { RouterModule } from '@angular/router';
+import { AssetsComponent } from './components/assets/assets.component';
 
 
 @NgModule({
   declarations: [
     ReusableGridTableComponent,
-    VendorsComponent
+    VendorsComponent,
+    AssetsComponent
   ],
   imports: [
     CommonModule,

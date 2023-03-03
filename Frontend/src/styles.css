@@ -42,11 +42,13 @@ img {
   overflow: hidden;
   padding: 0 2rem;
   margin-top: 6rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .TableContainer {
   margin-top: 6rem;
+  margin-left: 4rem;
+  margin-bottom: 4rem;
 }
 
 /* Text Styles*/
@@ -308,7 +310,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.7rem 2rem;
+  padding: 0.5rem 2rem;
   position: fixed;
   z-index: 1;
   width: 100%;

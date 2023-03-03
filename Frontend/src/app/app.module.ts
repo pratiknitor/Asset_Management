@@ -27,7 +27,8 @@ const IisIE = window.navigator.userAgent.indexOf('MSIE')>-1
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
       multi: true
-    },MsalGuard,
+    },
+    MsalGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

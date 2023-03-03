@@ -18,8 +18,8 @@ export class AssetsComponent implements OnInit, OnChanges {
   ) {}
 
   assets: any[] =[];
-  sort: any[] =[];
-  myset = new Set();
+  sort: any[] =[];//for sorted date store
+  myset = new Set();//create a new set for dropdown
   selectModel : string = '';
   searchText! : string;
   @ViewChild('searchString') search! : ElementRef;
@@ -53,7 +53,7 @@ export class AssetsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('in onChanges');
+    console.log('in onChanges'+changes);
     this.dashboardService.GetAssets().subscribe((res) => {
       this.assets = res;
       

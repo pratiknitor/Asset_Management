@@ -13,6 +13,7 @@ import { filter, Subject, takeUntil } from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
   token: any;
   flag: any = false;
+  sidebarExpanded = false;
   private readonly _destroy=new Subject<void>();
   userName?:string='';
   constructor(private router:Router,private refreshService:RefreshService,
@@ -42,7 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       {
         this.flag = this.authService.instance.getAllAccounts().length>0;
         // this.refreshService.refreshSubject.next(this.flag);
-        localStorage.setItem('flag', this.flag);
+        //localStorage.setItem('flag', this.flag);
         
         console.log("In MSAL Pipe : "+this.flag);
       })

@@ -35,9 +35,9 @@ export class VendorsComponent implements OnInit {
       },
       (err) => {
         console.log("Vendors List Error"+JSON.stringify(err));
-        this.error = {};
-        this.error = err;
-        this.error[err.param] = err.msg;
+        // this.error = {};
+        // this.error = err;
+        // this.error[err.param] = err.msg;
       }
     );
   }

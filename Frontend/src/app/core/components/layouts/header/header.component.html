@@ -1,4 +1,7 @@
+
+<div  [ngClass]="{'sidebarExpanded' : sidebarExpanded}">
 <nav class="navbar bg-dark">
+  <app-sidebar [isExpanded]="sidebarExpanded" (toggleSidebar)="sidebarExpanded = !sidebarExpanded"></app-sidebar>
     <h1>
       <a [routerLink]="['']" ><i class="fas fa-code"></i> Asset Management</a>
     </h1>
@@ -11,3 +14,5 @@
       <button type="button" class="btn btn-dark" (click)="logout()" >Logout</button>
     </ul>
   </nav>
+</div>
+

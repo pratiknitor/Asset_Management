@@ -1,8 +1,9 @@
 <section class="container">
-  <div class="card" style="padding: 5%; border-radius: 2%">
+  <div class="card">
     <h1>Add Asset</h1>
     <form class="form" (ngSubmit)="SubmitAsset()">
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="Type" class="form-label">Type of Asset</label>
         <input
           type="text"
           placeholder="type of asset"
@@ -12,7 +13,8 @@
           [(ngModel)]="asset.tyape"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
         <input
           type="text"
           placeholder="Name"
@@ -22,7 +24,8 @@
           [(ngModel)]="asset.name"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="Proprietary" class="form-label">Proprietary</label>
         <input
           type="text"
           placeholder="proprietary"
@@ -32,7 +35,8 @@
           [(ngModel)]="asset.proprietary"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="configuration" class="form-label">Configuration</label>
         <input
           type="text"
           placeholder="configuration"
@@ -42,7 +46,8 @@
           [(ngModel)]="asset.configuration"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="serviceTag" class="form-label">Service Tag</label>
         <input
           type="text"
           placeholder="serviceTag"
@@ -52,7 +57,8 @@
           [(ngModel)]="asset.serviceTag"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="model" class="form-label">Model</label>
         <input
           type="text"
           placeholder="model"
@@ -62,7 +68,8 @@
           [(ngModel)]="asset.model"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="hostName" class="form-label">Host Name</label>
         <input
           type="text"
           placeholder="hostName"
@@ -72,7 +79,8 @@
           [(ngModel)]="asset.hostName"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="oem" class="form-label">OEM</label>
         <input
           type="text"
           placeholder="oem"
@@ -82,7 +90,8 @@
           [(ngModel)]="asset.oem"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="expiryDate" class="form-label">Expiry Date</label>
         <input
           type="date"
           placeholder="expiryDate"
@@ -92,7 +101,8 @@
           [(ngModel)]="asset.expiryDate"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="owner" class="form-label">Owner</label>
         <input
           type="text"
           placeholder="owner"
@@ -102,7 +112,8 @@
           [(ngModel)]="asset.owner"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="remarks" class="form-label">Remarks</label>
         <input
           type="text"
           placeholder="remarks"
@@ -112,7 +123,8 @@
           [(ngModel)]="asset.remarks"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="ram" class="form-label">Ram</label>
         <input
           type="text"
           placeholder="ram"
@@ -122,29 +134,38 @@
           [(ngModel)]="asset.ram"
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
+        <label for="vendorId" class="form-label">Select Vendor</label>
         <select [(ngModel)]="asset.vendorId" name="vendorId">
           <option *ngFor="let item of vendors" value="{{ item.id }}">
             {{ item.name }}
           </option>
         </select>
       </div>
-      <div class="form-group" *ngIf="!updateflag; else elseBlock">
+      <div class="centre-text mb-3" *ngIf="!updateflag; else elseBlock">
         <input
           type="submit"
           class="btn btn-primary"
-          style="position: relative; left: 40%"
           value="Submit"
         />
       </div>
-      <ng-template #elseBlock>
-        <input
-          type="submit"
-          class="btn btn-success"
-          style="position: relative; left: 40%"
-          value="Update"
-        />
-      </ng-template>
+      <div class="centre-text">
+        <ng-template #elseBlock>
+          <input
+            type="submit"
+            class="btn btn-success"
+            value="Update"
+          />
+        </ng-template>
+      </div>
+      <div class="centre-text">
+        <button
+          [routerLink]="['/dashboard']"
+          routerLinkActive="router-link-active"
+          class="btn btn-warning"
+          >Back</button
+        >
+      </div>
     </form>
   </div>
 </section>
