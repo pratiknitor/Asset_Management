@@ -1,19 +1,17 @@
 <section class="container">
   <div class="card">
     <h1>Add Asset</h1>
-    <form class="form" (ngSubmit)="SubmitAsset()">
-      <div class="mb-3">
+    <form class="form" #assetForm="ngForm" (ngSubmit)="SubmitAsset()">
+      <div class="mb-3 leftBox">
         <label for="Type" class="form-label">Type of Asset</label>
-        <input
-          type="text"
-          placeholder="type of asset"
-          name="Type"
-          class="form-control"
-          required
-          [(ngModel)]="asset.tyape"
-        />
+        <select [(ngModel)]="asset.tyape" name="Type" style="width: 96%;" #type="ngModel">
+          <option value="Laptop" selected="selected">Laptop</option>
+          <option value="Monitor">Monitor</option>
+          <option value="CPU">CPU</option>
+        </select>
+        <span *ngIf="type.invalid && type.touched" class="errorMessage">Select Valid Type</span>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 middleBox">
         <label for="Name" class="form-label">Name</label>
         <input
           type="text"
@@ -21,32 +19,42 @@
           name="Name"
           class="form-control"
           required
+          #name = "ngModel"
           [(ngModel)]="asset.name"
         />
+        <span *ngIf="name.invalid && name.touched" class="errorMessage">Enter Valid Name</span>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 rightBox">
         <label for="Proprietary" class="form-label">Proprietary</label>
         <input
+          style="width: 96%;"
           type="text"
           placeholder="proprietary"
           name="Proprietary"
           class="form-control"
           required
+          #Proprietary="ngModel"
           [(ngModel)]="asset.proprietary"
         />
+        <span *ngIf="Proprietary.invalid && Proprietary.touched" class="errorMessage">Enter Valid Proprietary</span>
       </div>
-      <div class="mb-3">
+      <br>
+      <div class="mb-3 leftBox">
         <label for="configuration" class="form-label">Configuration</label>
         <input
+          style="width: 96%;"
           type="text"
           placeholder="configuration"
           name="configuration"
           class="form-control"
           required
+          #configuration="ngModel"
           [(ngModel)]="asset.configuration"
         />
+        <span *ngIf="configuration.invalid && configuration.touched" class="errorMessage">Enter Valid Configuration</span>
+
       </div>
-      <div class="mb-3">
+      <div class="mb-3 middleBox">
         <label for="serviceTag" class="form-label">Service Tag</label>
         <input
           type="text"
@@ -54,65 +62,77 @@
           name="serviceTag"
           class="form-control"
           required
+          #serviceTag="ngModel"
           [(ngModel)]="asset.serviceTag"
         />
+        <span *ngIf="serviceTag.invalid && serviceTag.touched" class="errorMessage">Enter Valid Service Tag</span>
+
       </div>
-      <div class="mb-3">
+      <div class="mb-3 rightBox">
         <label for="model" class="form-label">Model</label>
         <input
+        style="width: 96%;"
           type="text"
           placeholder="model"
           name="model"
           class="form-control"
           required
+          #model="ngModel"
           [(ngModel)]="asset.model"
         />
+        <span *ngIf="model.invalid && model.touched" class="errorMessage">Enter Valid Model</span>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 leftBox">
         <label for="hostName" class="form-label">Host Name</label>
         <input
+        style="width: 96%;"
           type="text"
           placeholder="hostName"
           name="hostName"
           class="form-control"
           required
+          #hostName="ngModel"
           [(ngModel)]="asset.hostName"
         />
+        <span *ngIf="hostName.invalid && hostName.touched" class="errorMessage">Enter Valid Host Name</span>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 middleBox">
         <label for="oem" class="form-label">OEM</label>
-        <input
-          type="text"
-          placeholder="oem"
-          name="oem"
-          class="form-control"
-          required
-          [(ngModel)]="asset.oem"
-        />
+        <select [(ngModel)]="asset.oem" name="oem" style="width: 96%;" >
+          <option value="Yes" selected="selected">Yes</option>
+          <option value="No">No</option>
+        </select>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 rightBox">
         <label for="expiryDate" class="form-label">Expiry Date</label>
         <input
+        style="width: 96%;"
           type="date"
           placeholder="expiryDate"
           name="expiryDate"
           class="form-control"
+          min="{{todayDate}}"
           required
+          #expiryDate="ngModel"
           [(ngModel)]="asset.expiryDate"
         />
+        <span *ngIf="expiryDate.invalid && expiryDate.touched" class="errorMessage">Select Valid Date</span>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 leftBox">
         <label for="owner" class="form-label">Owner</label>
         <input
+        style="width: 96%;"
           type="text"
           placeholder="owner"
           name="owner"
           class="form-control"
           required
+          #owner="ngModel"
           [(ngModel)]="asset.owner"
         />
+        <span *ngIf="owner.invalid && owner.touched" class="errorMessage">Enter Valid owner Name</span>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 middleBox">
         <label for="remarks" class="form-label">Remarks</label>
         <input
           type="text"
@@ -120,19 +140,25 @@
           name="remarks"
           class="form-control"
           required
+          #remarks="ngModel"
           [(ngModel)]="asset.remarks"
         />
+        <span *ngIf="remarks.invalid && remarks.touched" class="errorMessage">Enter Valid Remarks</span>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 rightBox">
         <label for="ram" class="form-label">Ram</label>
         <input
+        style="width: 96%;"
           type="text"
-          placeholder="ram"
+          placeholder="Enter RAM"
           name="ram"
           class="form-control"
           required
+          pattern = "[0-9]"
+          #ram="ngModel"
           [(ngModel)]="asset.ram"
         />
+        <span *ngIf="ram.invalid && ram.touched" class="errorMessage">Enter Valid RAM</span>
       </div>
       <div class="mb-3">
         <label for="vendorId" class="form-label">Select Vendor</label>
@@ -147,6 +173,7 @@
           type="submit"
           class="btn btn-primary"
           value="Submit"
+          [disabled]="assetForm.invalid"
         />
       </div>
       <div class="centre-text">
@@ -155,17 +182,24 @@
             type="submit"
             class="btn btn-success"
             value="Update"
+            [disabled]="assetForm.invalid"
           />
         </ng-template>
       </div>
-      <div class="centre-text">
-        <button
-          [routerLink]="['/dashboard']"
-          routerLinkActive="router-link-active"
-          class="btn btn-warning"
-          >Back</button
-        >
-      </div>
     </form>
+    <div class="centre-text">
+      <button
+        [routerLink]="['/dashboard/Assets']"
+        routerLinkActive="router-link-active"
+        class="btn btn-warning"
+        >Back to Assets</button
+      >
+      <button
+        [routerLink]="['/dashboard']"
+        routerLinkActive="router-link-active"
+        class="btn btn-secondary"
+        >Back to Dashboard</button
+      >
+    </div>
   </div>
 </section>

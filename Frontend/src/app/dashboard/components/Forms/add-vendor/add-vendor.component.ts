@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IVendor } from 'src/app/dashboard/Models/ivendor';
+import { DatePipe, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-add-vendor',
@@ -11,15 +12,17 @@ import { IVendor } from 'src/app/dashboard/Models/ivendor';
 export class AddVendorComponent {
   constructor(
     private dashboardService: ApplicationService,
-    private router: Router
+    private router: Router,
+    private datepipe : DatePipe,
+    
   ) {}
-
   vendor: IVendor = {
     id: 0,
     name: '',
     contactNo: '',
     address: '',
-    registrationDate: '',
+    // registrationDate: this.datepipe.transform(new Date().toString(),'dd/MM/yyyy')?.toString(),
+    registrationDate : formatDate(new Date(),'yyyy-MM-dd','en_US').toString(),
     terminationDate: '',
   };
 

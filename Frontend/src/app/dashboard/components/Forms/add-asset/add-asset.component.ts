@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IAsset } from '../../../Models/iasset';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-add-asset',
@@ -13,6 +14,7 @@ export class AddAssetComponent implements OnInit {
   constructor(private dashboardService: ApplicationService, private router:Router) {}
 
   vendors: any;
+  todayDate: string = formatDate(new Date(),'yyyy-MM-dd','en_US').toString();
   updateflag : boolean = false;
   asset: IAsset = {
     id: 0,
@@ -58,7 +60,7 @@ export class AddAssetComponent implements OnInit {
     this.dashboardService.AddAsset(this.asset).subscribe((response) => {
       console.log(JSON.stringify(this.asset));
       console.log('Asset added successfully');
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/Assets']);
     });
   }
   else{

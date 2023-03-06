@@ -1,91 +1,119 @@
 <section class="container">
-  <div class="card form-format">
+  <div class="card">
   <h1>Asset Transaction</h1>
-  <form (ngSubmit)="addAssetTransaction()">
-    <div class="mb-3">
+  <form #assignAsset="ngForm" (ngSubmit)="addAssetTransaction()">
+    <div class="mb-3 leftBox">
       <label for="assetSelection" class="form-label">Select Asset</label>&nbsp;
-      <select name="assetSelection" [(ngModel)]="transaction.assetId">
+      <select name="assetSelection" [(ngModel)]="transaction.assetId" style="width: 96%; height: 40%;" #assetSelection="ngModel">
         <option value="" *ngFor="let item of assets" [value]="item.id">
           {{ item.tyape }}&emsp;{{ item.name }}&emsp;{{ item.ram }}
         </option>
       </select>
+      <span *ngIf="assetSelection.invalid && assetSelection.touched" class="errorMessage">Select Valid Asset</span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 middleBox">
       <label for="userName" class="form-label">User Name</label>
       <input
         type="text"
         class="form-control"
         name="userName"
+        required
+        #userName="ngModel"
+        min="2"
         [(ngModel)]="transaction.userName"
       />
+      <span *ngIf="userName.invalid && userName.touched" class="errorMessage">Enter Valid User Name</span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 rightBox">
       <label for="employeeId" class="form-label">Emp Id</label>
       <input
+      style="width: 96%;"
         type="text"
         class="form-control"
         name="employeeId"
+        required
+        #employeeId="ngModel"
         [(ngModel)]="transaction.empId"
       />
+      <span *ngIf="employeeId.invalid && employeeId.touched" class="errorMessage">Enter Valid Employee Id</span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 leftBox">
       <label for="Email" class="form-label">Email</label>
       <input
+      style="width: 96%;"
         type="text"
         class="form-control"
         name="Email"
+        required
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        #Email="ngModel"
         [(ngModel)]="transaction.email"
       />
+      <span *ngIf="Email.invalid && Email.touched" class="errorMessage">Enter Valid Email</span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 middleBox">
       <label for="Location" class="form-label">Location</label>
       <input
         type="text"
         class="form-control"
         name="Location"
+        required
+        min="4"
+        #Location="ngModel"
         [(ngModel)]="transaction.location"
       />
+      <span *ngIf="Location.invalid && Location.touched" class="errorMessage">Enter Valid Location</span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 rightBox ">
       <label for="IssueDate" class="form-label">Issue Date</label>
       <input
+      style="width: 96%;"
         type="date"
         class="form-control"
         name="IssueDate"
+        disabled="disabled"
         [(ngModel)]="transaction.issueDate"
       />
     </div>
-    <div class="mb-3">
+    <div class="mb-3 leftBox">
       <label for="SubmitDate" class="form-label">Submit Date</label>
       <input
+      style="width: 96%;"
         type="date"
         class="form-control"
         name="SubmitDate"
+        required
+        min="{{transaction.issueDate}}"
+        #SubmitDate="ngModel"
         [(ngModel)]="transaction.submitDate"
       />
+      <span *ngIf="SubmitDate.invalid && SubmitDate.touched" class="errorMessage">Select Valid Date</span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 middleBox">
       <label for="IssuedBy" class="form-label">Issued By</label>
       <input
         type="text"
         class="form-control"
         name="IssuedBy"
+        required
+        #IssuedBy="ngModel"
         [(ngModel)]="transaction.issuedBy"
       />
+      <span *ngIf="IssuedBy.invalid && IssuedBy.touched" class="errorMessage">Enter Valid Name</span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 rightBox">
       <label for="Department" class="form-label">Department</label>
-      <input
-        type="text"
-        class="form-control"
-        name="Department"
-        [(ngModel)]="transaction.department"
-      />
+      <select [(ngModel)]="transaction.department" name="Department" style="width: 96%; height: 40%;" #Department="ngModel" >
+        <option value="DU1" selected="selected">DU1</option>
+        <option value="DU2">DU2</option>
+      </select>
+      <span *ngIf="Department.invalid && Department.touched" class="errorMessage">Select Valid Department</span>
     </div>
     <div class="centre-text mb-3">
       <input
         type="submit"
         class="btn btn-primary"
+        [disabled]="assignAsset.invalid"
         value="Submit"
       />
     </div>

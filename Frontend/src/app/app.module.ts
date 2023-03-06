@@ -14,6 +14,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 //get browser information
@@ -38,6 +39,7 @@ const IisIE = window.navigator.userAgent.indexOf('MSIE')>-1
   bootstrap: [AppComponent, MsalRedirectComponent],
   imports: [BrowserModule, CoreModule,
     Ng2SearchPipeModule, HttpClientModule,
+    FormsModule, ReactiveFormsModule,
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,

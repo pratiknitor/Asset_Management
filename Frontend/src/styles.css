@@ -380,3 +380,7 @@ button {
     width: 50%;
     margin-left: 250px;
 }
+
+.errorMessage{
+  color: var(--danger-color);
+}

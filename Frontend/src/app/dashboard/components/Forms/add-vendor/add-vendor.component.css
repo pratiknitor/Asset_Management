@@ -1,0 +1,13 @@
+.card{
+    padding: 20px;
+}
+.leftBox{
+    float: left;
+    height: 90px;
+    width: 49%;
+}
+.rightBox{
+    float: right;
+    height: 90px;
+    width: 49%;
+}

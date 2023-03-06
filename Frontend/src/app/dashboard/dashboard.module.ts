@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
@@ -38,6 +38,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxPaginationModule,
     DashboardRoutingModule,
   ],
-  providers: [],
+  providers: [DatePipe],
 })
 export class DashboardModule {}

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IAssetTransaction } from '../../../Models/iasset-transaction';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-asset-transaction',
@@ -16,7 +17,7 @@ export class AssetTransactionComponent implements OnInit {
     email: '',
     userName: '',
     location: '',
-    issueDate: '',
+    issueDate: formatDate(new Date(),'yyyy-MM-dd','en_US').toString(),
     submitDate: '',
     assetId: 0,
     issuedBy: '',
