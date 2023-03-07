@@ -18,7 +18,7 @@ export class AssetTransactionComponent implements OnInit {
     userName: '',
     location: '',
     issueDate: formatDate(new Date(),'yyyy-MM-dd','en_US').toString(),
-    submitDate: '',
+    submitDate: null,
     assetId: 0,
     issuedBy: '',
     department: '',
@@ -49,17 +49,7 @@ export class AssetTransactionComponent implements OnInit {
     );
   }
   addAssetTransaction() {
-    // let obj = {
-    //   empId: this.transaction.empId,
-    //   email: this.transaction.email,
-    //   userName: this.transaction.userName,
-    //   location: this.transaction.location,
-    //   issueDate: this.transaction.issueDate,
-    //   submitDate: this.transaction.submitDate,
-    //   assetId: this.transaction.assetId,
-    //   issuedBy: this.transaction.issuedBy,
-    //   department: this.transaction.department,
-    // };
+    
     console.log(this.transaction);
     this.dashboardService.assignAsset(this.transaction).subscribe(
       (res) => {

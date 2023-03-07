@@ -18,7 +18,7 @@ export class AssetsComponent implements OnInit, OnChanges {
   ) {}
 
   assets: any[] =[];
-  sort: any[] =[];//for sorted date store
+  sort: any[] =[];//for sorted data store
   myset = new Set();//create a new set for dropdown
   selectModel : string = '';
   searchText! : string;
@@ -71,10 +71,12 @@ export class AssetsComponent implements OnInit, OnChanges {
 
   DeleteAsset(value: any): void {
     console.log(value);
+    if(confirm("Are u sure to delete")){
     this.dashboardService.DeleteAsset(value).subscribe((res) => {
       console.log(JSON.stringify(res));
       this.assets = res;
     });
+  }
   }
 
   sortByModel(){
@@ -98,6 +100,7 @@ export class AssetsComponent implements OnInit, OnChanges {
       if(this.selectModel.toLowerCase()==="all"||this.selectModel==="")
       {
         this.assets = res;
+        //we cant break subscribe in between so if condition is in last
       }
     });
   }

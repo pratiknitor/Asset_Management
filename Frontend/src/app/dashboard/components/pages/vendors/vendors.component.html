@@ -35,6 +35,14 @@
           <button
             type="submit"
             value="{{ item.id }}"
+            (click)="EditVendor(item.id)"
+            class="btn btn-info"
+          >
+            Edit
+          </button>
+          <button
+            type="submit"
+            value="{{ item.id }}"
             (click)="DeleteVender(item.id)"
             class="btn btn-danger">
             Delete
@@ -55,7 +63,7 @@
 </div>
 </section>
 
-
+<!-- 
 <br/>
 <div class="centre-text"><h3>Table Using Reusable Table Component</h3></div>
 
@@ -67,4 +75,4 @@
 [tableSize]="tableSize"
 (fetch)="ngOnInit()"
 >
-</app-re-table>
+</app-re-table> -->

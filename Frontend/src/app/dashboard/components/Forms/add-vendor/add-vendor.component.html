@@ -70,13 +70,23 @@
         <span *ngIf="termination.invalid && termination.touched" class="errorMessage">Select Valid Date</span>
 
       </div>
-      <div class="centre-text mb-3">
+      <div class="centre-text mb-3" *ngIf="!updateflag; else elseBlock">
         <input
           type="submit"
           class="btn btn-primary"
           value="Submit"
           [disabled]="vendorForm.invalid"
         />
+      </div>
+      <div class="centre-text">
+        <ng-template #elseBlock>
+          <input
+            type="submit"
+            class="btn btn-success"
+            value="Update"
+            [disabled]="vendorForm.invalid"
+          />
+        </ng-template>
       </div>
       <!-- {{vendorForm.invalid}} -->
     </form>

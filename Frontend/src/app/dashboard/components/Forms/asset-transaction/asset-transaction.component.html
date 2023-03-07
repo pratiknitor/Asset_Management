@@ -53,15 +53,10 @@
     </div>
     <div class="mb-3 middleBox">
       <label for="Location" class="form-label">Location</label>
-      <input
-        type="text"
-        class="form-control"
-        name="Location"
-        required
-        min="4"
-        #Location="ngModel"
-        [(ngModel)]="transaction.location"
-      />
+      <select [(ngModel)]="transaction.location" name="Location" style="width: 96%; height: 40%;" #Location="ngModel" >
+        <option value="HJDU1">HJU1</option>
+        <option value="HJDU2">HJU2</option>
+      </select>
       <span *ngIf="Location.invalid && Location.touched" class="errorMessage">Enter Valid Location</span>
     </div>
     <div class="mb-3 rightBox ">
@@ -82,7 +77,6 @@
         type="date"
         class="form-control"
         name="SubmitDate"
-        required
         min="{{transaction.issueDate}}"
         #SubmitDate="ngModel"
         [(ngModel)]="transaction.submitDate"
@@ -104,8 +98,10 @@
     <div class="mb-3 rightBox">
       <label for="Department" class="form-label">Department</label>
       <select [(ngModel)]="transaction.department" name="Department" style="width: 96%; height: 40%;" #Department="ngModel" >
-        <option value="DU1" selected="selected">DU1</option>
+        <option value="P&D" selected="selected">P&D</option>
+        <option value="DU1">DU1</option>
         <option value="DU2">DU2</option>
+        <option value="IT">IT</option>
       </select>
       <span *ngIf="Department.invalid && Department.touched" class="errorMessage">Select Valid Department</span>
     </div>

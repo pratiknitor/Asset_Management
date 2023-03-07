@@ -5,7 +5,7 @@ export interface IAssetTransaction {
   userName: string;
   location: string;
   issueDate: string;
-  submitDate: string;
+  submitDate: string | null;
   assetId: number;
   issuedBy: string;
   department: string;

@@ -80,13 +80,27 @@ export class ApplicationService {
   emitAsset = new Subject<IAsset>();
   emitupdateflag = new Subject<boolean>();
   emitTransaction = new Subject<IAssetTransaction>();
- EmitAsset(Asset: IAsset){
+  EmitAsset(Asset: IAsset){
    console.log('emitting asset');
    console.log(Asset);
    this.emitAsset.next(Asset);
   }
   EmitFlag(flag: boolean) {
   this.emitupdateflag.next(flag);
+ }
+
+ GetVendor(id : any): Observable<any>{
+  return this.httpClient.get(`api/Vendor/${id}`);
+ }
+ EditVendor(id: any, vendor: IVendor): Observable<any>{
+  return this.httpClient.put(`api/Vendor/${id}`, vendor);
+ }
+
+ emitVendor = new Subject<IVendor>();
+ EmitVendor(Vendor : IVendor) {
+  console.log('EmitVendor');
+  console.log(Vendor);
+  this.emitVendor.next(Vendor);
  }
 
 

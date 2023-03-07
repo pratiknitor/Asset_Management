@@ -47,6 +47,7 @@ export class AddAssetComponent implements OnInit {
     this.dashboardService.emitAsset.subscribe(
       (res) => {
         this.asset = res;
+        this.asset.expiryDate = formatDate(this.asset.expiryDate,'yyyy-MM-dd','en_US').toString()
         this.updateflag = true;
       }
     )

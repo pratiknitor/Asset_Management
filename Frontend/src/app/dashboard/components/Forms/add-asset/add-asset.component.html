@@ -5,9 +5,10 @@
       <div class="mb-3 leftBox">
         <label for="Type" class="form-label">Type of Asset</label>
         <select [(ngModel)]="asset.tyape" name="Type" style="width: 96%;" #type="ngModel">
-          <option value="Laptop" selected="selected">Laptop</option>
-          <option value="Monitor">Monitor</option>
-          <option value="CPU">CPU</option>
+          <option value="LAPTOP" selected="selected">LAPTOP</option>
+          <option value="MAC">MAC</option>
+          <option value="DESKTOP">DESKTOP</option>
+          <option value="MACBOOK">MACBOOK</option>
         </select>
         <span *ngIf="type.invalid && type.touched" class="errorMessage">Select Valid Type</span>
       </div>
@@ -26,17 +27,11 @@
       </div>
       <div class="mb-3 rightBox">
         <label for="Proprietary" class="form-label">Proprietary</label>
-        <input
-          style="width: 96%;"
-          type="text"
-          placeholder="proprietary"
-          name="Proprietary"
-          class="form-control"
-          required
-          #Proprietary="ngModel"
-          [(ngModel)]="asset.proprietary"
-        />
-        <span *ngIf="Proprietary.invalid && Proprietary.touched" class="errorMessage">Enter Valid Proprietary</span>
+        <select [(ngModel)]="asset.proprietary" name="Proprietary" style="width: 96%;" #Proprietary="ngModel">
+          <option value="OWN" selected="selected">OWN</option>
+          <option value="RENT">RENT</option>
+        </select>
+        <span *ngIf="Proprietary.invalid && Proprietary.touched" class="errorMessage">Select Valid Proprietary</span>
       </div>
       <br>
       <div class="mb-3 leftBox">
@@ -154,7 +149,7 @@
           name="ram"
           class="form-control"
           required
-          pattern = "[0-9]"
+          pattern = "^\d+$"
           #ram="ngModel"
           [(ngModel)]="asset.ram"
         />

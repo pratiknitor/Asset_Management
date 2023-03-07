@@ -6,14 +6,14 @@
 
     >Add New Asset</button
   >
-  <select [(ngModel)] = "selectModel" (change)="sortByModel()">
+  <select [(ngModel)] = "selectModel" (change)="sortByModel()" >
     <option value="All" selected >All</option>
     <option *ngFor="let item of myset" [value]="item">{{item}}</option>
   </select>
-  &nbsp;&nbsp;&nbsp;&nbsp;
+  <!-- &nbsp;&nbsp;&nbsp;&nbsp;
   <input type="search" #searchString placeholder="Search model.." (blur)="searchBox()" >
   <button type="button" class="btn btn-secondary btn-sm" (click)="searchBox()" >🔍
-  </button>
+  </button> -->
   <br />
   <br/>
   <div class="centre-text">
@@ -87,7 +87,7 @@
       >Back</button
     >
   </div>
-
+<!-- 
   <br/>
 <div class="centre-text"><h3>Table Using Reusable Table Component</h3></div>
 
@@ -99,5 +99,5 @@
 [tableSize]="tableSize"
 (fetch)="ngOnInit()"
 >
-</app-re-table>
+</app-re-table> -->
 </section>
