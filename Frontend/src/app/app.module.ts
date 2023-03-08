@@ -15,6 +15,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 
 
 //get browser information
@@ -40,6 +41,9 @@ const IisIE = window.navigator.userAgent.indexOf('MSIE')>-1
   imports: [BrowserModule, CoreModule,
     Ng2SearchPipeModule, HttpClientModule,
     FormsModule, ReactiveFormsModule,
+    NgxUiLoaderModule, NgxUiLoaderHttpModule.forRoot(
+      {showForeground: true}
+    ),
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,

@@ -15,12 +15,10 @@ namespace Asset_Management.Models
         public string? UserName { get; set; }
         public string? Location { get; set; }
         public DateTime? IssueDate { get; set; }
-        [SubmitDateValidation(ErrorMessage = "Date Should not be future Date")]
         public DateTime? SubmitDate { get; set; }
         public int? AssetId { get; set; }
         public string? IssuedBy { get; set; }
         public string? Department { get; set; }
-
         public virtual AssetDetail? Asset { get; set; }
         public virtual User? User { get; set; }
     }

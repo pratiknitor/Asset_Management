@@ -4,7 +4,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AssetTransactionComponent } from './components/Forms/asset-transaction/asset-transaction.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddAssetComponent } from './components/Forms/add-asset/add-asset.component';
 import { AssetsComponent } from './components/pages/assets/assets.component';
@@ -33,6 +33,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,

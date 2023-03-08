@@ -4,6 +4,8 @@ import { ApplicationService } from 'src/app/services/application.service';
 import { IVendor } from 'src/app/dashboard/Models/ivendor';
 import { DatePipe, formatDate } from '@angular/common';
 import { OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-vendor',
@@ -12,10 +14,15 @@ import { OnInit } from '@angular/core';
 })
 export class AddVendorComponent implements OnInit {
   updateflag : boolean = false;
+
+  //for reactive form
+  vendorForm!: FormGroup;
+
   constructor(
     private dashboardService: ApplicationService,
     private router: Router,
     private datepipe : DatePipe,
+    private formBuilder:FormBuilder
     
   ) {}
   ngOnInit(): void {
@@ -27,7 +34,33 @@ export class AddVendorComponent implements OnInit {
         this.updateflag = true;
       }
     )
+
+    //reactive form validation
+    this.vendorForm = this.formBuilder.group(
+      {
+        
+        name: ['', [
+          Validators.required,
+          Validators.minLength(2)
+        ]],
+        contactNo: ['', [
+          Validators.required, 
+          Validators.pattern(
+          /^((\\+91-?)|0)?[0-9]{10}$/),
+        ]],
+        address: ['', [
+          Validators.required,
+          Validators.minLength(4)
+        ]],
+        terminationDate: ['', [
+          Validators.required,
+        ]],
+      }
+    )
   }
+
+
+
   vendor: IVendor = {
     id: 0,
     name: '',
@@ -44,8 +77,7 @@ export class AddVendorComponent implements OnInit {
       (res) => {
         console.log(this.vendor);
         alert('Vendor Added Successfully !');
-        // this.vendor = res;
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard/ShowVenders']);
       },
       (err) => {}
     );
