@@ -384,3 +384,6 @@ button {
 .errorMessage{
   color: var(--danger-color);
 }
+.star{
+  color: var(--danger-color);
+}

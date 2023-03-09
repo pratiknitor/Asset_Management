@@ -15,12 +15,30 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderConfig, PB_DIRECTION, POSITION, SPINNER } from 'ngx-ui-loader';
 
 
 //get browser information
 const IisIE = window.navigator.userAgent.indexOf('MSIE')>-1
 || window.navigator.userAgent.indexOf('Trident/')>-1;
+
+
+//
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  fgsColor: "red",
+  fgsPosition: POSITION.centerCenter,
+  fgsSize: 80,
+  fgsType: SPINNER.threeStrings, // foreground spinner type
+  pbColor: "lime",
+  pbDirection: PB_DIRECTION.leftToRight, // progress bar direction
+  pbThickness: 8, // progress bar thickness
+  text : "Loading please wait...", //loading text
+  textColor: "black", //loading text color
+  textPosition: POSITION.centerCenter, //loading text position
+  minTime : 20,//min time of loading max is default -1
+  overlayColor: "rgba(168,192,213,0.74)",
+};
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +59,7 @@ const IisIE = window.navigator.userAgent.indexOf('MSIE')>-1
   imports: [BrowserModule, CoreModule,
     Ng2SearchPipeModule, HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    NgxUiLoaderModule, NgxUiLoaderHttpModule.forRoot(
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig), NgxUiLoaderHttpModule.forRoot(
       {showForeground: true}
     ),
     AppRoutingModule,

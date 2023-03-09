@@ -32,12 +32,12 @@ export class AssetTransactionComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     console.log('================================================');
-    this.dashboardService.getUserList().subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {}
-    );
+    // this.dashboardService.getUserList().subscribe(
+    //   (res) => {
+    //     console.log(res);
+    //   },
+    //   (err) => {}
+    // );
     this.dashboardService.GetAssets().subscribe(
       (res) => {
         console.log(res);

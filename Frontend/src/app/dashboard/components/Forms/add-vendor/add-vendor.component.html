@@ -1,24 +1,30 @@
 <section class="container">
-  <div class="card ">
+  <div class="card">
     <h1 class="centre-text">Add Vendor</h1>
     <form #vendorForm="ngForm" (ngSubmit)="submitVendorDetails()">
       <div class="mb-3 leftBox">
-        <label for="name" class="form-label">Name</label>
+        <label for="name" class="form-label"
+          >Name<sup class="star">*</sup></label
+        >
         <input
           type="text"
           class="form-control"
           name="name"
           required
-          #name = "ngModel"
+          #name="ngModel"
           minlength="2"
           placeholder="Enter Name"
           [(ngModel)]="vendor.name"
         />
-        <span *ngIf="name.invalid && name.touched" class="errorMessage">Enter Valid Name</span>
+        <span *ngIf="name.invalid && name.touched" class="errorMessage"
+          >Enter Valid Name</span
+        >
       </div>
-      
+
       <div class="mb-3 rightBox">
-        <label for="contact" class="form-label">Contact No</label>
+        <label for="contact" class="form-label"
+          >Contact No<sup class="star">*</sup></label
+        >
         <input
           type="text"
           class="form-control"
@@ -29,10 +35,14 @@
           placeholder="Enter Contact Number"
           [(ngModel)]="vendor.contactNo"
         />
-        <span *ngIf="contact.invalid && contact.touched" class="errorMessage">Enter Valid Contact Number</span>
+        <span *ngIf="contact.invalid && contact.touched" class="errorMessage"
+          >Enter Valid Contact Number</span
+        >
       </div>
       <div class="mb-2">
-        <label for="address" class="form-label">Address</label>
+        <label for="address" class="form-label"
+          >Address<sup class="star">*</sup></label
+        >
         <textarea
           type="textarea"
           class="form-control"
@@ -43,11 +53,14 @@
           placeholder="Enter Address"
           [(ngModel)]="vendor.address"
         ></textarea>
-        <span *ngIf="address.invalid && address.touched" class="errorMessage">Enter Valid Address</span>
-
+        <span *ngIf="address.invalid && address.touched" class="errorMessage"
+          >Enter Valid Address</span
+        >
       </div>
       <div class="mb-3 leftBox">
-        <label for="registration">Registration Date</label>
+        <label for="registration"
+          >Registration Date<sup class="star">*</sup></label
+        >
         <input
           class="form-control"
           name="registration"
@@ -56,19 +69,24 @@
         />
       </div>
       <div class="mb-3 rightBox">
-        <label for="termination">Termination Date</label>
+        <label for="termination"
+          >Termination Date<sup class="star">*</sup></label
+        >
         <input
           type="date"
           class="form-control"
           name="termination"
           required
-          min="{{vendor.registrationDate}}"
+          min="{{ vendor.registrationDate }}"
           placeholder="Select termination date"
           #termination="ngModel"
           [(ngModel)]="vendor.terminationDate"
         />
-        <span *ngIf="termination.invalid && termination.touched" class="errorMessage">Select Valid Date</span>
-
+        <span
+          *ngIf="termination.invalid && termination.touched"
+          class="errorMessage"
+          >Select Valid Date</span
+        >
       </div>
       <div class="centre-text mb-3" *ngIf="!updateflag; else elseBlock">
         <input
@@ -95,60 +113,64 @@
         [routerLink]="['/dashboard/ShowVenders']"
         routerLinkActive="router-link-active"
         class="btn btn-warning"
-        >Back to Vendors</button
       >
+        Back to Vendors
+      </button>
       <button
         [routerLink]="['/dashboard']"
         routerLinkActive="router-link-active"
         class="btn btn-secondary"
-        >Back to Dashboard</button
       >
+        Back to Dashboard
+      </button>
     </div>
   </div>
 </section>
 
-<br/>
+<br />
 <!-- Reactive Form -->
-
-<!-- <form [formGroup]="vendorForm" (ngSubmit)="submitVendorDetails()">
+<section class="container">
+  <div class="card">
+<form [formGroup]="vendorReactiveForm" (ngSubmit)="submitVendorDetails()">
   <div class="mb-3 leftBox">
     <label for="name" class="form-label">Name</label>
     <input
+      id="name"
       type="text"
       class="form-control"
       formControlName="name"
       placeholder="Enter Name"
-      [(ngModel)]="vendor.name"
     />
+    <!-- <span *ngIf="vendorReactiveForm.controls['name'].errors['required']">Password is required</span> -->
   </div>
   <div class="mb-3 rightBox">
     <label for="contact" class="form-label">Contact No</label>
     <input
+      id="contact"
       type="text"
       class="form-control"
       name="contact"
       formControlName="contact"
       placeholder="Enter Contact Number"
-      [(ngModel)]="vendor.contactNo"
     />
   </div>
   <div class="mb-2">
     <label for="address" class="form-label">Address</label>
     <textarea
+      id="address"
       type="textarea"
       class="form-control"
       name="address"
       formControlName="address"
-      [(ngModel)]="vendor.address"
     ></textarea>
   </div>
   <div class="mb-3 leftBox">
     <label for="registration">Registration Date</label>
     <input
+      id="registration"
       class="form-control"
       name="registration"
       disabled="disabled"
-      [(ngModel)]="vendor.registrationDate"
     />
   </div>
   <div class="mb-3 rightBox">
@@ -158,8 +180,9 @@
       class="form-control"
       name="termination"
       formControlName="termination"
-      [(ngModel)]="vendor.terminationDate"
     />
   </div>
-  <button type="submit" [disabled]="vendorForm.invalid">Send</button>
-</form> -->
+  <button type="submit" [disabled]="vendorForm.invalid">Submit</button>
+</form>
+</div>
+</section>

@@ -25,6 +25,10 @@ export class ErrorInterceptor implements HttpInterceptor {
           alert('This is : '+JSON.stringify(err.statusText)+" Please login by authorized account");
           this.router.navigate(['/dashboard']);
         }
+        if (err.status==504) {
+          alert('This is : '+JSON.stringify(err.statusText)+" please have patience");
+          this.router.navigate(['']);
+        }
         return throwError({
           ...err.error.errors.forEach((e:any) => {
               console.log(e);

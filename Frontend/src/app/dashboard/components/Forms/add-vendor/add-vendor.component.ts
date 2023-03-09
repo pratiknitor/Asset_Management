@@ -16,7 +16,7 @@ export class AddVendorComponent implements OnInit {
   updateflag : boolean = false;
 
   //for reactive form
-  vendorForm!: FormGroup;
+vendorReactiveForm!: FormGroup;
 
   constructor(
     private dashboardService: ApplicationService,
@@ -36,7 +36,7 @@ export class AddVendorComponent implements OnInit {
     )
 
     //reactive form validation
-    this.vendorForm = this.formBuilder.group(
+    this.vendorReactiveForm = this.formBuilder.group(
       {
         
         name: ['', [
@@ -51,6 +51,9 @@ export class AddVendorComponent implements OnInit {
         address: ['', [
           Validators.required,
           Validators.minLength(4)
+        ]],
+        registrationDate: [formatDate(Date.now(),'yyyy-MM-dd','en_US').toString(), [
+          Validators.required,
         ]],
         terminationDate: ['', [
           Validators.required,
