@@ -42,24 +42,27 @@ export class VendorsComponent implements OnInit {
     );
   }
 
-  DeleteVender(data : number){
-    
-    if(confirm("Are u sure to delete")){
+  DeleteVender(data : number) {
+    if(confirm("Are you sure to delete?")){
       this.dashboardService.DeleteVender(data).subscribe(
         (res) => {
           console.log(JSON.stringify(res));
           this.vendors = res
-        });
+        },
+        (err) =>{
+          alert("Failed to delete");
+        }
+        );
     }
     
   }
 
-  EditVendor(data : number){
-    console.log(data + " : "+JSON.stringify(data));
-    this.dashboardService.GetVendor(data).subscribe((res:IVendor) => {
-      this.dashboardService.EmitVendor(res);
-    });
-    this.router.navigate(['/dashboard/AddVendor']);
+  EditVendor(id : number){
+    // console.log(id + " : "+JSON.stringify(id));
+    // this.dashboardService.GetVendor(id).subscribe((res:IVendor) => {
+    //   this.dashboardService.EmitVendor(res);
+    // });
+    this.router.navigate(['/dashboard/editVendor',id]);
   }
 
 }

@@ -1,29 +1,66 @@
 <section class="TableContainer">
-  <button
-    [routerLink]="['/dashboard/AddAsset']"
-    routerLinkActive="router-link-active"
-    class="btn btn-success"
+  <table class="table">
+    <tbody>
+      <tr>
+        <td style="vertical-align: middle; text-align: center">
+          <button
+            [routerLink]="['/dashboard/AddAsset']"
+            routerLinkActive="router-link-active"
+            class="btn btn-success"
+          >
+            Add New Asset
+          </button>
+        </td>
+        <td>
+          <label for="select2">Select Type</label>
+          <select
+            id="select2"
+            [(ngModel)]="selectType"
+            (change)="sortByType()"
+            class="form-select"
+          >
+            <option value="All" selected>All</option>
+            <option *ngFor="let item of myTypes" [value]="item">
+              {{ item }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <label for="select1">Select Model</label>
+          <select
+            id="select1"
+            [(ngModel)]="selectModel"
+            (change)="sortByModel()"
+            class="form-select"
+          >
+            <option value="All" selected>All</option>
+            <option *ngFor="let item of myset" [value]="item">
+              {{ item }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-    >Add New Asset</button
-  >
-  <select [(ngModel)] = "selectModel" (change)="sortByModel()" >
-    <option value="All" selected >All</option>
-    <option *ngFor="let item of myset" [value]="item">{{item}}</option>
-  </select>
   <!-- &nbsp;&nbsp;&nbsp;&nbsp;
   <input type="search" #searchString placeholder="Search model.." (blur)="searchBox()" >
   <button type="button" class="btn btn-secondary btn-sm" (click)="searchBox()" >🔍
   </button> -->
-  <br />
-  <br/>
   <div class="centre-text">
-    <input type="text" class="search-box"
-   [(ngModel)]="searchText" placeholder="   🔍Start searching......">
-</div>
-  
-  <br/>
+    <input
+      type="text"
+      class="form-control"
+      style="width: 60%; margin-left: 20%"
+      [(ngModel)]="searchText"
+      placeholder="   🔍Start searching......"
+    />
+  </div>
+
+  <br />
   <table class="table tableScroll">
     <thead>
+      <th>Sr No.</th>
       <th>Type</th>
       <th>Name</th>
       <th>Proprietary</th>
@@ -37,10 +74,11 @@
       <th>Remarks</th>
       <th>Ram</th>
       <th>Vendor Name</th>
-      <th style="text-align: center;">Action</th>
+      <th style="text-align: center">Action</th>
     </thead>
     <tbody>
-      <tr *ngFor="let item of assets | filter:searchText">
+      <tr *ngFor="let item of assets | filter : searchText; let i = index">
+        <td>{{ i + 1 }}</td>
         <td>{{ item.tyape }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.proprietary }}</td>
@@ -49,11 +87,11 @@
         <td>{{ item.model }}</td>
         <td>{{ item.hostName }}</td>
         <td>{{ item.oem }}</td>
-        <td>{{ item.expiryDate | date }}</td>
+        <td>{{ item.expiryDate | date : "MM-dd-yyyy" }}</td>
         <td>{{ item.owner }}</td>
         <td>{{ item.remarks }}</td>
         <td>{{ item.ram }}</td>
-        <td>{{ item.vendorId | vendorsName : vendors}}</td>
+        <td>{{ item.vendorId | vendorsName : vendors }}</td>
         <td>
           <button
             type="submit"
@@ -72,22 +110,22 @@
             Delete
           </button>
         </td>
-                 
       </tr>
     </tbody>
   </table>
 
   <!-- <app-items [headers]="headers" [data]="data"></app-items> -->
-  <br>
+  <br />
   <div class="centre-text">
     <button
       [routerLink]="['/dashboard']"
       routerLinkActive="router-link-active"
       class="btn btn-warning"
-      >Back</button
     >
+      Back
+    </button>
   </div>
-<!-- 
+  <!-- 
   <br/>
 <div class="centre-text"><h3>Table Using Reusable Table Component</h3></div>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IVendor } from 'src/app/dashboard/Models/ivendor';
 import { DatePipe, formatDate } from '@angular/common';
@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddVendorComponent implements OnInit {
   updateflag : boolean = false;
+  id!: number;
 
   //for reactive form
 vendorReactiveForm!: FormGroup;
@@ -21,24 +22,35 @@ vendorReactiveForm!: FormGroup;
   constructor(
     private dashboardService: ApplicationService,
     private router: Router,
+    private route: ActivatedRoute,
     private datepipe : DatePipe,
     private formBuilder:FormBuilder
     
   ) {}
   ngOnInit(): void {
-    this.dashboardService.emitVendor.subscribe(
-      (res) => {
+    this.id = this.route.snapshot.params['id'];
+    console.log(!this.id)
+    this.updateflag = !this.id;
+    if(!this.updateflag){
+      this.dashboardService.GetVendor(this.id).subscribe((res:IVendor) => {
+        console.log(res);
         this.vendor = res;
         this.vendor.registrationDate = formatDate(this.vendor.registrationDate,'yyyy-MM-dd','en_US').toString();
         this.vendor.terminationDate = formatDate(this.vendor.terminationDate,'yyyy-MM-dd','en_US').toString();
-        this.updateflag = true;
-      }
-    )
+      });
+    }
+    // this.dashboardService.emitVendor.subscribe(
+    //   (res) => {
+    //     this.vendor = res;
+    //     this.vendor.registrationDate = formatDate(this.vendor.registrationDate,'yyyy-MM-dd','en_US').toString();
+    //     this.vendor.terminationDate = formatDate(this.vendor.terminationDate,'yyyy-MM-dd','en_US').toString();
+    //     this.updateflag = true;
+    //   }
+    // )
 
     //reactive form validation
     this.vendorReactiveForm = this.formBuilder.group(
       {
-        
         name: ['', [
           Validators.required,
           Validators.minLength(2)
@@ -63,13 +75,11 @@ vendorReactiveForm!: FormGroup;
   }
 
 
-
   vendor: IVendor = {
     id: 0,
     name: '',
     contactNo: '',
     address: '',
-    // registrationDate: this.datepipe.transform(new Date().toString(),'dd/MM/yyyy')?.toString(),
     registrationDate : formatDate(new Date(),'yyyy-MM-dd','en_US').toString(),
     terminationDate: '',
   };

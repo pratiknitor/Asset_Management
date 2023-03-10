@@ -9,13 +9,13 @@
     >
 </div><br/>
 <div class="centre-text">
-    <input type="text" class="search-box"
+    <input type="text" class="form-control" style="width: 60%; margin-left: 20%;"
    [(ngModel)]="searchText" placeholder="   🔍Start searching......">
 </div>
   <br/>
   <table class="table tableScroll">
     <thead>
-      <th>ID</th>
+      <th>Sr No.</th>
       <th>Name</th>
       <th>ContactNo</th>
       <th>Address</th>
@@ -24,13 +24,13 @@
       <th></th>
     </thead>
     <tbody>
-      <tr *ngFor="let item of vendors | filter:searchText">
-        <td>{{ item.id }}</td>
+      <tr *ngFor="let item of vendors | filter:searchText; let i=index">
+        <td>{{ i+1 }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.contactNo }}</td>
         <td>{{ item.address }}</td>
-        <td>{{ item.registrationDate | date }}</td>
-        <td>{{ item.terminationDate | date }}</td>
+        <td>{{ item.registrationDate | date: 'MM-dd-yyyy' }}</td>
+        <td>{{ item.terminationDate | date: 'MM-dd-yyyy' }}</td>
         <td>
           <button
             type="submit"

@@ -1,6 +1,7 @@
 <section class="container">
   <div class="card">
-    <h1 class="centre-text">Add Vendor</h1>
+    <h1 class="centre-text" *ngIf="updateflag">Add Vendor</h1>
+    <h1 class="centre-text" *ngIf="!updateflag">Update Vendor</h1>
     <form #vendorForm="ngForm" (ngSubmit)="submitVendorDetails()">
       <div class="mb-3 leftBox">
         <label for="name" class="form-label"
@@ -88,7 +89,7 @@
           >Select Valid Date</span
         >
       </div>
-      <div class="centre-text mb-3" *ngIf="!updateflag; else elseBlock">
+      <div class="centre-text mb-3" *ngIf="updateflag; else elseBlock">
         <input
           type="submit"
           class="btn btn-primary"
@@ -129,7 +130,7 @@
 
 <br />
 <!-- Reactive Form -->
-<section class="container">
+<!-- <section class="container">
   <div class="card">
 <form [formGroup]="vendorReactiveForm" (ngSubmit)="submitVendorDetails()">
   <div class="mb-3 leftBox">
@@ -141,7 +142,6 @@
       formControlName="name"
       placeholder="Enter Name"
     />
-    <!-- <span *ngIf="vendorReactiveForm.controls['name'].errors['required']">Password is required</span> -->
   </div>
   <div class="mb-3 rightBox">
     <label for="contact" class="form-label">Contact No</label>
@@ -167,6 +167,7 @@
   <div class="mb-3 leftBox">
     <label for="registration">Registration Date</label>
     <input
+    type="date"
       id="registration"
       class="form-control"
       name="registration"
@@ -185,4 +186,4 @@
   <button type="submit" [disabled]="vendorForm.invalid">Submit</button>
 </form>
 </div>
-</section>
+</section> -->

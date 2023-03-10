@@ -53,13 +53,17 @@ export class ApplicationService {
     console.log('Inside submitAsset');
     return this.httpClient.put(`api/AssetTransaction/UpdateAssetTransaction/${id}`, obj);
   }
+
+  /**
+   * 
+   * @returns 
+   */
   getUserList() {
     return this.httpClient.get(`api/User`);
   }
   getAssetDetailByEmail(email: string) {
     return this.httpClient.get(`api/AssetTransaction/get_by_email/${email}`);
   }
-
   AddVendor(vendor: IVendor): Observable<any> {
     return this.httpClient.post(`api/Vendor`, vendor, headers);
   }

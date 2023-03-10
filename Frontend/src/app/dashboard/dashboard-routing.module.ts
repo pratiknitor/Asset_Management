@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'ShowVenders',
     component: VendorsComponent,canActivate:[MsalGuard]
   },
+  {
+    path: 'editVendor/:id',
+    component: AddVendorComponent,canActivate:[MsalGuard]
+  },
 ];
 
 @NgModule({

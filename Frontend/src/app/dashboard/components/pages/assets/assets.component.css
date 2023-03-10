@@ -1,0 +1,9 @@
+.leftBox{
+    float: left;
+    height: 90px;
+}
+.rightBox{
+    float: right;
+    height: 90px;
+    width: 80%;
+}

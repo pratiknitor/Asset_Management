@@ -20,7 +20,9 @@ export class AssetsComponent implements OnInit, OnChanges {
   assets: any[] =[];
   sort: any[] =[];//for sorted data store
   myset = new Set();//create a new set for dropdown
+  myTypes = new Set()//create a new set for dropdown of type
   selectModel : string = '';
+  selectType : string = '';
   searchText! : string;
   @ViewChild('searchString') search! : ElementRef;
   vendors!: IVendor;
@@ -36,11 +38,20 @@ export class AssetsComponent implements OnInit, OnChanges {
       this.assets = res;
       this.assetList = res;
       console.log(this.assetList)
+      //for dropdown list of model
       for (let i = 0; i < this.assets.length; i++) {
         console.log(this.assets[i].model);
         if(!this.myset.has(this.assets[i].model))
         {
           this.myset.add(this.assets[i].model);
+        }
+      }
+      //for dropdown list of Type
+      for (let i = 0; i < this.assets.length; i++) {
+        console.log(this.assets[i].tyape);
+        if(!this.myTypes.has(this.assets[i].tyape))
+        {
+          this.myTypes.add(this.assets[i].tyape);
         }
       }
     });
@@ -56,7 +67,6 @@ export class AssetsComponent implements OnInit, OnChanges {
     console.log('in onChanges'+changes);
     this.dashboardService.GetAssets().subscribe((res) => {
       this.assets = res;
-      
     });
   }
   
@@ -75,14 +85,45 @@ export class AssetsComponent implements OnInit, OnChanges {
     this.dashboardService.DeleteAsset(value).subscribe((res) => {
       console.log(JSON.stringify(res));
       this.assets = res;
+      this.ngOnInit();
     });
   }
+  }
+
+
+  sortByType(){
+    this.dashboardService.GetAssets().subscribe((res) => {
+      this.assetList = [];
+      this.assets = res;
+      this.selectModel = "All";
+      
+      console.log("In Sort Type (Before Sorting)"+JSON.stringify(this.assets));
+      console.log("Dropdown Value of Type = "+this.selectType);
+      //use filters
+      let x = from(this.assets) 
+      .pipe(filter(assetsFlter => assetsFlter.tyape.toLowerCase() === this.selectType.toLowerCase()));
+      console.log("x Value = "+JSON.stringify(x));
+      //subscribe to pipe of filter
+      x.subscribe((result) => {
+        console.log("In Sort Type (after Sorting)"+JSON.stringify(result));
+        this.assetList.push(result);
+      });
+      console.log("In Sort Type array"+JSON.stringify(this.assetList));
+      this.assets = this.assetList;
+      if(this.selectType.toLowerCase()==="all"||this.selectType==="")
+      {
+        this.assets = res;
+        this.assetList = res;
+        console.log(this.assetList);
+        //we cant break subscribe in between so if condition is in last
+      }
+    });
   }
 
   sortByModel(){
     this.dashboardService.GetAssets().subscribe((res) => {
       this.sort = [];
-      this.assets = res;
+      this.assets = this.assetList;
       
       console.log("In Sort (Before Sorting)"+JSON.stringify(this.assets));
       console.log("Dropdown Value = "+this.selectModel);
@@ -99,7 +140,7 @@ export class AssetsComponent implements OnInit, OnChanges {
       this.assets = this.sort;
       if(this.selectModel.toLowerCase()==="all"||this.selectModel==="")
       {
-        this.assets = res;
+        this.assets = this.assetList;
         //we cant break subscribe in between so if condition is in last
       }
     });
