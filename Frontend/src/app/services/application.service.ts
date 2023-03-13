@@ -96,6 +96,7 @@ export class ApplicationService {
  GetVendor(id : any): Observable<any>{
   return this.httpClient.get(`api/Vendor/${id}`);
  }
+ 
  EditVendor(id: any, vendor: IVendor): Observable<any>{
   return this.httpClient.put(`api/Vendor/${id}`, vendor);
  }

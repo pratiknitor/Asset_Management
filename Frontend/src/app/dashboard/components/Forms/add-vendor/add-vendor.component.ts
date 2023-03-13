@@ -29,8 +29,8 @@ vendorReactiveForm!: FormGroup;
   ) {}
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    console.log(!this.id)
     this.updateflag = !this.id;
+    console.log(this.updateflag)
     if(!this.updateflag){
       this.dashboardService.GetVendor(this.id).subscribe((res:IVendor) => {
         console.log(res);
@@ -84,8 +84,9 @@ vendorReactiveForm!: FormGroup;
     terminationDate: '',
   };
 
+
   submitVendorDetails() {
-    if(!this.updateflag){
+    if(this.updateflag){
     this.dashboardService.AddVendor(this.vendor).subscribe(
       (res) => {
         console.log(this.vendor);
@@ -96,8 +97,8 @@ vendorReactiveForm!: FormGroup;
     );
   }
   else{
-    this.updateflag = false;
     this.dashboardService.EditVendor(this.vendor.id, this.vendor).subscribe((res)=>{
+      alert('Vendor Updated Successfully !');
       this.router.navigate(['/dashboard/ShowVenders']);
     });
   }

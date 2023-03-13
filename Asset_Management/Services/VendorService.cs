@@ -49,7 +49,7 @@ namespace Asset_Management.Services
 
         public async Task<IEnumerable<Vendor>> GetAsync()
         {
-            return await ctx.Vendors.ToListAsync();
+            return (await ctx.Vendors.ToListAsync()).OrderByDescending(v => v.Id);
         }
 
         public async Task<Vendor> GetAsync(int id)
