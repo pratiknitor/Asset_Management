@@ -99,6 +99,10 @@ namespace Asset_Management.Controllers
             }
         }
 
-
+        [HttpGet]
+        public async Task<IActionResult> GetAssetCount()
+        {
+            return Ok(await assetDetailsService.GetCountOfAssets());
+        }
     }
 }

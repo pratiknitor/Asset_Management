@@ -4,8 +4,8 @@
     <form class="form" #assetForm="ngForm" (ngSubmit)="SubmitAsset()">
       <div class="mb-3 leftBox">
         <label for="Type" class="form-label">Type of Asset<sup class="star">*</sup></label>
-        <select [(ngModel)]="asset.tyape" name="Type" style="width: 96%;" #type="ngModel">
-          <option value="LAPTOP" selected="selected">LAPTOP</option>
+        <select [(ngModel)]="asset.tyape" name="Type" style="width: 96%;" #type="ngModel" required>
+          <option value="LAPTOP">LAPTOP</option>
           <option value="MAC">MAC</option>
           <option value="DESKTOP">DESKTOP</option>
           <option value="MACBOOK">MACBOOK</option>
@@ -27,7 +27,7 @@
       </div>
       <div class="mb-3 rightBox">
         <label for="Proprietary" class="form-label">Proprietary<sup class="star">*</sup></label>
-        <select [(ngModel)]="asset.proprietary" name="Proprietary" style="width: 96%;" #Proprietary="ngModel">
+        <select [(ngModel)]="asset.proprietary" name="Proprietary" style="width: 96%;" #Proprietary="ngModel" required>
           <option value="OWN" selected="selected">OWN</option>
           <option value="RENT">RENT</option>
         </select>
@@ -93,10 +93,11 @@
       </div>
       <div class="mb-3 middleBox">
         <label for="oem" class="form-label">OEM<sup class="star">*</sup></label>
-        <select [(ngModel)]="asset.oem" name="oem" style="width: 96%;" >
+        <select [(ngModel)]="asset.oem" name="oem" style="width: 96%;" #oem="ngModel" required>
           <option value="Yes" selected="selected">Yes</option>
           <option value="No">No</option>
         </select>
+        <span *ngIf="oem.invalid && oem.touched" class="errorMessage">Select Valid Option</span>
       </div>
       <div class="mb-3 rightBox">
         <label for="expiryDate" class="form-label">Expiry Date<sup class="star">*</sup></label>
@@ -157,11 +158,12 @@
       </div>
       <div class="mb-3">
         <label for="vendorId" class="form-label">Select Vendor<sup class="star">*</sup></label>
-        <select [(ngModel)]="asset.vendorId" name="vendorId">
+        <select [(ngModel)]="asset.vendorId" name="vendorId" required #vendor="ngModel">
           <option *ngFor="let item of vendors" value="{{ item.id }}">
             {{ item.name }}
           </option>
         </select>
+        <span *ngIf="vendor.invalid && vendor.touched" class="errorMessage">Select Valid Vendor</span>
       </div>
       <div class="centre-text mb-3" *ngIf="!updateflag; else elseBlock">
         <input

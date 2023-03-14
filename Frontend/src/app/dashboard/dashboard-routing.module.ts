@@ -36,7 +36,8 @@ const routes: Routes = [
   },
   {
     path: 'editVendor/:id',
-    component: AddVendorComponent,canActivate:[MsalGuard]
+    component: AddVendorComponent,
+    canActivate:[MsalGuard]
   },
 ];
 

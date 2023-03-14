@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLayer", "RepositoryLayer\RepositoryLayer.csproj", "{9F7752A9-3423-4A4C-B4F8-536671898717}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer", "ServiceLayer\ServiceLayer.csproj", "{A4FB8204-E512-410A-9731-D13D205C7D73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionArchitecture", "OnionArchitecture\OnionArchitecture.csproj", "{84BA375E-8873-43BA-9FC0-BF474EF5EF3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{9F7752A9-3423-4A4C-B4F8-536671898717}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F7752A9-3423-4A4C-B4F8-536671898717}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F7752A9-3423-4A4C-B4F8-536671898717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4FB8204-E512-410A-9731-D13D205C7D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4FB8204-E512-410A-9731-D13D205C7D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4FB8204-E512-410A-9731-D13D205C7D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4FB8204-E512-410A-9731-D13D205C7D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84BA375E-8873-43BA-9FC0-BF474EF5EF3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84BA375E-8873-43BA-9FC0-BF474EF5EF3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84BA375E-8873-43BA-9FC0-BF474EF5EF3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84BA375E-8873-43BA-9FC0-BF474EF5EF3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

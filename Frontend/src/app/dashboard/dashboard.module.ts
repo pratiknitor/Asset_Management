@@ -17,6 +17,7 @@ import { AddVendorComponent } from './components/Forms/add-vendor/add-vendor.com
 import { VendorsNamePipe } from '../shared/custom-pipe/vendors-name.pipe';
 import { ReTableComponent } from './components/reusable/re-table/re-table.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgChartsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,

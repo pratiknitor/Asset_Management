@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Models;
+using Models.Models;
 using ServiceLayer.Service.Interface;
 
 namespace OnionArchitecture.Controllers

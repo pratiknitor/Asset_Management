@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Models;
+using Models.Models;
 using RepositoryLayer;
 using ServiceLayer.Service.Interface;
 using System;

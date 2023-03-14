@@ -13,7 +13,8 @@ export class VendorsComponent implements OnInit {
 
   vendors!: IVendor;
   searchText! : string;
-
+  error : any = {};
+  //For reusable component(Table)
   headingArray = ['id', 'name', 'contactNo', 'address', 'registrationDate', 'terminationDate'];
   vendorList: any[] = [];
   tableSize = 2;
@@ -24,8 +25,6 @@ export class VendorsComponent implements OnInit {
     private router: Router
   ) {}
 
-  error : any = {};
-
   ngOnInit(): void {
     this.dashboardService.GetVendors().subscribe(
       (res) => {
@@ -35,14 +34,11 @@ export class VendorsComponent implements OnInit {
       },
       (err) => {
         console.log("Vendors List Error"+JSON.stringify(err));
-        // this.error = {};
-        // this.error = err;
-        // this.error[err.param] = err.msg;
       }
     );
   }
 
-  DeleteVender(data : number) {
+  deleteVender(data : number) {
     if(confirm("Are you sure to delete?")){
       this.dashboardService.DeleteVender(data).subscribe(
         (res) => {
@@ -58,10 +54,6 @@ export class VendorsComponent implements OnInit {
   }
 
   EditVendor(id : number){
-    // console.log(id + " : "+JSON.stringify(id));
-    // this.dashboardService.GetVendor(id).subscribe((res:IVendor) => {
-    //   this.dashboardService.EmitVendor(res);
-    // });
     this.router.navigate(['/dashboard/editVendor',id]);
   }
 

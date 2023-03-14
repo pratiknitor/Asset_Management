@@ -53,7 +53,7 @@ namespace Asset_Management.Services
 
         async Task<IEnumerable<AssetTransaction>> IService<AssetTransaction, int>.GetAsync()
         {
-            var result = await (ctx.AssetTransactions).ToListAsync();
+            var result = (await (ctx.AssetTransactions).ToListAsync()).OrderByDescending(v => v.Id);
             return result;
         }
 

@@ -1,5 +1,6 @@
 ﻿using Asset_Management.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Xml.Linq;
 
 namespace Asset_Management.Services
@@ -7,7 +8,7 @@ namespace Asset_Management.Services
     public class AssetDetailService : IService<AssetDetail, int>,IAssetDetailService<AssetDetail,string>
     {
         asset_managementContext ctx;
-
+        
 
         public AssetDetailService(asset_managementContext db)
         {
@@ -55,7 +56,7 @@ namespace Asset_Management.Services
         {
             try
             {
-                var records = await ctx.AssetDetails.ToListAsync();
+                var records = (await ctx.AssetDetails.ToListAsync()).OrderByDescending(v => v.Id);
 
                 if (records == null)
                 {
@@ -151,6 +152,24 @@ namespace Asset_Management.Services
 
                 throw ex;
             }
+        }
+
+        async Task<IEnumerable> IAssetDetailService<AssetDetail, string>.GetCountOfAssets()
+        {
+
+            var Total = (await ctx.AssetDetails.ToListAsync());
+
+            var list = from a in Total
+                       group a by a.Tyape into g
+                       select new
+                       {
+                           type = g.Key,
+                           count = g.Count()
+                       };
+           
+            
+
+            return list;
         }
     }
 }

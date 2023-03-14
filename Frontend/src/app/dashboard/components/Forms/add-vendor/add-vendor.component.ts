@@ -13,11 +13,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-vendor.component.css'],
 })
 export class AddVendorComponent implements OnInit {
+
+  //boolean flag
   updateflag : boolean = false;
   id!: number;
-
   //for reactive form
-vendorReactiveForm!: FormGroup;
+  vendorReactiveForm!: FormGroup;
+
+  vendor: IVendor = {
+    id: 0,
+    name: '',
+    contactNo: '',
+    address: '',
+    registrationDate : formatDate(new Date(),'yyyy-MM-dd','en_US').toString(),
+    terminationDate: '',
+  };
 
   constructor(
     private dashboardService: ApplicationService,
@@ -27,8 +37,12 @@ vendorReactiveForm!: FormGroup;
     private formBuilder:FormBuilder
     
   ) {}
+
   ngOnInit(): void {
+    //Find Id in route parameter.
     this.id = this.route.snapshot.params['id'];
+    //if id is available value is set to false 
+    //because directly we can not convert number to boolean
     this.updateflag = !this.id;
     console.log(this.updateflag)
     if(!this.updateflag){
@@ -74,17 +88,6 @@ vendorReactiveForm!: FormGroup;
     )
   }
 
-
-  vendor: IVendor = {
-    id: 0,
-    name: '',
-    contactNo: '',
-    address: '',
-    registrationDate : formatDate(new Date(),'yyyy-MM-dd','en_US').toString(),
-    terminationDate: '',
-  };
-
-
   submitVendorDetails() {
     if(this.updateflag){
     this.dashboardService.AddVendor(this.vendor).subscribe(
@@ -92,8 +95,7 @@ vendorReactiveForm!: FormGroup;
         console.log(this.vendor);
         alert('Vendor Added Successfully !');
         this.router.navigate(['dashboard/ShowVenders']);
-      },
-      (err) => {}
+      }
     );
   }
   else{

@@ -16,6 +16,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderConfig, PB_DIRECTION, POSITION, SPINNER } from 'ngx-ui-loader';
+import { NgChartsModule } from 'ng2-charts';
 
 
 //get browser information
@@ -58,7 +59,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bootstrap: [AppComponent, MsalRedirectComponent],
   imports: [BrowserModule, CoreModule,
     Ng2SearchPipeModule, HttpClientModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule, ReactiveFormsModule, NgChartsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig), NgxUiLoaderHttpModule.forRoot(
       {showForeground: true}
     ),
