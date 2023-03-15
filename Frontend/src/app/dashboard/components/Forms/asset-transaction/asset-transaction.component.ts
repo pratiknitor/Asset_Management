@@ -11,13 +11,14 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./asset-transaction.component.css'],
 })
 export class AssetTransactionComponent implements OnInit {
+
   transaction: IAssetTransaction = {
     userId: 0,
     empId: '',
     email: '',
     userName: '',
     location: '',
-    issueDate: formatDate(new Date(),'yyyy-MM-dd','en_US').toString(),
+    issueDate: formatDate(new Date(), 'yyyy-MM-dd', 'en_US').toString(),
     submitDate: null,
     assetId: 0,
     issuedBy: '',
@@ -25,38 +26,29 @@ export class AssetTransactionComponent implements OnInit {
   };
   issuers: any = {};
   assets: any = [];
+
   constructor(
     private httpClient: HttpClient,
     private dashboardService: ApplicationService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
-    console.log('================================================');
-    // this.dashboardService.getUserList().subscribe(
-    //   (res) => {
-    //     console.log(res);
-    //   },
-    //   (err) => {}
-    // );
-    this.dashboardService.GetAssets().subscribe(
+    this.dashboardService.getAssets().subscribe(
       (res) => {
-        console.log(res);
         this.assets = res;
       },
       (err) => {
-        console.log(err);
       }
     );
   }
+  
   addAssetTransaction() {
-    
-    console.log(this.transaction);
     this.dashboardService.assignAsset(this.transaction).subscribe(
       (res) => {
-        this.router.navigate([`dashboard`]);
+        this.router.navigate([`/dashboard`]);
       },
-      (error) => console.log(error)
+      (error) => {}
     );
-    console.log('in addAssetTransaction method called');
   }
 }

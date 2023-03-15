@@ -27,7 +27,20 @@ namespace Asset_Management.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAssetById(int id)
         {
-            return Ok(await assetService.GetAsync(id));
+
+
+            try
+            {
+                return Ok(await assetService.GetAsync(id));
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound(new
+                {
+                    message = ex.Message,
+                });
+            }
         }
 
         [HttpPost]

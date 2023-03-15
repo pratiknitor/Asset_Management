@@ -4,7 +4,6 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { AddAssetComponent } from './components/Forms/add-asset/add-asset.component';
 import { AddVendorComponent } from 'src/app/dashboard/components/Forms/add-vendor/add-vendor.component';
 import { AssetTransactionComponent } from './components/Forms/asset-transaction/asset-transaction.component';
-import { SubmitAssetComponent } from './components/Forms/submit-asset/submit-asset.component';
 import { AssetsComponent } from './components/pages/assets/assets.component';
 import { VendorsComponent } from './components/pages/vendors/vendors.component';
 import { MsalGuard } from '@azure/msal-angular';
@@ -15,27 +14,27 @@ const routes: Routes = [
     component: AdminDashboardComponent,canActivate:[MsalGuard]
   },
   {
-    path: 'AssetTransaction',
+    path: 'asset-transaction',
     component: AssetTransactionComponent,canActivate:[MsalGuard]
   },
   {
-    path: 'AddAsset',
+    path: 'add-asset',
     component: AddAssetComponent,canActivate:[MsalGuard]
   },
   {
-    path: 'Assets',
+    path: 'assets',
     component: AssetsComponent,canActivate:[MsalGuard]
   },
   {
-    path: 'AddVendor',
+    path: 'add-vendor',
     component: AddVendorComponent,canActivate:[MsalGuard]
   },
   {
-    path: 'ShowVenders',
+    path: 'show-venders',
     component: VendorsComponent,canActivate:[MsalGuard]
   },
   {
-    path: 'editVendor/:id',
+    path: 'edit-vendor/:id',
     component: AddVendorComponent,
     canActivate:[MsalGuard]
   },

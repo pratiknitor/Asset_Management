@@ -4,43 +4,45 @@
       <tr>
         <th>
           <a
-    [routerLink]="['/dashboard/AssetTransaction']"
-    routerLinkActive="router-link-active"
-    >Asset Assign</a>
+            [routerLink]="['/dashboard/asset-transaction']"
+            routerLinkActive="router-link-active"
+            >Asset Assign</a
+          >
         </th>
         <th>
           <a
-    [routerLink]="['/dashboard/AddAsset']"
-    routerLinkActive="router-link-active"
-    >Add Asset</a>
-        </th>
-        <th>
-          <a [routerLink]="['/dashboard/Assets']" routerLinkActive="router-link-active"
-    >Assets</a>
+            [routerLink]="['/dashboard/add-asset']"
+            routerLinkActive="router-link-active"
+            >Add Asset</a
+          >
         </th>
         <th>
           <a
-    [routerLink]="['/dashboard/AddVendor']"
-    routerLinkActive="router-link-active"
-    >Add vendor</a>
+            [routerLink]="['/dashboard/assets']"
+            routerLinkActive="router-link-active"
+            >Assets</a
+          >
         </th>
         <th>
           <a
-    [routerLink]="['/dashboard/ShowVenders']"
-    routerLinkActive="router-link-active"
-    >All vendors</a>
+            [routerLink]="['/dashboard/add-vendor']"
+            routerLinkActive="router-link-active"
+            >Add vendor</a
+          >
+        </th>
+        <th>
+          <a
+            [routerLink]="['/dashboard/show-venders']"
+            routerLinkActive="router-link-active"
+            >All vendors</a
+          >
         </th>
       </tr>
     </table>
-    
+
     <div *ngIf="errorMessage" class="alert alert-danger text-center">
-      {{errorMessage}}
+      {{ errorMessage }}
     </div>
-  
-  <canvas data="pieChartData"
-  labels="pieChartLabels"
-  chartType="pieChartType"></canvas>
-  
   </div>
   <!-- <div style="display: block">
   <canvas baseChart

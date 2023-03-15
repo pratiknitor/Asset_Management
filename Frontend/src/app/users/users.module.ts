@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent
   ],
   imports: [
-    
     CommonModule,
     FormsModule,
     HttpClientModule,

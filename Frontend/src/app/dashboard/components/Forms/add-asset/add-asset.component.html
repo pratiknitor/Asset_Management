@@ -1,7 +1,7 @@
 <section class="container">
   <div class="card">
     <h1>Add Asset</h1>
-    <form class="form" #assetForm="ngForm" (ngSubmit)="SubmitAsset()">
+    <form class="form" #assetForm="ngForm" (ngSubmit)="submitAsset()">
       <div class="mb-3 leftBox">
         <label for="Type" class="form-label">Type of Asset<sup class="star">*</sup></label>
         <select [(ngModel)]="asset.tyape" name="Type" style="width: 96%;" #type="ngModel" required>
@@ -186,7 +186,7 @@
     </form>
     <div class="centre-text">
       <button
-        [routerLink]="['/dashboard/Assets']"
+        [routerLink]="['/dashboard/assets']"
         routerLinkActive="router-link-active"
         class="btn btn-warning"
         >Back to Assets</button

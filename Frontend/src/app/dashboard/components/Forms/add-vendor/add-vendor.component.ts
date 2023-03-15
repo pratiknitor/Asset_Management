@@ -39,30 +39,28 @@ export class AddVendorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //Find Id in route parameter.
+    /**
+     * Find Id in route parameter.
+     */
     this.id = this.route.snapshot.params['id'];
-    //if id is available value is set to false 
-    //because directly we can not convert number to boolean
+    /**
+     * if id is available value is set to false 
+     * because directly we can not convert number to boolean
+     */
     this.updateflag = !this.id;
-    console.log(this.updateflag)
     if(!this.updateflag){
-      this.dashboardService.GetVendor(this.id).subscribe((res:IVendor) => {
-        console.log(res);
+      this.dashboardService.getVendor(this.id).subscribe(
+        (res:IVendor) => {
         this.vendor = res;
         this.vendor.registrationDate = formatDate(this.vendor.registrationDate,'yyyy-MM-dd','en_US').toString();
         this.vendor.terminationDate = formatDate(this.vendor.terminationDate,'yyyy-MM-dd','en_US').toString();
-      });
+      },
+      (err) => {
+        alert(err.code+' '+err.errorMsg);
+        this.router.navigate(['dashboard/show-venders'])
+      }
+      );
     }
-    // this.dashboardService.emitVendor.subscribe(
-    //   (res) => {
-    //     this.vendor = res;
-    //     this.vendor.registrationDate = formatDate(this.vendor.registrationDate,'yyyy-MM-dd','en_US').toString();
-    //     this.vendor.terminationDate = formatDate(this.vendor.terminationDate,'yyyy-MM-dd','en_US').toString();
-    //     this.updateflag = true;
-    //   }
-    // )
-
-    //reactive form validation
     this.vendorReactiveForm = this.formBuilder.group(
       {
         name: ['', [
@@ -90,18 +88,17 @@ export class AddVendorComponent implements OnInit {
 
   submitVendorDetails() {
     if(this.updateflag){
-    this.dashboardService.AddVendor(this.vendor).subscribe(
+    this.dashboardService.addVendor(this.vendor).subscribe(
       (res) => {
-        console.log(this.vendor);
-        alert('Vendor Added Successfully !');
-        this.router.navigate(['dashboard/ShowVenders']);
+        alert('Vendor added successfully !!!!');
+        this.router.navigate(['dashboard/show-venders']);
       }
     );
   }
   else{
-    this.dashboardService.EditVendor(this.vendor.id, this.vendor).subscribe((res)=>{
-      alert('Vendor Updated Successfully !');
-      this.router.navigate(['/dashboard/ShowVenders']);
+    this.dashboardService.editVendor(this.vendor.id, this.vendor).subscribe((res)=>{
+      alert('Vendor updated successfully !!!!');
+      this.router.navigate(['/dashboard/show-venders']);
     });
   }
   }

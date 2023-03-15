@@ -7,111 +7,109 @@ import { IVendor } from '../dashboard/Models/ivendor';
 import { ILogin } from '../users/models/ilogin';
 import { IRegister } from '../users/models/iregister';
 
-
 const headers = { headers: { 'Content-Type': 'application/json' } };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApplicationService {
-
-  constructor(private httpClient: HttpClient) {}
-
+  emitAsset = new Subject<IAsset>();
+  emitupdateflag = new Subject<boolean>();
+  emitTransaction = new Subject<IAssetTransaction>();
   public subject = new Subject<any>();
   public errorSubject = new Subject<string>();
+  emitVendor = new Subject<IVendor>();
+
+  constructor(private httpClient: HttpClient) {}
 
   registerUser(register: IRegister): Observable<any> {
     return this.httpClient.post('/api/User', register, headers);
   }
 
   loginUser(login: ILogin): Observable<any> {
-    console.log('login');
     return this.httpClient.post('/api/User/login', login, headers);
   }
 
-  assignAsset(obj: any) {
-    console.log('Inside assignAsset');
-    return this.httpClient.post(`api/AssetTransaction/CreateAssetTransaction`, obj);
+  assignAsset(obj: any): Observable<any> {
+    return this.httpClient.post(
+      `api/AssetTransaction/CreateAssetTransaction`,
+      obj
+    );
   }
 
-  GetVendors(): Observable<any> {
+  getVendors(): Observable<any> {
     return this.httpClient.get('api/Vendor');
   }
 
-  AddAsset(asset: IAsset): Observable<any> {
+  addAsset(asset: IAsset): Observable<any> {
     return this.httpClient.post(`api/AssetDetails/CreateAsset`, asset);
   }
 
-  GetAssets(): Observable<any> {
+  getAssets(): Observable<any> {
     return this.httpClient.get('api/AssetDetails/GetAllAssets');
   }
 
-  DeleteAsset(value: any): Observable<any> {
+  deleteAsset(value: any): Observable<any> {
     return this.httpClient.delete(`api/AssetDetails/DeleteAsset/${value}`);
   }
-  submitAsset(obj: any, id: number) {
-    console.log('Inside submitAsset');
-    return this.httpClient.put(`api/AssetTransaction/UpdateAssetTransaction/${id}`, obj);
+  submitAsset(obj: any, id: number): Observable<any> {
+    return this.httpClient.put(
+      `api/AssetTransaction/UpdateAssetTransaction/${id}`,
+      obj
+    );
   }
 
-  /**
-   * 
-   * @returns 
-   */
-  getUserList() {
+  getUserList(): Observable<any> {
     return this.httpClient.get(`api/User`);
   }
-  getAssetDetailByEmail(email: string) {
+
+  getAssetDetailByEmail(email: string): Observable<any> {
     return this.httpClient.get(`api/AssetTransaction/get_by_email/${email}`);
   }
-  AddVendor(vendor: IVendor): Observable<any> {
+
+  addVendor(vendor: IVendor): Observable<any> {
     return this.httpClient.post(`api/Vendor`, vendor, headers);
   }
 
-  DeleteVender(vendor: number): Observable<any> {
+  deleteVender(vendor: number): Observable<any> {
     return this.httpClient.delete(`api/Vendor/${vendor}`);
   }
 
-  GetTransaction(id: number): Observable<any> {
-   return this.httpClient.get(`api/AssetTransaction/GetAssetTransactionById/${id}`);}
-
-  GetAsset(id: any): Observable<any> {
-    return this.httpClient.get(`api/AssetDetails/GetAssetById/${id}`); }
-
-  EditAsset(id: any, asset: IAsset): Observable<any> {
-    return this.httpClient.put(`api/AssetDetails/UpdateAsset/${id}`, asset); }
-
-  emitAsset = new Subject<IAsset>();
-  emitupdateflag = new Subject<boolean>();
-  emitTransaction = new Subject<IAssetTransaction>();
-  EmitAsset(Asset: IAsset){
-   console.log('emitting asset');
-   console.log(Asset);
-   this.emitAsset.next(Asset);
+  getTransaction(id: number): Observable<any> {
+    return this.httpClient.get(
+      `api/AssetTransaction/GetAssetTransactionById/${id}`
+    );
   }
-  EmitFlag(flag: boolean) {
-  this.emitupdateflag.next(flag);
- }
 
- GetVendor(id : any): Observable<any>{
-  return this.httpClient.get(`api/Vendor/${id}`);
- }
+  getAsset(id: any): Observable<any> {
+    return this.httpClient.get(`api/AssetDetails/GetAssetById/${id}`);
+  }
 
- EditVendor(id: any, vendor: IVendor): Observable<any>{
-  return this.httpClient.put(`api/Vendor/${id}`, vendor);
- }
+  editAsset(id: any, asset: IAsset): Observable<any> {
+    return this.httpClient.put(`api/AssetDetails/UpdateAsset/${id}`, asset);
+  }
 
- emitVendor = new Subject<IVendor>();
- EmitVendor(Vendor : IVendor) {
-  console.log('EmitVendor');
-  console.log(Vendor);
-  this.emitVendor.next(Vendor);
- }
+  emitAssets(Asset: IAsset) {
+    this.emitAsset.next(Asset);
+  }
 
+  emitFlag(flag: boolean) {
+    this.emitupdateflag.next(flag);
+  }
 
+  getVendor(id: any): Observable<any> {
+    return this.httpClient.get(`api/Vendor/${id}`);
+  }
 
- getAssetsCount(): Observable<any> {
-  return this.httpClient.get('api/AssetDetails/GetAssetCount');
-}
+  editVendor(id: any, vendor: IVendor): Observable<any> {
+    return this.httpClient.put(`api/Vendor/${id}`, vendor);
+  }
 
+  emitVendors(Vendor: IVendor) {
+    this.emitVendor.next(Vendor);
+  }
+
+  getAssetsCount(): Observable<any> {
+    return this.httpClient.get('api/AssetDetails/GetAssetCount');
+  }
 }

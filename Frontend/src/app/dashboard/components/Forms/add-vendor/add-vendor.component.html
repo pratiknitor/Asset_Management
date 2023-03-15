@@ -3,7 +3,7 @@
     <div class="row">
       <div class="centre-text col-3">
         <button
-          [routerLink]="['/dashboard/ShowVenders']"
+          [routerLink]="['/dashboard/show-venders']"
           routerLinkActive="router-link-active"
           class="btn btn-warning"
         >
@@ -34,10 +34,11 @@
           type="text"
           class="form-control"
           name="name"
+          id="name"
           required
           #name="ngModel"
           minlength="2"
-          placeholder="Enter Name"
+          placeholder="Enter name"
           [(ngModel)]="vendor.name"
         />
         <span *ngIf="name.invalid && name.touched" class="errorMessage"
@@ -53,10 +54,11 @@
           type="text"
           class="form-control"
           name="contact"
+          id="contact"
           required
           pattern="^((\\+91-?)|0)?[0-9]{10}$"
           #contact="ngModel"
-          placeholder="Enter Contact Number"
+          placeholder="Enter contact number"
           [(ngModel)]="vendor.contactNo"
         />
         <span *ngIf="contact.invalid && contact.touched" class="errorMessage"
@@ -71,10 +73,11 @@
           type="textarea"
           class="form-control"
           name="address"
+          id="address"
           required
           minlength="4"
           #address="ngModel"
-          placeholder="Enter Address"
+          placeholder="Enter Complete address"
           [(ngModel)]="vendor.address"
         ></textarea>
         <span *ngIf="address.invalid && address.touched" class="errorMessage"
@@ -82,25 +85,27 @@
         >
       </div>
       <div class="mb-3 leftBox">
-        <label for="registration"
+        <label for="registration" class="form-label"
           >Registration Date<sup class="star">*</sup></label
         >
         <input
           type="date"
           class="form-control"
           name="registration"
-          disabled="disabled"
+          id="registration"
+          disabled
           [(ngModel)]="vendor.registrationDate"
         />
       </div>
       <div class="mb-3 rightBox">
-        <label for="termination"
+        <label for="termination" class="form-label"
           >Termination Date<sup class="star">*</sup></label
         >
         <input
           type="date"
           class="form-control"
           name="termination"
+          id="termination"
           required
           min="{{ vendor.registrationDate }}"
           placeholder="Select termination date"
@@ -121,6 +126,9 @@
           [disabled]="vendorForm.invalid"
         />
       </div>
+      <div class="centre-text errorMessage" *ngIf="vendorForm.invalid">
+        Fill all required fields
+      </div>
       <div class="centre-text mb-3" *ngIf="!updateflag">
         <input
           type="submit"
@@ -129,67 +137,6 @@
           [disabled]="vendorForm.invalid"
         />
       </div>
-      <!-- {{vendorForm.invalid}} -->
     </form>
   </div>
 </section>
-
-<br />
-<!-- Reactive Form -->
-<!-- <section class="container">
-  <div class="card">
-<form [formGroup]="vendorReactiveForm" (ngSubmit)="submitVendorDetails()">
-  <div class="mb-3 leftBox">
-    <label for="name" class="form-label">Name</label>
-    <input
-      id="name"
-      type="text"
-      class="form-control"
-      formControlName="name"
-      placeholder="Enter Name"
-    />
-  </div>
-  <div class="mb-3 rightBox">
-    <label for="contact" class="form-label">Contact No</label>
-    <input
-      id="contact"
-      type="text"
-      class="form-control"
-      name="contact"
-      formControlName="contact"
-      placeholder="Enter Contact Number"
-    />
-  </div>
-  <div class="mb-2">
-    <label for="address" class="form-label">Address</label>
-    <textarea
-      id="address"
-      type="textarea"
-      class="form-control"
-      name="address"
-      formControlName="address"
-    ></textarea>
-  </div>
-  <div class="mb-3 leftBox">
-    <label for="registration">Registration Date</label>
-    <input
-    type="date"
-      id="registration"
-      class="form-control"
-      name="registration"
-      disabled="disabled"
-    />
-  </div>
-  <div class="mb-3 rightBox">
-    <label for="termination">Termination Date</label>
-    <input
-      type="date"
-      class="form-control"
-      name="termination"
-      formControlName="termination"
-    />
-  </div>
-  <button type="submit" [disabled]="vendorForm.invalid">Submit</button>
-</form>
-</div>
-</section> -->

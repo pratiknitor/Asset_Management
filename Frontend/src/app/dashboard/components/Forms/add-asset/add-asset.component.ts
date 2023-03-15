@@ -11,11 +11,10 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./add-asset.component.css'],
 })
 export class AddAssetComponent implements OnInit {
-  constructor(private dashboardService: ApplicationService, private router:Router) {}
 
   vendors: any;
-  todayDate: string = formatDate(new Date(),'yyyy-MM-dd','en_US').toString();
-  updateflag : boolean = false;
+  todayDate: string = formatDate(new Date(), 'yyyy-MM-dd', 'en_US').toString();
+  updateflag: boolean = false;
   asset: IAsset = {
     id: 0,
     tyape: '',
@@ -33,42 +32,38 @@ export class AddAssetComponent implements OnInit {
     vendorId: 0,
   };
 
+  constructor(
+    private dashboardService: ApplicationService,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
-    console.log('fetching vendors...');
-    this.dashboardService.GetVendors().subscribe((res) => {
+    this.dashboardService.getVendors().subscribe((res) => {
       this.vendors = res;
     });
-    // this.dashboardService.subject.subscribe((res) =>{
-    //   console.log("in Add Asset Subject : "+JSON.stringify(res));
-    //   this.asset = res;
-    //   console.log(this.asset);
-    // })
-
-    this.dashboardService.emitAsset.subscribe(
-      (res) => {
-        this.asset = res;
-        this.asset.expiryDate = formatDate(this.asset.expiryDate,'yyyy-MM-dd','en_US').toString()
-        this.updateflag = true;
-      }
-    )
-  }
-
-  
-
-  SubmitAsset(): void {
-    console.log(this.asset.vendorId);
-    if(!this.updateflag){
-    this.dashboardService.AddAsset(this.asset).subscribe((response) => {
-      console.log(JSON.stringify(this.asset));
-      console.log('Asset added successfully');
-      this.router.navigate(['/dashboard/Assets']);
+    this.dashboardService.emitAsset.subscribe((res) => {
+      this.asset = res;
+      this.asset.expiryDate = formatDate(
+        this.asset.expiryDate,
+        'yyyy-MM-dd',
+        'en_US'
+      ).toString();
+      this.updateflag = true;
     });
   }
-  else{
-    this.updateflag = false;
-    this.dashboardService.EditAsset(this.asset.id, this.asset).subscribe((res)=>{
-      this.router.navigate(['/dashboard/Assets']);
-    });
-  }
+
+  submitAsset(): void {
+    if (!this.updateflag) {
+      this.dashboardService.addAsset(this.asset).subscribe((response) => {
+        this.router.navigate(['/dashboard/assets']);
+      });
+    } else {
+      this.updateflag = false;
+      this.dashboardService
+        .editAsset(this.asset.id, this.asset)
+        .subscribe((res) => {
+          this.router.navigate(['/dashboard/assets']);
+        });
+    }
   }
 }

@@ -7,16 +7,18 @@ import { HeaderComponent } from './components/layouts/header/header.component';
 import { SidebarComponent } from './components/layouts/sidebar/sidebar.component';
 
 @NgModule({
- 
   declarations: [
     LandingComponent,
     FooterComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ], exports: [LandingComponent, HeaderComponent, FooterComponent, SidebarComponent]
+  imports: [CommonModule, RouterModule],
+  exports: [
+    LandingComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+  ],
 })
 export class CoreModule {}

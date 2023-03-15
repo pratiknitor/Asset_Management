@@ -61,10 +61,10 @@ namespace Asset_Management.Services
                     throw new Exception("Record not found");
                 return record;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw ;
             }
         }
 

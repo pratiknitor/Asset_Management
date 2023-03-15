@@ -36,8 +36,16 @@ namespace Asset_Management.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVenderById(int id)
         {
-            var record = await vendorService.GetAsync(id);
-            return Ok(record);
+            try
+            {
+                var record = await vendorService.GetAsync(id);
+                return Ok(record);
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound(ex.Message);
+            }
         }
         [HttpPost]
         public async Task<IActionResult> CrateVender(Vendor data)
