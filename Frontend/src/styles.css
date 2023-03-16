@@ -47,7 +47,6 @@ img {
 
 .TableContainer {
   margin-top: 6rem;
-  margin-left: 4rem;
   margin-bottom: 4rem;
 }
 
@@ -306,7 +305,7 @@ button {
 }
 
 /* Navbar */
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -317,25 +316,25 @@ button {
   top: 0;
   border-bottom: solid 1px var(--primary-color);
   opacity: 0.9;
-}
+} */
 
-.navbar ul {
+/* .navbar ul {
   display: flex;
-}
+} */
 
-.navbar a {
+/* .navbar a {
   color: #fff;
   padding: 0.45rem;
   margin: 0 0.25rem;
-}
+} */
 
-.navbar a:hover {
+/* .navbar a:hover {
   color: var(--primary-color);
-}
+} */
 
-.navbar .welcome span {
+/* .navbar .welcome span {
   margin-right: 0.6rem;
-}
+} */
 
 /* Landing Page */
 .landing {

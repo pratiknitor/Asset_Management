@@ -17,7 +17,7 @@ namespace Asset_Management
             _next = next;
         }
         /// <summary>
-        /// Write the logic for Custom Middleware Here 
+        /// The logic for Custom Middleware Here 
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>

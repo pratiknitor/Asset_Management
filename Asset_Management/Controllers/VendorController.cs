@@ -17,12 +17,20 @@ namespace Asset_Management.Controllers
     {
         
         IService<Vendor,int> vendorService;
+        /// <summary>
+        /// Dependency injection of service is used
+        /// </summary>
+        /// <param name="vendorService"></param>
         public VendorController(IService<Vendor, int> vendorService)
         {
            
             this.vendorService = vendorService;
         }
 
+        /// <summary>
+        /// Call to get all vendors to service layer
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "Manager")]
         [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:scopes")]
@@ -33,6 +41,11 @@ namespace Asset_Management.Controllers
             return Ok(record);
         }
 
+        /// <summary>
+        /// Call to get specific vendor to service layer by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVenderById(int id)
         {
@@ -47,6 +60,12 @@ namespace Asset_Management.Controllers
                 return NotFound(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Call to create vendor to service layer.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CrateVender(Vendor data)
         {
@@ -63,6 +82,13 @@ namespace Asset_Management.Controllers
                 return BadRequest(ModelState);
             }
         }
+
+        /// <summary>
+        /// Call to update vendor to service layer.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateVender(int id, Vendor data)
         {
@@ -78,6 +104,12 @@ namespace Asset_Management.Controllers
                 return BadRequest(ModelState);
             }
         }
+
+        /// <summary>
+        /// Call to delete vendor to service layer.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVender(int id)
         {

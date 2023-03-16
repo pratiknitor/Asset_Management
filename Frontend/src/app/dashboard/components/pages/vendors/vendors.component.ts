@@ -19,6 +19,9 @@ export class VendorsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /**
+     * Get all vendors
+     */
     this.dashboardService.getVendors().subscribe(
       (res) => {
         this.vendors = res;
@@ -27,6 +30,9 @@ export class VendorsComponent implements OnInit {
     );
   }
 
+  /**
+   * To delete specific vendorby id
+   */
   deleteVender(data: number) {
     if (confirm('Are you sure to delete?')) {
       this.dashboardService.deleteVender(data).subscribe(
@@ -40,6 +46,10 @@ export class VendorsComponent implements OnInit {
     }
   }
 
+  /**
+   * Edit vendor details 
+   * @param id send this id to route
+   */
   editVendor(id: number) {
     this.router.navigate(['/dashboard/edit-vendor', id]);
   }

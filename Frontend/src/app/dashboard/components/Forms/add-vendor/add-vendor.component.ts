@@ -48,6 +48,7 @@ export class AddVendorComponent implements OnInit {
      * because directly we can not convert number to boolean
      */
     this.updateflag = !this.id;
+
     if(!this.updateflag){
       this.dashboardService.getVendor(this.id).subscribe(
         (res:IVendor) => {
@@ -86,6 +87,10 @@ export class AddVendorComponent implements OnInit {
     )
   }
 
+  /**
+   * If - To submit/add details of new vendor
+   * else - To update vendor details
+   */
   submitVendorDetails() {
     if(this.updateflag){
     this.dashboardService.addVendor(this.vendor).subscribe(

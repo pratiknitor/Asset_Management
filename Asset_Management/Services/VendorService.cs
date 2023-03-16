@@ -12,6 +12,11 @@ namespace Asset_Management.Services
         public VendorService(asset_managementContext ctx) {
            this.ctx = ctx;
         }
+        /// <summary>
+        /// Create vendor and add in database
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public  async Task<Vendor> CreateAsync(Vendor entity)
         {
             try
@@ -30,6 +35,11 @@ namespace Asset_Management.Services
             }
         }
 
+        /// <summary>
+        /// Delete vendor from database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Vendor> DeleteAsync(int id)
         {
             try
@@ -47,11 +57,20 @@ namespace Asset_Management.Services
             }
         }
 
+        /// <summary>
+        /// Get all vendors from database
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<Vendor>> GetAsync()
         {
             return (await ctx.Vendors.ToListAsync()).OrderByDescending(v => v.Id);
         }
 
+        /// <summary>
+        /// Get a specific vendor by id from database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Vendor> GetAsync(int id)
         {
             try
@@ -68,6 +87,12 @@ namespace Asset_Management.Services
             }
         }
 
+        /// <summary>
+        /// Update vendor by id in database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public async Task<Vendor> UpdateAsync(int id, Vendor entity)
         {
             try

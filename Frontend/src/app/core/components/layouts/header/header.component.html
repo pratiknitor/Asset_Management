@@ -1,23 +1,42 @@
-<div [ngClass]="{ sidebarExpanded: sidebarExpanded }">
-  <nav class="navbar bg-dark">
-    <app-sidebar
-      [isExpanded]="sidebarExpanded"
-      (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
-    ></app-sidebar>
-    <h1>
-      <a [routerLink]="['']"><i class="fas fa-code"></i> Asset Management</a>
-    </h1>
-    <ul *ngIf="!flag">
-      <li>
-        <button type="button" class="btn btn-dark" (click)="login()">
-          Login
+
+<div class="row">
+  <div class="navbar">
+    <div class="col-5">
+      <a [routerLink]="['']" style="background-color: black"><h1>Asset Management</h1></a>
+    </div>
+    <div class="dropdown ">
+      <button class="dropbtn"><a [routerLink]="['/dashboard']" >Dashboard</a></button>
+    </div>
+    <div class="dropdown col-1">
+      <button class="dropbtn"><a [routerLink]="['/dashboard/assets']" >Assets</a></button>
+      <!-- <div class="content">
+        <a [routerLink]="['/dashboard/assets']">Asset List</a>
+        <a [routerLink]="['/dashboard/add-asset']">Add Asset</a>
+      </div> -->
+    </div>
+    <div class="dropdown col-1">
+      <button class="dropbtn"><a [routerLink]="['/dashboard/show-venders']" >Vendors</a></button>
+      <!-- <div class="content">
+        <a [routerLink]="['/dashboard/show-venders']">Vendor List</a>
+        <a [routerLink]="['/dashboard/add-vendor']">Add Vendor</a>
+      </div> -->
+    </div>
+    <div class="col-">
+      <a [routerLink]="['/dashboard/asset-transaction']">Assign Asset</a>
+    </div>
+    <div class="right col-3">
+      <ul *ngIf="!flag">
+        <li>
+          <button type="button" class="btn btn-dark" (click)="login()">
+            Login
+          </button>
+        </li>
+      </ul>
+      <ul *ngIf="flag">
+        <button type="button" class="btn btn-dark" (click)="logout()">
+          Logout
         </button>
-      </li>
-    </ul>
-    <ul *ngIf="flag">
-      <button type="button" class="btn btn-dark" (click)="logout()">
-        Logout
-      </button>
-    </ul>
-  </nav>
+      </ul>
+    </div>
+  </div>
 </div>

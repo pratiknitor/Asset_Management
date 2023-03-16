@@ -32,6 +32,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    /**
+     * Azure AD authentication and authorization
+     */
     this.msalBroadCastService.inProgress$
       .pipe(
         filter(

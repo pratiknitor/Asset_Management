@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ChartOptions, LabelItem } from 'chart.js';
+import { ChartData } from 'chart.js/dist/types/index';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IType } from '../../Models/typeCount';
 
@@ -29,7 +30,11 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    /**
+     * Get specific assets count of all type
+     */
     this.service.getAssetsCount().subscribe((res: IType) => {
+      console.log(res);
     });
     this.service.errorSubject.subscribe((res) => {
       this.error = res;
