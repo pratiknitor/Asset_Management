@@ -126,9 +126,7 @@
           [disabled]="vendorForm.invalid"
         />
       </div>
-      <div class="centre-text errorMessage" *ngIf="vendorForm.invalid">
-        Fill all required fields
-      </div>
+      
       <div class="centre-text mb-3" *ngIf="!updateflag">
         <input
           type="submit"
@@ -136,6 +134,9 @@
           value="Update"
           [disabled]="vendorForm.invalid"
         />
+      </div>
+      <div class="centre-text errorMessage" *ngIf="vendorForm.invalid">
+        Fill all required fields
       </div>
     </form>
   </div>
