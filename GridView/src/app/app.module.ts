@@ -9,6 +9,10 @@ import {HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AssetManagementModule } from './asset-management/asset-management.module';
 import { RouterModule } from '@angular/router';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+
+
 
 
 @NgModule({
@@ -23,7 +27,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     FormsModule,
     GridModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

@@ -33,6 +33,12 @@ import {
   SPINNER,
 } from 'ngx-ui-loader';
 import { NgChartsModule } from 'ng2-charts';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'hammerjs';
+
+
+
 
 //get browser information
 const IisIE =
@@ -119,6 +125,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
         ]),
       }
     ),
+    ChartsModule,
+    BrowserAnimationsModule,
   ],
 })
 export class AppModule {}

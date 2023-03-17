@@ -15,6 +15,7 @@ import { VendorsNamePipe } from '../shared/custom-pipe/vendors-name.pipe';
 import { ReTableComponent } from './components/reusable/re-table/re-table.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgChartsModule } from 'ng2-charts';
+import { ChartsModule } from '@progress/kendo-angular-charts';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgChartsModule } from 'ng2-charts';
   imports: [
     CommonModule,
     FormsModule,
+    ChartsModule,
     ReactiveFormsModule,
     NgChartsModule,
     HttpClientModule,

@@ -1,5 +1,5 @@
 <section class="container">
-  <div class="text-center">
+  <!-- <div class="text-center">
     <table class="table">
       <tr>
         <th>
@@ -43,13 +43,72 @@
     <div *ngIf="errorMessage" class="alert alert-danger text-center">
       {{ errorMessage }}
     </div>
+  </div> -->
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-sm-6">
+          <div
+            class="card text-white bg-secondary mb-3"
+            style="max-width: 18rem"
+          >
+            <div class="card-body">
+              <h5 class="card-title">Assets</h5>
+              <p class="card-text">Count :</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card bg-light mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Vedors</h5>
+              <p class="card-text">Count :</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card text-white bg-danger mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Assigned Asets</h5>
+              <p class="card-text">Count :</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Unassigned Assets</h5>
+              <p class="card-text">Count :</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <kendo-chart>
+        <kendo-chart-title
+          text="Asset Details"
+          font="16pt sans-serif"
+        ></kendo-chart-title>
+        <kendo-chart-legend position="bottom"></kendo-chart-legend>
+        <kendo-chart-tooltip>
+          <ng-template kendoChartSeriesTooltipTemplate let-value="value">
+            count : {{ value }}
+          </ng-template>
+        </kendo-chart-tooltip>
+        <kendo-chart-series>
+          <kendo-chart-series-item
+            type="pie"
+            [data]="assetsCount"
+            field="count"
+            categoryField="type"
+            [labels]="{ visible: true, content: labelContent }"
+          >
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
   </div>
-  <!-- <div style="display: block">
-  <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-</div> -->
 </section>

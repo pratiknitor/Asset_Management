@@ -116,6 +116,7 @@ namespace Asset_Management.Controllers
         public async Task<IActionResult> GetAssetCount()
         {
             return Ok(await assetDetailsService.GetCountOfAssets());
+
         }
     }
 }

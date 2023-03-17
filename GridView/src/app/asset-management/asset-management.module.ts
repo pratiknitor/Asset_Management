@@ -9,13 +9,16 @@ import { FormsModule } from '@angular/forms';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { RouterModule } from '@angular/router';
 import { AssetsComponent } from './components/assets/assets.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ChartsModule } from '@progress/kendo-angular-charts';
 
 
 @NgModule({
   declarations: [
     ReusableGridTableComponent,
     VendorsComponent,
-    AssetsComponent
+    AssetsComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,7 @@ import { AssetsComponent } from './components/assets/assets.component';
     FormsModule,
     GridModule,
     RouterModule,
+    ChartsModule,
     AssetManagementRoutingModule
   ],
   providers: [HttpClient]

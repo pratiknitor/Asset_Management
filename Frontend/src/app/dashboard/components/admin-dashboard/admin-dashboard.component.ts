@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ChartOptions, LabelItem } from 'chart.js';
-import { ChartData } from 'chart.js/dist/types/index';
+import { LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IType } from '../../Models/typeCount';
 
@@ -12,29 +11,20 @@ import { IType } from '../../Models/typeCount';
 export class AdminDashboardComponent implements OnInit, AfterViewInit {
   error: any = {};
   errorMessage!: string;
+  assetsCount: any[] = [];
 
-  //Pie chart data
-  public pieChartLabels: string[] = [
-    'Chrome',
-    'Safari',
-    'Firefox',
-    'Internet Explorer',
-    'Other',
-  ];
-  public pieChartData: number[] = [40, 20, 20, 10, 10];
-  public pieChartType: string = 'pie';
-
-  constructor(private service: ApplicationService) {}
-
-  ngAfterViewInit(): void {
+  constructor(private service: ApplicationService) {
+    this.labelContent = this.labelContent.bind(this);
   }
+
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
     /**
      * Get specific assets count of all type
      */
-    this.service.getAssetsCount().subscribe((res: IType) => {
-      console.log(res);
+    this.service.getAssetsCount().subscribe((res) => {
+      this.assetsCount = res;
     });
     this.service.errorSubject.subscribe((res) => {
       this.error = res;
@@ -42,12 +32,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  public chartHovered(e: any): void {
-    console.log(e);
+  public labelContent(args: LegendLabelsContentArgs): string {
+    return `${args.dataItem.type}`;
   }
 }

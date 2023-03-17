@@ -167,8 +167,6 @@ namespace Asset_Management.Services
                            count = g.Count()
                        };
            
-            
-
             return list;
         }
     }
