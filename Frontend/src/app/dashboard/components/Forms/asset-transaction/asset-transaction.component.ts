@@ -34,7 +34,7 @@ export class AssetTransactionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dashboardService.getAssets().subscribe(
+    this.dashboardService.getUnassignedAssets().subscribe(
       (res) => {
         this.assets = res;
       },

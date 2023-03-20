@@ -1,11 +1,13 @@
 .card{
     height: 130px;
-}
-
-.card-title{
     text-align: center;
 }
 
 p {
-    margin-top: 30px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.col-sm-6{
+    margin-top: 25px;
 }

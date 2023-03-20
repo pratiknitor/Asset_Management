@@ -1,14 +1,26 @@
 <section class="TableContainer">
-  <table class="table">
+  <div class="card">
+  <table class="table ">
     <tbody>
       <tr>
+        <td style="vertical-align: middle; text-align: center; width: 100px;">
+          <div class="centre-text">
+            <button
+              [routerLink]="['/dashboard']"
+              routerLinkActive="router-link-active"
+              class="btn btn-warning"
+            >
+              Back
+            </button>
+          </div>
+        </td>
         <td style="vertical-align: middle; text-align: center">
           <button
             [routerLink]="['/dashboard/add-asset']"
             routerLinkActive="router-link-active"
             class="btn btn-success"
           >
-            Add New Asset
+            Add New
           </button>
         </td>
         <td>
@@ -42,21 +54,22 @@
       </tr>
     </tbody>
   </table>
-
-  <!-- &nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="search" #searchString placeholder="Search model.." (blur)="searchBox()" >
-  <button type="button" class="btn btn-secondary btn-sm" (click)="searchBox()" >🔍
-  </button> -->
-  <div class="centre-text">
-    <input
+  <div class="row">
+    <div class="col-3" style="vertical-align: middle; text-align: center;">
+      <button type="submit" class="btn btn-info"
+      (click)="editAsset()">Edit</button>
+      <button type="submit" class="btn btn-danger"
+      (click)="deleteAsset()">Delete</button>
+    </div>
+    <div class="col-9">
+      <input
       type="text"
       class="form-control"
-      style="width: 60%; margin-left: 20%"
       [(ngModel)]="searchText"
       placeholder="   🔍Start searching......"
     />
-  </div>
-
+    </div>
+</div>
   <br />
   <table class="table tableScroll">
     <thead>
@@ -78,7 +91,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of assets | filter : searchText; let i = index">
-        <td>{{ i + 1 }}</td>
+        <td><input class="form-check-input"
+          type="radio" name="a" value="{{item.id}}" id="{{i}}" [(ngModel)]="readioSelected"><label class="custom-control-label" for="{{i}}">{{i + 1}}</label></td>
         <td>{{ item.tyape }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.proprietary }}</td>
@@ -113,18 +127,7 @@
       </tr>
     </tbody>
   </table>
-
   <!-- <app-items [headers]="headers" [data]="data"></app-items> -->
-  <br />
-  <div class="centre-text">
-    <button
-      [routerLink]="['/dashboard']"
-      routerLinkActive="router-link-active"
-      class="btn btn-warning"
-    >
-      Back
-    </button>
-  </div>
   <!-- 
   <br/>
 <div class="centre-text"><h3>Table Using Reusable Table Component</h3></div>
@@ -138,4 +141,5 @@
 (fetch)="ngOnInit()"
 >
 </app-re-table> -->
+</div>
 </section>

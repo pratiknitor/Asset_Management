@@ -118,5 +118,11 @@ namespace Asset_Management.Controllers
             return Ok(await assetDetailsService.GetCountOfAssets());
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUnassignedAsset()
+        {
+            return Ok(await assetDetailsService.GetUnassignedAsset());
+        }
     }
 }

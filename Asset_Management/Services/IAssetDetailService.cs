@@ -7,5 +7,7 @@ namespace Asset_Management.Services
         Task<IEnumerable<TEntity>> GetByTypeAsync(Tpk type);
         Task<IEnumerable<TEntity>> GetByVendorAsync(Tpk vendor);
         Task<IEnumerable> GetCountOfAssets();
+
+        Task<IEnumerable<TEntity>> GetUnassignedAsset();
     }
 }

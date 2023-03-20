@@ -1,49 +1,4 @@
 <section class="container">
-  <!-- <div class="text-center">
-    <table class="table">
-      <tr>
-        <th>
-          <a
-            [routerLink]="['/dashboard/asset-transaction']"
-            routerLinkActive="router-link-active"
-            >Asset Assign</a
-          >
-        </th>
-        <th>
-          <a
-            [routerLink]="['/dashboard/add-asset']"
-            routerLinkActive="router-link-active"
-            >Add Asset</a
-          >
-        </th>
-        <th>
-          <a
-            [routerLink]="['/dashboard/assets']"
-            routerLinkActive="router-link-active"
-            >Assets</a
-          >
-        </th>
-        <th>
-          <a
-            [routerLink]="['/dashboard/add-vendor']"
-            routerLinkActive="router-link-active"
-            >Add vendor</a
-          >
-        </th>
-        <th>
-          <a
-            [routerLink]="['/dashboard/show-venders']"
-            routerLinkActive="router-link-active"
-            >All vendors</a
-          >
-        </th>
-      </tr>
-    </table>
-
-    <div *ngIf="errorMessage" class="alert alert-danger text-center">
-      {{ errorMessage }}
-    </div>
-  </div> -->
   <div class="row">
     <div class="col-6">
       <div class="row">
@@ -54,7 +9,7 @@
           >
             <div class="card-body">
               <h5 class="card-title">Assets</h5>
-              <p class="card-text">Count :</p>
+              <p class="card-text" [routerLink]="['/dashboard/assets']">{{totalAssets}}</p>
             </div>
           </div>
         </div>
@@ -62,7 +17,7 @@
           <div class="card bg-light mb-3">
             <div class="card-body">
               <h5 class="card-title">Vedors</h5>
-              <p class="card-text">Count :</p>
+              <p class="card-text" [routerLink]="['/dashboard/show-venders']">{{totalVendors}}</p>
             </div>
           </div>
         </div>
@@ -72,7 +27,7 @@
           <div class="card text-white bg-danger mb-3">
             <div class="card-body">
               <h5 class="card-title">Assigned Asets</h5>
-              <p class="card-text">Count :</p>
+              <p class="card-text" style="cursor: context-menu;">{{totalAssets-unassignedAssets}}</p>
             </div>
           </div>
         </div>
@@ -80,7 +35,7 @@
           <div class="card text-white bg-success mb-3">
             <div class="card-body">
               <h5 class="card-title">Unassigned Assets</h5>
-              <p class="card-text">Count :</p>
+              <p class="card-text" [routerLink]="['/dashboard/asset-transaction']">{{unassignedAssets}}</p>
             </div>
           </div>
         </div>
@@ -110,5 +65,26 @@
         </kendo-chart-series>
       </kendo-chart>
     </div>
+    <div class="col-12">
+      <kendo-chart style="height: 400px;"> 
+        <kendo-chart-title
+            text="Vendor Details"
+            font="16pt sans-serif"
+            position="bottom"
+          ></kendo-chart-title>
+          <kendo-chart-tooltip>
+            <ng-template kendoChartSeriesTooltipTemplate let-value="value">
+              count : {{ value }}
+            </ng-template>
+          </kendo-chart-tooltip>
+        <kendo-chart-series>
+          <kendo-chart-series-item [data]="vendorsChartData"
+            field="count"
+            categoryField="name">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
   </div>
+  
 </section>

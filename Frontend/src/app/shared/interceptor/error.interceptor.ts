@@ -39,6 +39,15 @@ export class ErrorInterceptor implements HttpInterceptor {
           );
           this.router.navigate(['']);
         }
+
+        if (err.status == 500) {
+          alert(
+            'This is : ' +
+              JSON.stringify(err.statusText) +
+              ' please have patience'
+          );
+          this.router.navigate(['']);
+        }
         
         return throwError({
           errorMsg: err.error,

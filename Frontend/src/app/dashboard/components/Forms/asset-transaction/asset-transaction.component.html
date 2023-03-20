@@ -1,10 +1,10 @@
 <section class="container">
-  <div class="card">
-  <h1>Asset Transaction</h1>
+  <div class="card centre-text">
+  <h1>Assign Asset</h1>
   <form #assignAsset="ngForm" (ngSubmit)="addAssetTransaction()">
     <div class="mb-3 leftBox">
       <label for="assetSelection" class="form-label">Select Asset<sup class="star">*</sup></label>&nbsp;
-      <select name="assetSelection" [(ngModel)]="transaction.assetId" style="width: 96%; height: 40%;" #assetSelection="ngModel">
+      <select name="assetSelection" [(ngModel)]="transaction.assetId" style="width: 96%; height: 40%;" required #assetSelection="ngModel">
         <option value="" *ngFor="let item of assets" [value]="item.id">
           {{ item.tyape }}&emsp;{{ item.name }}&emsp;{{ item.ram }}
         </option>
@@ -53,7 +53,7 @@
     </div>
     <div class="mb-3 middleBox">
       <label for="Location" class="form-label">Location<sup class="star">*</sup></label>
-      <select [(ngModel)]="transaction.location" name="Location" style="width: 96%; height: 40%;" #Location="ngModel" >
+      <select [(ngModel)]="transaction.location" name="Location" style="width: 96%; height: 40%;" required #Location="ngModel" >
         <option value="HJDU1">HJU1</option>
         <option value="HJDU2">HJU2</option>
       </select>
@@ -97,7 +97,7 @@
     </div>
     <div class="mb-3 rightBox">
       <label for="Department" class="form-label">Department<sup class="star">*</sup></label>
-      <select [(ngModel)]="transaction.department" name="Department" style="width: 96%; height: 40%;" #Department="ngModel" >
+      <select [(ngModel)]="transaction.department" name="Department" style="width: 96%; height: 40%;" required #Department="ngModel" >
         <option value="P&D" selected="selected">P&D</option>
         <option value="DU1">DU1</option>
         <option value="DU2">DU2</option>

@@ -29,6 +29,7 @@ builder.Services.AddScoped<IService<Vendor, int>, VendorService>();
 builder.Services.AddScoped<IAssetDetailService<AssetDetail,string>, AssetDetailService>();
 builder.Services.AddScoped<IAssetTransactionService<AssetTransaction,string>, AssetTransactionService>();
 builder.Services.AddScoped<IAuthService<User,int>,AuthService>();
+builder.Services.AddScoped<IVendorService<Vendor, int>, VendorService>();
 
 builder.Services.AddControllers(options => {
     options.Filters.Add(typeof(CustomLogFilterAttribute));

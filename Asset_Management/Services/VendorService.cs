@@ -1,11 +1,12 @@
 ﻿using Asset_Management.Models;
 using Asset_Management.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Diagnostics;
 
 namespace Asset_Management.Services
 {
-    public class VendorService : IService<Vendor, int>
+    public class VendorService : IService<Vendor, int>, IVendorService<Vendor, int>
     {
         asset_managementContext ctx;
 
@@ -114,5 +115,28 @@ namespace Asset_Management.Services
                 throw ex;
             }
         }
+
+        async Task<IEnumerable> IVendorService<Vendor, int>.GetVendorsData()
+        {
+            var vendors = await ctx.Vendors.ToListAsync();
+            var assets = await ctx.AssetDetails.ToListAsync();
+            var assetlist = from v in vendors
+                            join a in assets on v.Id equals a.VendorId
+                            select new
+                            {
+                                v.Name,
+                                a
+                            };
+            var status = from asset in assetlist
+                         group asset by asset.Name into grp
+                         select new
+                         {
+                             name = grp.Key,
+                             count = grp.Count(),
+                         };
+            return status.ToList();
+        }
+
+
     }
 }

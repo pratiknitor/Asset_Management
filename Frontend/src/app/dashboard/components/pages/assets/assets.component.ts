@@ -6,6 +6,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { filter, from } from 'rxjs';
 import { ApplicationService } from 'src/app/services/application.service';
@@ -27,6 +28,7 @@ export class AssetsComponent implements OnInit, OnChanges {
   searchText!: string;
   @ViewChild('searchString') search!: ElementRef;
   vendors!: IVendor;
+  readioSelected: any = null;
 
   headingArray = [
     'id',
@@ -54,6 +56,7 @@ export class AssetsComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
+    this.readioSelected = null;
     this.dashboardService.getAssets().subscribe((res) => {
       this.assets = res;
       this.assetList = res;
@@ -150,5 +153,29 @@ export class AssetsComponent implements OnInit, OnChanges {
   searchBox() {
     this.selectModel = this.search.nativeElement.value;
     this.sortByModel();
+  }
+
+  editAsset() {
+    if (this.readioSelected == null) {
+      alert('Please select an asset first!!!!');
+    } else {
+      var id = this.readioSelected;
+      this.router.navigate(['/dashboard/edit-asset',id]);
+    }
+  }
+
+  deleteAsset() {
+    if (this.readioSelected == null) {
+      alert('Please select an asset first!!!!');
+    } else {
+      if (confirm('Are u sure to delete')) {
+        this.dashboardService
+          .deleteAsset(this.readioSelected)
+          .subscribe((res) => {
+            this.assets = res;
+            this.ngOnInit();
+          });
+      }
+    }
   }
 }

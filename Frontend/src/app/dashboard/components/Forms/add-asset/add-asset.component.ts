@@ -1,6 +1,6 @@
 import { JsonpInterceptor } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IAsset } from '../../../Models/iasset';
 import { formatDate } from '@angular/common';
@@ -15,6 +15,7 @@ export class AddAssetComponent implements OnInit {
   vendors: any;
   todayDate: string = formatDate(new Date(), 'yyyy-MM-dd', 'en_US').toString();
   updateflag: boolean = false;
+  id!: number;
   asset: IAsset = {
     id: 0,
     tyape: '',
@@ -34,10 +35,18 @@ export class AddAssetComponent implements OnInit {
 
   constructor(
     private dashboardService: ApplicationService,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.updateflag = !!this.id;
+    if(this.updateflag){
+      this.dashboardService.getAsset(this.id).subscribe((res) => {
+        this.asset = res;
+      })
+    }
     this.dashboardService.getVendors().subscribe((res) => {
       this.vendors = res;
     });

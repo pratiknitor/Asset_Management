@@ -12,6 +12,10 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   error: any = {};
   errorMessage!: string;
   assetsCount: any[] = [];
+  totalAssets: number = 0;
+  totalVendors: number = 0;
+  unassignedAssets: number = 0;
+  vendorsChartData: any[] = [];
 
   constructor(private service: ApplicationService) {
     this.labelContent = this.labelContent.bind(this);
@@ -25,6 +29,18 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
      */
     this.service.getAssetsCount().subscribe((res) => {
       this.assetsCount = res;
+    });
+    this.service.getAssets().subscribe((res) => {
+      this.totalAssets = res.length;
+    });
+    this.service.getVendors().subscribe((res) =>{
+      this.totalVendors = res.length;
+    });
+    this.service.getUnassignedAssets().subscribe((res) => {
+        this.unassignedAssets = res.length;
+      });
+    this.service.getVendorsDetails().subscribe((res) => {
+      this.vendorsChartData = res;
     });
     this.service.errorSubject.subscribe((res) => {
       this.error = res;

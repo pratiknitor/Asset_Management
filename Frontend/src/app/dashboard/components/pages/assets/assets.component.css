@@ -7,3 +7,12 @@
     height: 90px;
     width: 80%;
 }
+
+.card{
+    width: 96%;
+    margin-left: 35px;
+}
+
+.row{
+    margin-top: 0px;
+}

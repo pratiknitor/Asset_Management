@@ -1,74 +1,77 @@
 <section class="TableContainer">
-  <div class="row">
-    <div class="col-2">
-      <button
-        [routerLink]="['/dashboard/add-vendor']"
-        routerLinkActive="router-link-active"
-        class="btn btn-success"
-      >
-        Add New Vendor
-      </button>
+  <div class="card">
+    <br />
+    <div class="row">
+      <div class="col-2" style="text-align: center">
+        <button
+          [routerLink]="['/dashboard/add-vendor']"
+          routerLinkActive="router-link-active"
+          class="btn btn-success"
+        >
+          Add New
+        </button>
+      </div>
+      <div class="centre-text col-8">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchText"
+          placeholder="   🔍Start searching......"
+        />
+      </div>
+      <div class="col-2">
+        <button
+          [routerLink]="['/dashboard']"
+          routerLinkActive="router-link-active"
+          class="btn btn-warning"
+        >
+          Back
+        </button>
+      </div>
     </div>
-    <div class="centre-text col-8">
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="searchText"
-        placeholder="   🔍Start searching......"
-      />
-    </div>
-    <div class="col-2">
-      <button
-        [routerLink]="['/dashboard']"
-        routerLinkActive="router-link-active"
-        class="btn btn-warning"
-      >
-        Back
-      </button>
-    </div>
-  </div>
-  <br />
+    <br />
 
-  <table class="table tableScroll">
-    <thead>
-      <th>Sr No.</th>
-      <th>Name</th>
-      <th>Contact No.</th>
-      <th>Address</th>
-      <th>Registration Date</th>
-      <th>Termination Date</th>
-      <th>Action</th>
-    </thead>
-    <tbody *ngIf="vendors | filter : searchText as result">
-      <tr *ngFor="let item of result; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.contactNo }}</td>
-        <td>{{ item.address }}</td>
-        <td>{{ item.registrationDate | date : "MM-dd-yyyy" }}</td>
-        <td>{{ item.terminationDate | date : "MM-dd-yyyy" }}</td>
-        <td>
-          <button
-            type="submit"
-            value="{{ item.id }}"
-            (click)="editVendor(item.id)"
-            class="btn btn-info"
-          >
-            Edit
-          </button>
-          <button
-            type="submit"
-            value="{{ item.id }}"
-            (click)="deleteVender(item.id)"
-            class="btn btn-danger"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-      <tr *ngIf="result.length === 0">
-        <td colspan="7">!!-- No Record Found --!!</td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table tableScroll">
+      <thead>
+        <th>Sr No.</th>
+        <th>Name</th>
+        <th>Contact No.</th>
+        <th>Address</th>
+        <th>Registration Date</th>
+        <th>Termination Date</th>
+        <th>Action</th>
+      </thead>
+      <tbody *ngIf="vendors | filter : searchText as result">
+        <tr *ngFor="let item of result; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.contactNo }}</td>
+          <td>{{ item.address }}</td>
+          <td>{{ item.registrationDate | date : "MM-dd-yyyy" }}</td>
+          <td>{{ item.terminationDate | date : "MM-dd-yyyy" }}</td>
+          <td>
+            <button
+              type="submit"
+              value="{{ item.id }}"
+              (click)="editVendor(item.id)"
+              class="btn btn-info"
+            >
+              Edit
+            </button>
+            <button
+              type="submit"
+              value="{{ item.id }}"
+              (click)="deleteVender(item.id)"
+              class="btn btn-danger"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="result.length === 0">
+          <td colspan="7">!!-- No Record Found --!!</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>

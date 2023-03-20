@@ -57,7 +57,7 @@ export class ApplicationService {
    * @returns vendor list
    */
   getVendors(): Observable<any> {
-    return this.httpClient.get('api/Vendor');
+    return this.httpClient.get('api/Vendor/GetAllVender');
   }
 
   /**
@@ -116,7 +116,7 @@ export class ApplicationService {
    * @returns added vendor
    */
   addVendor(vendor: IVendor): Observable<any> {
-    return this.httpClient.post(`api/Vendor`, vendor, headers);
+    return this.httpClient.post(`api/Vendor/CrateVender`, vendor, headers);
   }
 
   /**
@@ -125,7 +125,7 @@ export class ApplicationService {
    * @returns updated list of vendor
    */
   deleteVender(vendor: number): Observable<any> {
-    return this.httpClient.delete(`api/Vendor/${vendor}`);
+    return this.httpClient.delete(`api/Vendor/DeleteVender/${vendor}`);
   }
 
   /**
@@ -180,7 +180,7 @@ export class ApplicationService {
    * @returns vendor detail
    */
   getVendor(id: any): Observable<any> {
-    return this.httpClient.get(`api/Vendor/${id}`);
+    return this.httpClient.get(`api/Vendor/GetVenderById/${id}`);
   }
 
   /**
@@ -190,7 +190,7 @@ export class ApplicationService {
    * @returns updated vendor
    */
   editVendor(id: any, vendor: IVendor): Observable<any> {
-    return this.httpClient.put(`api/Vendor/${id}`, vendor);
+    return this.httpClient.put(`api/Vendor/UpdateVender/${id}`, vendor);
   }
 
   /**
@@ -207,5 +207,21 @@ export class ApplicationService {
    */
   getAssetsCount(): Observable<any> {
     return this.httpClient.get('api/AssetDetails/GetAssetCount');
+  }
+
+  /**
+   * Get unassigned assets
+   * @returns List of unassigned assets
+   */
+  getUnassignedAssets(): Observable<any> {
+    return this.httpClient.get('api/AssetDetails/GetUnassignedAsset');
+  }
+
+  /**
+   * Vendors details
+   * @returns vendors name and count of his assets
+   */
+  getVendorsDetails(): Observable<any> {
+    return this.httpClient.get('api/Vendor/GetVendorsData');
   }
 }

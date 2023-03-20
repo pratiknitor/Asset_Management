@@ -169,5 +169,29 @@ namespace Asset_Management.Services
            
             return list;
         }
+
+        async Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetUnassignedAsset()
+        {
+            try
+            {
+                var result = (await ctx.AssetDetails.ToListAsync())
+                .Where(ad => !ctx.AssetTransactions.Any(at => at.AssetId == ad.Id))
+                .ToList();
+
+                if (result == null)
+                {
+                    throw new Exception("Records not Found");
+                }
+                else
+                {
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

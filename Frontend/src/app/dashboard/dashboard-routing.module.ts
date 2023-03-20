@@ -38,6 +38,11 @@ const routes: Routes = [
     component: AddVendorComponent,
     canActivate:[MsalGuard]
   },
+  {
+    path: 'edit-asset/:id',
+    component: AddAssetComponent,
+    canActivate:[MsalGuard]
+  }
 ];
 
 @NgModule({

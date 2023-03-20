@@ -9,7 +9,7 @@ using Microsoft.Identity.Web.Resource;
 
 namespace Asset_Management.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     /// USed to Map the Received JSON Data from Http POST and PUT Request to CLR
     /// Object
     [ApiController]
@@ -17,13 +17,14 @@ namespace Asset_Management.Controllers
     {
         
         IService<Vendor,int> vendorService;
+        IVendorService<Vendor, int> _vService;
         /// <summary>
         /// Dependency injection of service is used
         /// </summary>
         /// <param name="vendorService"></param>
-        public VendorController(IService<Vendor, int> vendorService)
+        public VendorController(IService<Vendor, int> vendorService, IVendorService<Vendor,int> vservice)
         {
-           
+           this._vService = vservice;
             this.vendorService = vendorService;
         }
 
@@ -120,5 +121,14 @@ namespace Asset_Management.Controllers
             
         }
 
+        /// <summary>
+        /// Get vendors details
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetVendorsData()
+        {
+            return Ok(await _vService.GetVendorsData());
+        }
     }
 }
