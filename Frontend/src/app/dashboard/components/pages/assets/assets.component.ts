@@ -12,6 +12,7 @@ import { filter, from } from 'rxjs';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IAsset } from '../../../Models/iasset';
 import { IVendor } from '../../../Models/ivendor';
+import { NgConfirmService } from 'ng-confirm-box';
 
 @Component({
   selector: 'app-assets',
@@ -52,7 +53,8 @@ export class AssetsComponent implements OnInit, OnChanges {
 
   constructor(
     private dashboardService: ApplicationService,
-    private router: Router
+    private router: Router,
+    private confirmService: NgConfirmService
   ) {}
 
   ngOnInit(): void {
@@ -151,14 +153,18 @@ export class AssetsComponent implements OnInit, OnChanges {
     if (this.readioSelected == null) {
       alert('Please select an asset first!!!!');
     } else {
-      if (confirm('Are u sure to delete')) {
-        this.dashboardService
-          .deleteAsset(this.readioSelected)
-          .subscribe((res) => {
-            this.assets = res;
-            this.ngOnInit();
-          });
-      }
+      this.confirmService.showConfirm(
+        'Are you sure want to Delete?',
+        () => {
+          this.dashboardService
+            .deleteAsset(this.readioSelected)
+            .subscribe((res) => {
+              this.readioSelected = null;
+              this.assets = res;
+            });
+        },
+        () => {}
+      );
     }
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IVendor } from 'src/app/dashboard/Models/ivendor';
+import { NgConfirmService } from 'ng-confirm-box';
 
 @Component({
   selector: 'app-vendors',
@@ -16,7 +17,8 @@ export class VendorsComponent implements OnInit {
 
   constructor(
     private dashboardService: ApplicationService,
-    private router: Router
+    private router: Router,
+    private confirmService: NgConfirmService
   ) {
     this.readioSelected = null;
   }
@@ -37,16 +39,20 @@ export class VendorsComponent implements OnInit {
    * To delete specific vendorby id
    */
   deleteVender(data: number) {
-    if (confirm('Are you sure to delete?')) {
-      this.dashboardService.deleteVender(data).subscribe(
-        (res) => {
-          this.vendors = res;
-        },
-        (err) => {
-          alert('Failed to delete !!');
-        }
-      );
-    }
+    this.confirmService.showConfirm("Are you sure want to Delete?",
+      () => {
+        this.dashboardService.deleteVender(data).subscribe(
+          (res) => {
+            this.vendors = res;
+          },
+          (err) => {
+            alert('Failed to delete !!');
+          }
+        );
+     },
+     () => {
+      
+     })
   }
 
   /**
@@ -64,7 +70,8 @@ export class VendorsComponent implements OnInit {
     if (this.readioSelected == null) {
       alert('Please select a vendor first!!!!');
     } else {
-      if (confirm('Are you sure to delete?')) {
+      this.confirmService.showConfirm("Are you sure want to Delete?",
+      () => {
         this.dashboardService.deleteVender(this.readioSelected).subscribe(
           (res) => {
             this.readioSelected = null;
@@ -74,7 +81,10 @@ export class VendorsComponent implements OnInit {
             alert('Failed to delete !!');
           }
         );
-      }
+     },
+     () => {
+      
+     })
     }
   }
 

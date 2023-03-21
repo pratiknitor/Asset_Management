@@ -36,6 +36,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
+import { NgConfirmModule } from 'ng-confirm-box';
 
 
 
@@ -85,6 +86,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     Ng2SearchPipeModule,
     HttpClientModule,
     FormsModule,
+    NgConfirmModule,
     ReactiveFormsModule,
     NgChartsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
