@@ -44,10 +44,11 @@
     <div class="col-6">
       <kendo-chart>
         <kendo-chart-title
-          text="Asset Details"
-          font="16pt sans-serif"
+          text = "Asset Details"
+          font = "16pt sans-serif"
+          position = "bottom"
         ></kendo-chart-title>
-        <kendo-chart-legend position="bottom"></kendo-chart-legend>
+        <kendo-chart-legend position="top"></kendo-chart-legend>
         <kendo-chart-tooltip>
           <ng-template kendoChartSeriesTooltipTemplate let-value="value">
             count : {{ value }}

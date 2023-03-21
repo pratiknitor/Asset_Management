@@ -9,5 +9,7 @@ namespace Asset_Management.Services
         Task<IEnumerable> GetCountOfAssets();
 
         Task<IEnumerable<TEntity>> GetUnassignedAsset();
+
+        Task<IEnumerable<TEntity>> GetassignedAsset();
     }
 }

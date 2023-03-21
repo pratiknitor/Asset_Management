@@ -1,10 +1,27 @@
 <section class="container">
-  <div class="card centre-text">
-    <h1>Add Asset</h1>
-    <form class="form" #assetForm="ngForm" (ngSubmit)="submitAsset()">
+  <div class="card">
+    <div class="row">
+      <div class="centre-text col-3">
+        <button
+          [routerLink]="['/dashboard/assets']"
+          routerLinkActive="router-link-active"
+          class="btn btn-warning"
+        >
+        <i class="bi bi-arrow-return-left"></i>
+        </button>
+      </div>
+      <div class="centre-text col-6">
+        <h2 class="centre-text" *ngIf="!updateflag">Add Asset</h2>
+        <h2 class="centre-text" *ngIf="updateflag">Update Asset</h2>
+      </div>
+      
+    </div>
+    <br>
+    <form class="form" #assetForm="ngForm" autocomplete="off" (ngSubmit)="submitAsset()">
       <div class="mb-3 leftBox">
         <label for="Type" class="form-label">Type of Asset<sup class="star">*</sup></label>
         <select [(ngModel)]="asset.tyape" name="Type" style="width: 96%;" #type="ngModel" required>
+          <option value="">Select type</option>
           <option value="LAPTOP">LAPTOP</option>
           <option value="MAC">MAC</option>
           <option value="DESKTOP">DESKTOP</option>
@@ -16,7 +33,7 @@
         <label for="Name" class="form-label">Name<sup class="star">*</sup></label>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Enter asset name e.g. &quot;Dell&quot;"
           name="Name"
           class="form-control"
           required
@@ -28,6 +45,7 @@
       <div class="mb-3 rightBox">
         <label for="Proprietary" class="form-label">Proprietary<sup class="star">*</sup></label>
         <select [(ngModel)]="asset.proprietary" name="Proprietary" style="width: 96%;" #Proprietary="ngModel" required>
+          <option value="">Select proprietary</option>
           <option value="OWN" selected="selected">OWN</option>
           <option value="RENT">RENT</option>
         </select>
@@ -94,6 +112,7 @@
       <div class="mb-3 middleBox">
         <label for="oem" class="form-label">OEM<sup class="star">*</sup></label>
         <select [(ngModel)]="asset.oem" name="oem" style="width: 96%;" #oem="ngModel" required>
+          <option value="">Select OEM</option>
           <option value="Yes" selected="selected">Yes</option>
           <option value="No">No</option>
         </select>
@@ -165,7 +184,7 @@
         </select>
         <span *ngIf="vendor.invalid && vendor.touched" class="errorMessage">Select Valid Vendor</span>
       </div>
-      <div class="centre-text mb-3" *ngIf="!updateflag; else elseBlock">
+      <div class="centre-text mb-3" *ngIf="!updateflag">
         <input
           type="submit"
           class="btn btn-primary"
@@ -173,30 +192,17 @@
           [disabled]="assetForm.invalid"
         />
       </div>
-      <div class="centre-text">
-        <ng-template #elseBlock>
+      <div class="centre-text mb-3" *ngIf="updateflag">
           <input
             type="submit"
             class="btn btn-success"
             value="Update"
             [disabled]="assetForm.invalid"
           />
-        </ng-template>
+      </div>
+      <div class="centre-text errorMessage" *ngIf="assetForm.invalid">
+        Fill all required fields
       </div>
     </form>
-    <div class="centre-text">
-      <button
-        [routerLink]="['/dashboard/assets']"
-        routerLinkActive="router-link-active"
-        class="btn btn-warning"
-        >Back to Assets</button
-      >
-      <button
-        [routerLink]="['/dashboard']"
-        routerLinkActive="router-link-active"
-        class="btn btn-secondary"
-        >Back to Dashboard</button
-      >
-    </div>
   </div>
 </section>

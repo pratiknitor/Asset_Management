@@ -10,3 +10,15 @@ th, td{
 .row{
     margin-top: 0px;
 }
+
+.col-8{
+    width: 65%;
+}
+
+.col-2{
+    width: 17%;
+}
+
+.custom-control-label{
+    cursor: pointer;
+}

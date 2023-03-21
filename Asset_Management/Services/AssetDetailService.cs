@@ -22,10 +22,10 @@ namespace Asset_Management.Services
                 await ctx.SaveChangesAsync();
                 return record.Entity;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -45,10 +45,10 @@ namespace Asset_Management.Services
                     return record;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -67,10 +67,10 @@ namespace Asset_Management.Services
                     return records;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -97,10 +97,10 @@ namespace Asset_Management.Services
                 var records = await ctx.AssetDetails.Where(a => a.Tyape.Equals(type)).ToListAsync();
                 return records;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -111,10 +111,10 @@ namespace Asset_Management.Services
                 var records = await ctx.AssetDetails.Where(a=>a.VendorId == Convert.ToInt32(vendor)).ToListAsync();
                 return records;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -147,10 +147,10 @@ namespace Asset_Management.Services
                     return entity;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -176,6 +176,30 @@ namespace Asset_Management.Services
             {
                 var result = (await ctx.AssetDetails.ToListAsync())
                 .Where(ad => !ctx.AssetTransactions.Any(at => at.AssetId == ad.Id))
+                .ToList();
+
+                if (result == null)
+                {
+                    throw new Exception("Records not Found");
+                }
+                else
+                {
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        async Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetassignedAsset()
+        {
+            try
+            {
+                var result = (await ctx.AssetDetails.ToListAsync())
+                .Where(ad => ctx.AssetTransactions.Any(at => at.AssetId == ad.Id))
                 .ToList();
 
                 if (result == null)

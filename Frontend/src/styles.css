@@ -46,7 +46,7 @@ img {
 }
 
 .TableContainer {
-  margin-top: 6rem;
+  margin-top: 5rem;
   margin-bottom: 4rem;
 }
 
@@ -362,7 +362,9 @@ button {
   max-width: fit-content;
   margin: 0 auto;
   overflow-x: auto;
+  overflow-y: auto;
   white-space: nowrap;
+  height: 350px;
 }
 
 .search-box{

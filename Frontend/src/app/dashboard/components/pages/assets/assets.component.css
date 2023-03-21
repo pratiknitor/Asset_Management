@@ -16,3 +16,15 @@
 .row{
     margin-top: 0px;
 }
+
+.tableScroll{
+    width: inherit
+}
+
+.buttonMarj{
+    margin-top: 25px;
+}
+
+.custom-control-label{
+    cursor: pointer;
+}

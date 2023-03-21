@@ -36,10 +36,7 @@ namespace Asset_Management.Controllers
             catch (Exception ex)
             {
 
-                return NotFound(new
-                {
-                    message = ex.Message,
-                });
+                return NotFound(ex.Message);
             }
         }
 
@@ -62,8 +59,14 @@ namespace Asset_Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                try { 
                 return Ok(await assetService.UpdateAsync(id, assetDetail));
+                }
+                catch (Exception ex)
+                {
+
+                    return NotFound(ex.Message);
+                }
             }
             else
             {
@@ -76,8 +79,15 @@ namespace Asset_Management.Controllers
         {
             if (id > 0 )
             {
+                try { 
                 await assetService.DeleteAsync(id);
                 return Ok(await assetService.GetAsync());
+                }
+                catch (Exception ex)
+                {
+
+                    return NotFound(ex.Message);
+                }
             }
             else
             {
@@ -123,6 +133,12 @@ namespace Asset_Management.Controllers
         public async Task<IActionResult> GetUnassignedAsset()
         {
             return Ok(await assetDetailsService.GetUnassignedAsset());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAssignedAsset()
+        {
+            return Ok(await assetDetailsService.GetassignedAsset());
         }
     }
 }

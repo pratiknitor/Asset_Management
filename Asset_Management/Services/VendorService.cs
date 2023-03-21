@@ -29,10 +29,10 @@ namespace Asset_Management.Services
                 await ctx.SaveChangesAsync();
                 return record.Entity;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -52,7 +52,7 @@ namespace Asset_Management.Services
                 await ctx.SaveChangesAsync();
                 return record;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -100,7 +100,7 @@ namespace Asset_Management.Services
             {
                 var record = await ctx.Vendors.FindAsync(id);
                 if (record == null)
-                    throw new Exception("Record ot found");
+                    throw new Exception("Record not found");
                 record.ContactNo = entity.ContactNo;
                 record.Name= entity.Name;
                 record.RegistrationDate = entity.RegistrationDate;
@@ -109,10 +109,10 @@ namespace Asset_Management.Services
                 await ctx.SaveChangesAsync();
                 return record;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 

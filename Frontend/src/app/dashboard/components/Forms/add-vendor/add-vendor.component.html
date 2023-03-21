@@ -7,7 +7,7 @@
           routerLinkActive="router-link-active"
           class="btn btn-warning"
         >
-          Back
+        <i class="bi bi-arrow-return-left"></i>
         </button>
       </div>
       <div class="centre-text col-6">
@@ -17,7 +17,7 @@
       
     </div>
     <br />
-    <form #vendorForm="ngForm" (ngSubmit)="submitVendorDetails()">
+    <form #vendorForm="ngForm" autocomplete="off" (ngSubmit)="submitVendorDetails()">
       <div class="mb-3 leftBox">
         <label for="name" class="form-label"
           >Name<sup class="star">*</sup></label

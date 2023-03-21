@@ -218,6 +218,14 @@ export class ApplicationService {
   }
 
   /**
+   * Get assigned assets
+   * @returns List of assigned assets
+   */
+  getAssignedAssets(): Observable<any> {
+    return this.httpClient.get('api/AssetDetails/GetAssignedAsset');
+  }
+
+  /**
    * Vendors details
    * @returns vendors name and count of his assets
    */

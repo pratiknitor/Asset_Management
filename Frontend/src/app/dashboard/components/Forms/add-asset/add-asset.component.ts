@@ -30,7 +30,7 @@ export class AddAssetComponent implements OnInit {
     owner: '',
     remarks: '',
     ram: '',
-    vendorId: 0,
+    vendorId: 1,
   };
 
   constructor(
@@ -45,25 +45,22 @@ export class AddAssetComponent implements OnInit {
     if(this.updateflag){
       this.dashboardService.getAsset(this.id).subscribe((res) => {
         this.asset = res;
+        this.asset.expiryDate = formatDate(
+          this.asset.expiryDate,
+          'yyyy-MM-dd',
+          'en_US'
+        ).toString();
       })
     }
     this.dashboardService.getVendors().subscribe((res) => {
       this.vendors = res;
-    });
-    this.dashboardService.emitAsset.subscribe((res) => {
-      this.asset = res;
-      this.asset.expiryDate = formatDate(
-        this.asset.expiryDate,
-        'yyyy-MM-dd',
-        'en_US'
-      ).toString();
-      this.updateflag = true;
     });
   }
 
   submitAsset(): void {
     if (!this.updateflag) {
       this.dashboardService.addAsset(this.asset).subscribe((response) => {
+        alert('Asset added successfully !!!!');
         this.router.navigate(['/dashboard/assets']);
       });
     } else {
@@ -71,6 +68,7 @@ export class AddAssetComponent implements OnInit {
       this.dashboardService
         .editAsset(this.asset.id, this.asset)
         .subscribe((res) => {
+          alert('Asset updated successfully !!!!');
           this.router.navigate(['/dashboard/assets']);
         });
     }

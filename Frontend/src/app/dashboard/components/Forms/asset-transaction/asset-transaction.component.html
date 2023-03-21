@@ -1,7 +1,7 @@
 <section class="container">
   <div class="card centre-text">
   <h1>Assign Asset</h1>
-  <form #assignAsset="ngForm" (ngSubmit)="addAssetTransaction()">
+  <form #assignAsset="ngForm" autocomplete="off" (ngSubmit)="addAssetTransaction()">
     <div class="mb-3 leftBox">
       <label for="assetSelection" class="form-label">Select Asset<sup class="star">*</sup></label>&nbsp;
       <select name="assetSelection" [(ngModel)]="transaction.assetId" style="width: 96%; height: 40%;" required #assetSelection="ngModel">

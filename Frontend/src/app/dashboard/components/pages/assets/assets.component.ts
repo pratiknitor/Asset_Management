@@ -85,23 +85,6 @@ export class AssetsComponent implements OnInit, OnChanges {
     });
   }
 
-  EditAsset(data: number) {
-    this.dashboardService.getAsset(data).subscribe((res: IAsset) => {
-      this.dashboardService.emitAssets(res);
-      this.dashboardService.emitFlag(true);
-    });
-    this.router.navigate(['/dashboard/add-asset']);
-  }
-
-  DeleteAsset(value: any): void {
-    if (confirm('Are u sure to delete')) {
-      this.dashboardService.deleteAsset(value).subscribe((res) => {
-        this.assets = res;
-        this.ngOnInit();
-      });
-    }
-  }
-
   sortByType() {
     this.dashboardService.getAssets().subscribe((res) => {
       this.assetList = [];
@@ -160,7 +143,7 @@ export class AssetsComponent implements OnInit, OnChanges {
       alert('Please select an asset first!!!!');
     } else {
       var id = this.readioSelected;
-      this.router.navigate(['/dashboard/edit-asset',id]);
+      this.router.navigate(['/dashboard/edit-asset', id]);
     }
   }
 
