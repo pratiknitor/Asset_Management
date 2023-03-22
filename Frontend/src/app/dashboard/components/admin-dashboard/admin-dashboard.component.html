@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="col-6">
-      <kendo-chart>
+      <kendo-chart (seriesClick)="pieChartEvent($event)">
         <kendo-chart-title
           text = "Asset Details"
           font = "16pt sans-serif"
@@ -67,7 +67,7 @@
       </kendo-chart>
     </div>
     <div class="col-12">
-      <kendo-chart style="height: 400px;"> 
+      <kendo-chart style="height: 400px;" (seriesClick)="barChartEvent($event)"> 
         <kendo-chart-title
             text="Vendor Details"
             font="16pt sans-serif"

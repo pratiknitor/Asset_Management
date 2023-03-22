@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { IAsset } from '../dashboard/Models/iasset';
 import { IAssetTransaction } from '../dashboard/Models/iasset-transaction';
 import { IVendor } from '../dashboard/Models/ivendor';
@@ -19,6 +19,7 @@ export class ApplicationService {
   public subject = new Subject<any>();
   public errorSubject = new Subject<string>();
   emitVendor = new Subject<IVendor>();
+  assetType = new BehaviorSubject<string>("All");
 
   constructor(private httpClient: HttpClient) {}
 

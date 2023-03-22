@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
 import { ApplicationService } from 'src/app/services/application.service';
 import { IType } from '../../Models/typeCount';
@@ -17,8 +18,9 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   unassignedAssets: number = 0;
   vendorsChartData: any[] = [];
 
-  constructor(private service: ApplicationService) {
+  constructor(private service: ApplicationService, private router: Router) {
     this.labelContent = this.labelContent.bind(this);
+    this.service.assetType.next("All");
   }
 
   ngAfterViewInit(): void {}
@@ -50,5 +52,14 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
 
   public labelContent(args: LegendLabelsContentArgs): string {
     return `${args.dataItem.type}`;
+  }
+
+  pieChartEvent(e:any){
+    this.service.assetType.next(e.category);
+    this.router.navigate(['/dashboard/assets']);
+  }
+
+  barChartEvent(e:any){
+    console.log(e.category)
   }
 }

@@ -74,6 +74,12 @@ export class AssetsComponent implements OnInit, OnChanges {
           this.myTypes.add(this.assets[i].tyape);
         }
       }
+      this.dashboardService.assetType.subscribe(
+        (res) =>{
+          this.selectType = res;
+          this.sortByType();
+        }
+      )
     });
 
     this.dashboardService.getVendors().subscribe((res) => {
