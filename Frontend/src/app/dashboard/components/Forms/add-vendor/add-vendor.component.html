@@ -19,9 +19,10 @@
     <br />
     <form #vendorForm="ngForm" autocomplete="off" (ngSubmit)="submitVendorDetails()">
       <div class="mb-3 leftBox">
-        <label for="name" class="form-label"
-          >Name<sup class="star">*</sup></label
-        >
+        <label for="name" class="form-label" *ngIf="!name.invalid"
+          >Name<sup class="star">*</sup></label>
+          <label for="name" class="form-label errorMessage" *ngIf="name.invalid"
+          >Name<sup class="star">*</sup></label>
         <input
           type="text"
           class="form-control"
@@ -29,7 +30,7 @@
           id="name"
           required
           #name="ngModel"
-          minlength="2"
+          pattern="^[A-Za-z][A-Za-z0-9_]{2,29}$"
           placeholder="Enter name  e.g. &quot;Pratik Balkunde&quot;"
           [(ngModel)]="vendor.name"
         />
@@ -39,9 +40,10 @@
       </div>
 
       <div class="mb-3 rightBox">
-        <label for="contact" class="form-label"
-          >Contact No<sup class="star">*</sup></label
-        >
+        <label for="contact" class="form-label" *ngIf="!contact.invalid"
+          >Contact No<sup class="star">*</sup></label>
+          <label for="contact" class="form-label errorMessage" *ngIf="contact.invalid"
+          >Contact No<sup class="star">*</sup></label>
         <input
           type="text"
           class="form-control"
@@ -58,9 +60,10 @@
         >
       </div>
       <div class="mb-2">
-        <label for="address" class="form-label"
-          >Address<sup class="star">*</sup></label
-        >
+        <label for="address" class="form-label" *ngIf="!address.invalid">
+          Address<sup class="star">*</sup></label>
+          <label for="address" class="form-label errorMessage" *ngIf="address.invalid">
+            Address<sup class="star">*</sup></label>
         <textarea
           type="textarea"
           class="form-control"
@@ -90,9 +93,11 @@
         />
       </div>
       <div class="mb-3 rightBox">
-        <label for="termination" class="form-label"
-          >Termination Date<sup class="star">*</sup></label
-        >
+        <label for="termination" class="form-label" *ngIf="!termination.invalid"
+          >Termination Date<sup class="star">*</sup></label>
+          <label for="termination" class="form-label errorMessage" *ngIf="termination.invalid"
+        >Termination Date<sup class="star">*</sup></label
+      >
         <input
           type="date"
           class="form-control"

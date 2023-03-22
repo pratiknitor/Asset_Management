@@ -39,8 +39,6 @@ import 'hammerjs';
 import { NgConfirmModule } from 'ng-confirm-box';
 
 
-
-
 //get browser information
 const IisIE =
   window.navigator.userAgent.indexOf('MSIE') > -1 ||
