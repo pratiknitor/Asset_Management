@@ -35,7 +35,7 @@
           [(ngModel)]="vendor.name"
         />
         <span *ngIf="name.invalid && name.touched" class="errorMessage"
-          >Enter Valid Name</span
+          >Enter valid name e.g. &quot;Pratik Balkunde&quot;</span
         >
       </div>
 
@@ -56,7 +56,7 @@
           [(ngModel)]="vendor.contactNo"
         />
         <span *ngIf="contact.invalid && contact.touched" class="errorMessage"
-          >Enter Valid Contact Number</span
+          >Enter valid contact number e.g. &quot;9876543210&quot;</span
         >
       </div>
       <div class="mb-2">
@@ -76,7 +76,7 @@
           [(ngModel)]="vendor.address"
         ></textarea>
         <span *ngIf="address.invalid && address.touched" class="errorMessage"
-          >Enter Valid Address</span
+          >Enter valid address e.g. &quot;Embassy Tech Zone, Hinjewadi, Phase II, Pune&quot;</span
         >
       </div>
       <div class="mb-3 leftBox">
@@ -112,7 +112,7 @@
         <span
           *ngIf="termination.invalid && termination.touched"
           class="errorMessage"
-          >Select Valid Date</span
+          >Select valid date</span
         >
       </div>
       <div class="centre-text mb-3" *ngIf="updateflag">

@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
 import { ApplicationService } from 'src/app/services/application.service';
-import { IType } from '../../Models/typeCount';
+import { filter, from } from 'rxjs';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -17,10 +17,13 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   totalVendors: number = 0;
   unassignedAssets: number = 0;
   vendorsChartData: any[] = [];
+  vendors:any[] = [];
+  selectVendor! : string ;
 
   constructor(private service: ApplicationService, private router: Router) {
     this.labelContent = this.labelContent.bind(this);
     this.service.assetType.next("All");
+    this.service.setVendorId.next(0);
   }
 
   ngAfterViewInit(): void {}
@@ -60,6 +63,20 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   }
 
   barChartEvent(e:any){
-    console.log(e.category)
+    this.selectVendor = e.category;
+    this.service.getVendors().subscribe((res) => {
+      this.vendors = res;
+      let x = from(this.vendors).pipe(
+        filter(
+          (findVendorId) =>
+          findVendorId.name.toLowerCase() === this.selectVendor.toLowerCase()
+        )
+      );
+      //subscribe to pipe of filter
+      x.subscribe((result) => {
+        this.service.setVendorId.next(result.id);
+        this.router.navigate(['/dashboard/assets']);
+      });
+    })
   }
 }

@@ -30,6 +30,7 @@ export class AssetsComponent implements OnInit, OnChanges {
   @ViewChild('searchString') search!: ElementRef;
   vendors!: IVendor;
   readioSelected: any = null;
+  selectVendor!: number;
 
   headingArray = [
     'id',
@@ -75,9 +76,18 @@ export class AssetsComponent implements OnInit, OnChanges {
         }
       }
       this.dashboardService.assetType.subscribe(
-        (res) =>{
+        (res) => {
           this.selectType = res;
           this.sortByType();
+        }
+      )
+      this.dashboardService.setVendorId.subscribe(
+        (res) => {
+          this.selectVendor = res;
+          if(this.selectVendor!=0)
+          {
+            this.sortByVendor();
+          }
         }
       )
     });
@@ -173,4 +183,30 @@ export class AssetsComponent implements OnInit, OnChanges {
       );
     }
   }
+
+  sortByVendor() {
+    this.dashboardService.getAssets().subscribe((res) => {
+      this.assetList = [];
+      this.assets = res;
+      this.selectModel = 'All';
+      //use filters
+      let x = from(this.assets).pipe(
+        filter(
+          (assetsFlter) =>
+            assetsFlter.vendorId === this.selectVendor
+        )
+      );
+      //subscribe to pipe of filter
+      x.subscribe((result) => {
+        this.assetList.push(result);
+      });
+      this.assets = this.assetList;
+      if (this.selectVendor === 0 || this.selectVendor === undefined) {
+        this.assets = res;
+        this.assetList = res;
+        //we cant break subscribe in between so if condition is in last
+      }
+    });
+  }
+
 }

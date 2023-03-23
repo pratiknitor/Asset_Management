@@ -43,7 +43,7 @@
           #name = "ngModel"
           [(ngModel)]="asset.name"
         />
-        <span *ngIf="name.invalid && name.touched" class="errorMessage">Enter Valid Name</span>
+        <span *ngIf="name.invalid && name.touched" class="errorMessage">Enter valid name e.g.&quot;Dell&quot;</span>
       </div>
       <div class="mb-3 rightBox">
         <label for="Proprietary" class="form-label" *ngIf="!Proprietary.invalid">Proprietary<sup class="star">*</sup></label>
@@ -69,7 +69,7 @@
           #configuration="ngModel"
           [(ngModel)]="asset.configuration"
         />
-        <span *ngIf="configuration.invalid && configuration.touched" class="errorMessage">Enter Valid Configuration</span>
+        <span *ngIf="configuration.invalid && configuration.touched" class="errorMessage">Enter valid configuration e.g.&quot;i3&quot;</span>
 
       </div>
       <div class="mb-3 middleBox">
@@ -84,7 +84,7 @@
           #serviceTag="ngModel"
           [(ngModel)]="asset.serviceTag"
         />
-        <span *ngIf="serviceTag.invalid && serviceTag.touched" class="errorMessage">Enter Valid Service Tag</span>
+        <span *ngIf="serviceTag.invalid && serviceTag.touched" class="errorMessage">Enter valid service Tag e.g.&quot;NIT-WKS-0013&quot;</span>
 
       </div>
       <div class="mb-3 rightBox">
@@ -100,7 +100,7 @@
           #model="ngModel"
           [(ngModel)]="asset.model"
         />
-        <span *ngIf="model.invalid && model.touched" class="errorMessage">Enter Valid Model</span>
+        <span *ngIf="model.invalid && model.touched" class="errorMessage">Enter valid model e.g.&quot;DELL VOSTRO 2520&quot;</span>
       </div>
       <div class="mb-3 leftBox">
         <label for="hostName" class="form-label" *ngIf="!hostName.invalid">Host Name<sup class="star">*</sup></label>
@@ -115,7 +115,7 @@
           #hostName="ngModel"
           [(ngModel)]="asset.hostName"
         />
-        <span *ngIf="hostName.invalid && hostName.touched" class="errorMessage">Enter Valid Host Name</span>
+        <span *ngIf="hostName.invalid && hostName.touched" class="errorMessage">Enter valid host name e.g.&quot;NIT-LPT-0040&quot;</span>
       </div>
       <div class="mb-3 middleBox">
         <label for="oem" class="form-label" *ngIf="!oem.invalid">OEM<sup class="star">*</sup></label>
@@ -155,7 +155,7 @@
           #owner="ngModel"
           [(ngModel)]="asset.owner"
         />
-        <span *ngIf="owner.invalid && owner.touched" class="errorMessage">Enter Valid owner Name</span>
+        <span *ngIf="owner.invalid && owner.touched" class="errorMessage">Enter valid owner name e.g.&quot;Sysadmin&quot;</span>
       </div>
       <div class="mb-3 middleBox">
         <label for="remarks" class="form-label" *ngIf="!remarks.invalid">Remarks<sup class="star">*</sup></label>
@@ -169,7 +169,7 @@
           #remarks="ngModel"
           [(ngModel)]="asset.remarks"
         />
-        <span *ngIf="remarks.invalid && remarks.touched" class="errorMessage">Enter Valid Remarks</span>
+        <span *ngIf="remarks.invalid && remarks.touched" class="errorMessage">Enter valid remarks e.g.&quot;Employee_OK&quot;</span>
       </div>
       <div class="mb-3 rightBox">
         <label for="ram" class="form-label" *ngIf="!ram.invalid">Ram<sup class="star">*</sup></label>

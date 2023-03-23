@@ -9,6 +9,7 @@ import {
 } from '@azure/msal-angular';
 import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
 import { filter, Subject, takeUntil } from 'rxjs';
+import { ApplicationService } from 'src/app/services/application.service';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +29,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private refreshService: RefreshService,
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private msalBroadCastService: MsalBroadcastService,
-    private authService: MsalService
+    private authService: MsalService,
+    private service: ApplicationService
   ) {}
 
   ngOnInit(): void {
@@ -67,5 +69,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     localStorage.clear();
     this.router.navigate(['']);
     this.authService.logoutRedirect();
+  }
+
+  assets(){
+    this.service.assetType.next("All");
+    this.service.setVendorId.next(0);
+    this.router.navigate(['/dashboard/assets']);
   }
 }

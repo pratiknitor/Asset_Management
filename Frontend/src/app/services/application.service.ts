@@ -20,6 +20,7 @@ export class ApplicationService {
   public errorSubject = new Subject<string>();
   emitVendor = new Subject<IVendor>();
   assetType = new BehaviorSubject<string>("All");
+  setVendorId = new BehaviorSubject<number>(0);
 
   constructor(private httpClient: HttpClient) {}
 

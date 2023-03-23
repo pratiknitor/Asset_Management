@@ -8,10 +8,11 @@
       <button class="dropbtn"><a [routerLink]="['/dashboard']" >Dashboard</a></button>
     </div>
     <div class="dropdown col-1">
-      <button class="dropbtn"><a [routerLink]="['/dashboard/assets']" >Assets</a></button>
+      <button class="dropbtn"><a (click)="assets()" >Assets</a></button>
       <!-- <div class="content">
-        <a [routerLink]="['/dashboard/assets']">Asset List</a>
+        <a (click)="assets()">Asset List</a>
         <a [routerLink]="['/dashboard/add-asset']">Add Asset</a>
+        <a [routerLink]="['/dashboard/asset-transaction']">Assign Asset</a>
       </div> -->
     </div>
     <div class="dropdown col-1">
