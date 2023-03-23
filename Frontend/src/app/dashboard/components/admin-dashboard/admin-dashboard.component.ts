@@ -35,15 +35,27 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     this.service.getAssetsCount().subscribe((res) => {
       this.assetsCount = res;
     });
+    /**
+     * Get assets count of all type
+     */
     this.service.getAssets().subscribe((res) => {
       this.totalAssets = res.length;
     });
+    /**
+     * Get vendors count of all
+     */
     this.service.getVendors().subscribe((res) =>{
       this.totalVendors = res.length;
     });
+    /**
+     * Get unassigned assets count of all type
+     */
     this.service.getUnassignedAssets().subscribe((res) => {
         this.unassignedAssets = res.length;
-      });
+    });
+    /**
+     * Get vendors details
+     */
     this.service.getVendorsDetails().subscribe((res) => {
       this.vendorsChartData = res;
     });
@@ -56,12 +68,19 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   public labelContent(args: LegendLabelsContentArgs): string {
     return `${args.dataItem.type}`;
   }
-
+  /**
+   * Get details of single piece of pie chat.
+   * @param e get details from single piece of chart.
+   */
   pieChartEvent(e:any){
     this.service.assetType.next(e.category);
     this.router.navigate(['/dashboard/assets']);
   }
 
+  /**
+   * Get details of single column of bar chat.
+   * @param e get details from single column of chart.
+   */
   barChartEvent(e:any){
     this.selectVendor = e.category;
     this.service.getVendors().subscribe((res) => {

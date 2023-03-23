@@ -7,6 +7,7 @@ import { AssetTransactionComponent } from './components/Forms/asset-transaction/
 import { AssetsComponent } from './components/pages/assets/assets.component';
 import { VendorsComponent } from './components/pages/vendors/vendors.component';
 import { MsalGuard } from '@azure/msal-angular';
+import { SubmitAssetComponent } from './components/Forms/submit-asset/submit-asset.component';
 
 const routes: Routes = [
   {
@@ -42,7 +43,11 @@ const routes: Routes = [
     path: 'edit-asset/:id',
     component: AddAssetComponent,
     canActivate:[MsalGuard]
-  }
+  },
+  {
+    path: 'submit-asset',
+    component: SubmitAssetComponent,canActivate:[MsalGuard]
+  },
 ];
 
 @NgModule({

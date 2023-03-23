@@ -10,5 +10,7 @@ namespace Asset_Management.Services
         Task<TEntity> Search(Tpk search);
 
         Task<TEntity> getAssetTransactionByEmail(Tpk email);
+
+        Task<TEntity> DeleteAssetTransactionByAssetId(int id);
     }
 }

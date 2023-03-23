@@ -10,11 +10,13 @@ namespace Asset_Management.Controllers
     public class AssetTransactionController : ControllerBase
     {
         IService<AssetTransaction, int> assetService;
+        IAssetDetailService<AssetDetail, string> assetDetailsService;
         IAssetTransactionService<AssetTransaction,string> assetTransactionService;
-        public AssetTransactionController(IService<AssetTransaction, int> assetService, IAssetTransactionService<AssetTransaction, string> assetTransactionService)
+        public AssetTransactionController(IService<AssetTransaction, int> assetService, IAssetTransactionService<AssetTransaction, string> assetTransactionService, IAssetDetailService<AssetDetail, string> assetDetailsService)
         {
             this.assetService = assetService;
             this.assetTransactionService = assetTransactionService;
+            this.assetDetailsService = assetDetailsService;
         }
 
         [HttpGet("get_all_list")]
@@ -25,15 +27,19 @@ namespace Asset_Management.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAssetTransactionById(int? id) 
+        public async Task<IActionResult> GetAssetTransactionById(int id) 
         {
-            if(id == null || id == 0)
+            try
             {
-                return BadRequest();
+                return Ok(await assetService.GetAsync(id));
             }
-            var record = await assetService.GetAsync((int)id);
-            return Ok(record);
+            catch (Exception ex)
+            {
+
+                return NotFound(ex.Message);
+            }
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateAssetTransaction( AssetTransaction assetTransaction)
         {
@@ -45,30 +51,75 @@ namespace Asset_Management.Controllers
             throw new Exception("Please provide correct information");
            
         }
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAssetTransaction([FromBody] AssetTransaction assetTransaction, int id)
+        public async Task<IActionResult> UpdateAssetTransaction(int id, AssetTransaction assetTransaction)
         {
-            if(ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-                var result = await assetService.UpdateAsync(id, assetTransaction);
-                if (result == null)
+                try
                 {
-                    return NotFound($"Record not found with Id {id}");
+                    return Ok(await assetService.UpdateAsync(id, assetTransaction));
                 }
-                return Ok(result);
+                catch (Exception ex)
+                {
+
+                    return NotFound(ex.Message);
+                }
             }
-            throw new Exception("Please provide correct information");
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
+
         [HttpDelete("{id}")] 
         public async Task<IActionResult> DeleteAssetTransaction(int id)
         {
-            var result = await assetService.DeleteAsync(id);
-            if(result == null)
+            if (id > 0)
             {
-                return NotFound($"Record not found with Id {id}");
+                try
+                {
+                    await assetService.DeleteAsync(id);
+                    return Ok(await assetDetailsService.GetassignedAsset());
+                }
+                catch (Exception ex)
+                {
+
+                    return NotFound(ex.Message);
+                }
             }
-            return Ok(result);
+            else
+            {
+                return BadRequest("Delete faild");
+            }
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAssetTransactionByAsset(int id)
+        {
+            if (id > 0)
+            {
+                try
+                {
+                    await assetTransactionService.DeleteAssetTransactionByAssetId(id);
+                    return Ok();
+                }
+                catch (Exception ex)
+                {
+
+                    return NotFound(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("Delete faild");
+            }
+        }
+
+
+
+
         [HttpGet("get_by_email/{email}")]
         public async Task<IActionResult> GetByEmail(string email)
         {

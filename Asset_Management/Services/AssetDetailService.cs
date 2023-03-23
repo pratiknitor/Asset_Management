@@ -47,7 +47,6 @@ namespace Asset_Management.Services
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -123,9 +122,9 @@ namespace Asset_Management.Services
             try
             {
                 var record = await ctx.AssetDetails.FindAsync(id);
-                if (record != null)
-                {
-                    record.Proprietary = entity.Proprietary;
+                if (record == null)
+                    throw new Exception("Record not found");
+                record.Proprietary = entity.Proprietary;
                    
                     record.Configuration = entity.Configuration;
                     record.Name = entity.Name;
@@ -141,11 +140,6 @@ namespace Asset_Management.Services
                     record.Tyape = entity.Tyape;
                     await ctx.SaveChangesAsync();
                     return record;
-                }
-                else
-                {
-                    return entity;
-                }
             }
             catch (Exception)
             {

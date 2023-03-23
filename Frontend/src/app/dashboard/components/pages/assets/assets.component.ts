@@ -13,6 +13,7 @@ import { ApplicationService } from 'src/app/services/application.service';
 import { IAsset } from '../../../Models/iasset';
 import { IVendor } from '../../../Models/ivendor';
 import { NgConfirmService } from 'ng-confirm-box';
+import { NotificationService } from '@progress/kendo-angular-notification';
 
 @Component({
   selector: 'app-assets',
@@ -29,33 +30,16 @@ export class AssetsComponent implements OnInit, OnChanges {
   searchText!: string;
   @ViewChild('searchString') search!: ElementRef;
   vendors!: IVendor;
-  readioSelected: any = null;
-  selectVendor!: number;
-
-  headingArray = [
-    'id',
-    'tyape',
-    'name',
-    'proprietary',
-    'configuration',
-    'serviceTag',
-    'model',
-    'hostName',
-    'oem',
-    'expiryDate',
-    'owner',
-    'remarks',
-    'ram',
-    'vendorId',
-  ];
+  readioSelected: any = null;//get value of radio button
+  selectVendor!: number;//get value of vendor id if avalable
   assetList: any[] = [];
-  tableSize = 2;
-  classStyle: string = 'table tableScroll';
+ 
 
   constructor(
     private dashboardService: ApplicationService,
     private router: Router,
-    private confirmService: NgConfirmService
+    private confirmService: NgConfirmService,
+    public notifiService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -103,6 +87,9 @@ export class AssetsComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Sort assets by asset type
+   */
   sortByType() {
     this.dashboardService.getAssets().subscribe((res) => {
       this.assetList = [];
@@ -128,6 +115,9 @@ export class AssetsComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Sort assets by asset model
+   */
   sortByModel() {
     this.dashboardService.getAssets().subscribe((res) => {
       this.sort = [];
@@ -158,7 +148,7 @@ export class AssetsComponent implements OnInit, OnChanges {
 
   editAsset() {
     if (this.readioSelected == null) {
-      alert('Please select an asset first!!!!');
+      this.showWarning("Please select an asset first!!!!");
     } else {
       var id = this.readioSelected;
       this.router.navigate(['/dashboard/edit-asset', id]);
@@ -167,7 +157,7 @@ export class AssetsComponent implements OnInit, OnChanges {
 
   deleteAsset() {
     if (this.readioSelected == null) {
-      alert('Please select an asset first!!!!');
+      this.showWarning("Please select an asset first!!!!");
     } else {
       this.confirmService.showConfirm(
         'Are you sure want to Delete?',
@@ -176,7 +166,11 @@ export class AssetsComponent implements OnInit, OnChanges {
             .deleteAsset(this.readioSelected)
             .subscribe((res) => {
               this.readioSelected = null;
-              this.assets = res;
+              this.ngOnInit();
+              this.showInfo("Asset deleted successfully !!")
+            },
+            (err) => {
+              this.showError("Unable to delete Asset from list !!")
             });
         },
         () => {}
@@ -184,6 +178,9 @@ export class AssetsComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Sort assets by vendor id
+   */
   sortByVendor() {
     this.dashboardService.getAssets().subscribe((res) => {
       this.assetList = [];
@@ -206,6 +203,50 @@ export class AssetsComponent implements OnInit, OnChanges {
         this.assetList = res;
         //we cant break subscribe in between so if condition is in last
       }
+    });
+  }
+
+
+  /**
+   * Show error message after transaction failed.
+   */
+  public showError(data : string): void {
+    this.notifiService.show({
+      content: data,
+      hideAfter: 3000,
+      position: { horizontal: 'center', vertical: 'top' },
+      animation: { type: 'slide', duration: 400 },
+      type: { style: 'error', icon: true },
+      width: 350,
+      height: 45,
+    });
+  }
+  
+  /**
+   * Show warning message for transaction.
+   */
+  public showWarning(data : string): void {
+    this.notifiService.show({
+      content: data,
+      hideAfter: 2500,
+      position: { horizontal: 'center', vertical: 'top' },
+      animation: { type: 'fade', duration: 400 },
+      type: { style: 'warning', icon: true },
+      height: 40,
+    });
+  }
+
+  /**
+   * Show information message for transaction.
+   */
+  public showInfo(data : string): void {
+    this.notifiService.show({
+      content: data,
+      hideAfter: 2500,
+      position: { horizontal: 'center', vertical: 'top' },
+      animation: { type: 'slide', duration: 400 },
+      type: { style: 'info', icon: true },
+      height: 40,
     });
   }
 

@@ -27,8 +27,6 @@ namespace Asset_Management.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAssetById(int id)
         {
-
-
             try
             {
                 return Ok(await assetService.GetAsync(id));

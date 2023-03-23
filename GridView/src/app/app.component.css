@@ -1,0 +1,9 @@
+.append-container {
+    position: relative;
+    margin: auto;
+    width: 400px;
+    border: 1px solid #ccc;
+    height: 50px;
+    margin-bottom: 15px;
+    margin-top: 3rem;
+  }

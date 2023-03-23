@@ -37,6 +37,7 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { NgConfirmModule } from 'ng-confirm-box';
+import { NotificationModule } from '@progress/kendo-angular-notification';
 
 
 //get browser information
@@ -86,7 +87,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FormsModule,
     NgConfirmModule,
     ReactiveFormsModule,
-    NgChartsModule,
+    NgChartsModule, NotificationModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     AppRoutingModule,

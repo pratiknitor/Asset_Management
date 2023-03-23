@@ -26,15 +26,36 @@ namespace Asset_Management.Services
             }
         }
 
+        async Task<AssetTransaction> IAssetTransactionService<AssetTransaction, string>.DeleteAssetTransactionByAssetId(int id)
+        {
+            var record = (await ctx.AssetTransactions.ToListAsync()).Where(a => a.AssetId == id).SingleOrDefault();
+            if(record==null)
+                throw new Exception("Record not found");
+            ctx.AssetTransactions.Remove(record);
+            await ctx.SaveChangesAsync();
+            return record;
+        }
+
         async Task<AssetTransaction> IService<AssetTransaction, int>.DeleteAsync(int id)
         {
-            var record = await ctx.AssetTransactions.FindAsync(id);
-            if(record != null)
+            try
             {
-                ctx.AssetTransactions.Remove(record);
-                await ctx.SaveChangesAsync();
+                var record = await ctx.AssetTransactions.FindAsync(id);
+                if (record != null)
+                {
+                    ctx.AssetTransactions.Remove(record);
+                    await ctx.SaveChangesAsync();
+                    return record;
+                }
+                else
+                {
+                    return record;
+                }
             }
-            return record;
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         async Task<AssetTransaction> IAssetTransactionService<AssetTransaction, string>.getAssetTransactionByEmail(string email)
@@ -59,8 +80,18 @@ namespace Asset_Management.Services
 
         async Task<AssetTransaction> IService<AssetTransaction, int>.GetAsync(int pk)
         {
-           var result = await (ctx.AssetTransactions).FindAsync(pk);
-            return result;
+            try
+            {
+                var record = await ctx.AssetTransactions.FindAsync(pk);
+                if (record == null)
+                    throw new Exception("Record not found");
+                return record;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         async Task<IEnumerable<AssetTransaction>> IAssetTransactionService<AssetTransaction, string>.GetByDeptAsync(string dept)
@@ -108,21 +139,26 @@ namespace Asset_Management.Services
 
         async Task<AssetTransaction> IService<AssetTransaction, int>.UpdateAsync(int id, AssetTransaction entity)
         {
-            var result = await(ctx.AssetTransactions).FindAsync(id);
-            if(result != null)
-            {
+            try { 
+                var result = await(ctx.AssetTransactions).FindAsync(id);
+                if (result == null)
+                    throw new Exception("Record not found");
                 result.SubmitDate = entity.SubmitDate;
                 result.IssueDate = entity.IssueDate;
                 result.UserName = entity.UserName;
                 result.UserId = entity.UserId;
                 result.Email = entity.Email;
                 result.EmpId = entity.EmpId;
+                result.AssetId = entity.AssetId;
                 result.IssuedBy = entity.IssuedBy;
                 result.Location = entity.Location;
                 await ctx.SaveChangesAsync();
-
+                return result;
             }
-            return result;
-        }
+            catch (Exception)
+            {
+                throw;
+            }
+}
     }
 }

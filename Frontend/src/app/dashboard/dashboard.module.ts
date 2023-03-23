@@ -16,6 +16,7 @@ import { ReTableComponent } from './components/reusable/re-table/re-table.compon
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartsModule } from '@progress/kendo-angular-charts';
+import { NotificationModule } from '@progress/kendo-angular-notification';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
     FormsModule,
     ChartsModule,
     ReactiveFormsModule,
-    NgChartsModule,
+    NgChartsModule, NotificationModule,
     HttpClientModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,

@@ -8,7 +8,7 @@
             style="max-width: 18rem"
           >
             <div class="card-body">
-              <h5 class="card-title">Assets</h5>
+              <h5 class="card-title">Assets <i class="bi bi-pc-display"></i></h5>
               <p class="card-text" [routerLink]="['/dashboard/assets']">{{totalAssets}}</p>
             </div>
           </div>
@@ -16,7 +16,7 @@
         <div class="col-sm-6">
           <div class="card bg-light mb-3">
             <div class="card-body">
-              <h5 class="card-title">Vedors</h5>
+              <h5 class="card-title">Vedors <i class="bi bi-person-lines-fill"></i></h5>
               <p class="card-text" [routerLink]="['/dashboard/show-venders']">{{totalVendors}}</p>
             </div>
           </div>
@@ -26,15 +26,15 @@
         <div class="col-sm-6">
           <div class="card text-white bg-danger mb-3">
             <div class="card-body">
-              <h5 class="card-title">Assigned Asets</h5>
-              <p class="card-text" style="cursor: context-menu;">{{totalAssets-unassignedAssets}}</p>
+              <h5 class="card-title">Assigned Asets <i class="bi bi-laptop-fill"></i></h5>
+              <p class="card-text" [routerLink]="['/dashboard/submit-asset']">{{totalAssets-unassignedAssets}}</p>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="card text-white bg-success mb-3">
             <div class="card-body">
-              <h5 class="card-title">Unassigned Assets</h5>
+              <h5 class="card-title">Unassigned Assets <i class="bi bi-laptop"></i></h5>
               <p class="card-text" [routerLink]="['/dashboard/asset-transaction']">{{unassignedAssets}}</p>
             </div>
           </div>

@@ -30,7 +30,7 @@
           id="name"
           required
           #name="ngModel"
-          pattern="^[A-Za-z][A-Za-z0-9_]{2,29}$"
+          pattern="^[A-Za-z][A-Za-z0-9_ ]{1,29}$"
           placeholder="Enter name  e.g. &quot;Pratik Balkunde&quot;"
           [(ngModel)]="vendor.name"
         />
@@ -88,6 +88,7 @@
           class="form-control"
           name="registration"
           id="registration"
+          style=" cursor: not-allowed;"
           disabled
           [(ngModel)]="vendor.registrationDate"
         />

@@ -20,7 +20,7 @@ export class AssetTransactionComponent implements OnInit {
     location: '',
     issueDate: formatDate(new Date(), 'yyyy-MM-dd', 'en_US').toString(),
     submitDate: null,
-    assetId: 0,
+    assetId: null,
     issuedBy: '',
     department: '',
   };
@@ -34,6 +34,9 @@ export class AssetTransactionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /**
+     * Get details of unassigned assets for dropdown
+     */
     this.dashboardService.getUnassignedAssets().subscribe(
       (res) => {
         this.assets = res;
@@ -43,6 +46,9 @@ export class AssetTransactionComponent implements OnInit {
     );
   }
   
+  /**
+   * Assign a specific asset to employee
+   */
   addAssetTransaction() {
     this.dashboardService.assignAsset(this.transaction).subscribe(
       (res) => {

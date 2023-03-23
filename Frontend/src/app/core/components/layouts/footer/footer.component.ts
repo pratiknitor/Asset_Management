@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  /**
+   * Set how many years of company is completed
+   */
   today: Date = new Date();
   years: number = this.today.getFullYear()-2006;
   

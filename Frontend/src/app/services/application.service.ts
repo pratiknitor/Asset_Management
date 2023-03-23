@@ -19,7 +19,7 @@ export class ApplicationService {
   public subject = new Subject<any>();
   public errorSubject = new Subject<string>();
   emitVendor = new Subject<IVendor>();
-  assetType = new BehaviorSubject<string>("All");
+  assetType = new BehaviorSubject<string>('All');
   setVendorId = new BehaviorSubject<number>(0);
 
   constructor(private httpClient: HttpClient) {}
@@ -27,7 +27,7 @@ export class ApplicationService {
   /**
    * Regster user
    * @param register registration details
-   * @returns 
+   * @returns
    */
   registerUser(register: IRegister): Observable<any> {
     return this.httpClient.post('/api/User', register, headers);
@@ -36,7 +36,7 @@ export class ApplicationService {
   /**
    * Login user
    * @param login login details
-   * @returns 
+   * @returns
    */
   loginUser(login: ILogin): Observable<any> {
     return this.httpClient.post('/api/User/login', login, headers);
@@ -88,13 +88,6 @@ export class ApplicationService {
     return this.httpClient.delete(`api/AssetDetails/DeleteAsset/${value}`);
   }
 
-  submitAsset(obj: any, id: number): Observable<any> {
-    return this.httpClient.put(
-      `api/AssetTransaction/UpdateAssetTransaction/${id}`,
-      obj
-    );
-  }
-
   /**
    * Get users
    * @returns users list
@@ -122,7 +115,7 @@ export class ApplicationService {
   }
 
   /**
-   * Delete vendor 
+   * Delete vendor
    * @param vendor vendor id which to delete
    * @returns updated list of vendor
    */
@@ -233,5 +226,31 @@ export class ApplicationService {
    */
   getVendorsDetails(): Observable<any> {
     return this.httpClient.get('api/Vendor/GetVendorsData');
+  }
+
+  /**
+   * Get asset transaction list
+   * @returns all asset transaction list
+   */
+  getAssetTransactions(): Observable<any> {
+    return this.httpClient.get('api/AssetTransaction/GetAllAssetTransaction');
+  }
+
+  /**
+   * Delete asset transaction
+   * @param id id of asset transaction
+   * @returns assigned assets list
+   */
+  submitAssetTransaction(id:any): Observable<any> {
+    return this.httpClient.delete(`api/AssetTransaction/DeleteAssetTransaction/${id}`);
+  }
+
+  /**
+   * Delete asset transaction by assset id
+   * @param id id of asset
+   * @returns assigned assets list
+   */
+  deleteAssetTransactionByAssetId(id:any): Observable<any> {
+    return this.httpClient.delete(`api/AssetTransaction/DeleteAssetTransactionByAsset/${id}`);
   }
 }

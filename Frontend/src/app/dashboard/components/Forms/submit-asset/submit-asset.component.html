@@ -1,188 +1,137 @@
-<section class="container">
-   
-  <h1>Asset Transaction</h1>
-   
-  <div class="row">
-       
-    <label for="" class="col-sm-2 col-form-label col-form-label-lg"
-      >Enter Employee email</label
-    >   
-    <div class="col-sm-3">
-           
-      <input
-        type="text"
-        name="Asset Id"
-        id=""
-        class="form-control form-control-lg"
-        [(ngModel)]="email"
-      />   
-    </div>
-       
-    <div class="col-sm-3">
-           
-      <button (click)="fetchAssetTransaction()" class="btn btn-warning">
-                Get Record     </button
-      >   
-    </div>
-     
-  </div>
-   
-  <div *ngIf="flag">
-       
-    <div class="row">
-           
-      <label
-        for="colFormLabelLg"
-        class="col-sm-2 col-form-label col-form-label-lg"
-        >User Name</label
-      >     
-      <div class="col-sm-3">
-               
+<section class="TableContainer">
+  <div class="card">
+    <h2 class="centre-text">Asset List</h2>
+    <div class="row centre-text">
+      <div class="col-3">
+        <div class="buttonMarj">
+          <button type="submit" class="btn btn-danger" (click)="submitAsset()">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col">
+        <label for="search">Search</label>
         <input
+          id="search"
           type="text"
-          class="form-control form-control-lg"
-          id="colFormLabelLg"
-          placeholder=""
-          [(ngModel)]="transaction.userName"
-        />     
+          class="form-control"
+          [(ngModel)]="searchText"
+          placeholder="   🔍Start searching......"
+        />
       </div>
-         
-    </div>
-       
-    <div class="row">
-           
-      <label
-        for="colFormLabelLg"
-        class="col-sm-2 col-form-label col-form-label-lg"
-        >Emp Id</label
-      >     
-      <div class="col-sm-3">
-               
-        <input
-          type="text"
-          class="form-control form-control-lg"
-          id="colFormLabelLg"
-          placeholder=""
-          [(ngModel)]="transaction.empId"
-        />     
+      
+      <div class="col-2 buttonMarj">
+        <button
+          [routerLink]="['/dashboard']"
+          routerLinkActive="router-link-active"
+          class="btn btn-warning"
+        >
+          <i class="bi bi-arrow-return-left"></i>
+        </button>
       </div>
-         
     </div>
-       
-    <div class="row">
-           
-      <label
-        for="colFormLabelLg"
-        class="col-sm-2 col-form-label col-form-label-lg"
-        >Email</label
-      >     
-      <div class="col-sm-3">
-               
-        <input
-          type="email"
-          class="form-control form-control-lg"
-          id="colFormLabelLg"
-          placeholder=""
-          [(ngModel)]="transaction.email"
-        />     
-      </div>
-         
-    </div>
-       
-    <div class="row">
-           
-      <label
-        for="colFormLabelLg"
-        class="col-sm-2 col-form-label col-form-label-lg"
-        >Location</label
-      >
-      <div class="col-sm-3">
-               
-        <input
-          type="text"
-          class="form-control form-control-lg"
-          id="colFormLabelLg"
-          placeholder=""
-          [(ngModel)]="transaction.location"
-        />     
-      </div>
-         
-    </div>
-       
-    <div class="row">
-           
-      <label
-        for="colFormLabelLg"
-        class="col-sm-2 col-form-label col-form-label-lg"
-        >Issue Date</label
-      >     
-      <!-- <div class="col-sm-3">        <input          type="date"          class="form-control form-control-lg"          id="colFormLabelLg"          placeholder=""          value="{{ transaction.issueDate.toString() }}"          [(ngModel)]="transaction.issueDate"        />      </div> --> 
-         
-      <div class="col-sm-3">        {{ transaction.issueDate }}     </div>
-         
-    </div>
-       
-    <div class="row">
-           
-      <label
-        for="colFormLabelLg"
-        class="col-sm-2 col-form-label col-form-label-lg"
-        >Submit Date</label
-      >     
-      <!-- <div class="col-sm-3">        <input          type="date"          class="form-control form-control-lg"          id="colFormLabelLg"          placeholder=""          [(ngModel)]="submitDate"        />      </div> --> 
-         
-      <div class="col-sm-3">
-               
-        <p></p>
-             
-      </div>
-         
-    </div>
-       
-    <div class="row">
-           
-      <label
-        for="colFormLabelLg"
-        class="col-sm-2 col-form-label col-form-label-lg"
-        >Issued By</label
-      >     
-      <div class="col-sm-3">
-               
-        <input
-          type="text"
-          class="form-control form-control-lg"
-          id="colFormLabelLg"
-          placeholder=""
-          [(ngModel)]="transaction.issuedBy"
-        />     
-      </div>
-         
-    </div>
-       
-    <div class="row">
-           
-      <label
-        for="colFormLabelLg"
-        class="col-sm-2 col-form-label col-form-label-lg"
-        >Department</label
-      >     
-      <div class="col-sm-3">
-               
-        <input
-          type="text"
-          class="form-control form-control-lg"
-          id="colFormLabelLg"
-          placeholder=""
-          [(ngModel)]="transaction.department"
-        />     
-      </div>
-         
-    </div>
-       
-    <div>
-           
-      <button class="btn btn-primary" (click)="submitAsset()">Submit</button>   
-    </div>
-     
+
+    <br />
+    <table
+      class="table tableScroll"
+      *ngIf="assignedAssets | filter : searchText as result"
+    >
+      <thead *ngIf="result.length != 0">
+        <th>Sr No.</th>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Proprietary</th>
+        <th>ServiceTag</th>
+        <th>Model</th>
+        <th>HostName</th>
+        <th>Oem</th>
+        <th>ExpiryDate</th>
+        <th>Owner</th>
+        <th>Remarks</th>
+        <th>Ram</th>
+        <th>Vendor Name</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of result; let i = index">
+          <td>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="a"
+              value="{{ item.id }}"
+              id="{{ i }}"
+              [(ngModel)]="readioSelected"
+              style="cursor: pointer"
+            />
+            <label class="custom-control-label" for="{{ i }}">
+              &nbsp;{{ i + 1 }}
+            </label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.tyape
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.name
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.proprietary
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.serviceTag
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.model
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.hostName
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.oem
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.expiryDate | date : "MM-dd-yyyy"
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.owner
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.remarks
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.ram
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.vendorId | vendorsName : vendors
+            }}</label>
+          </td>
+        </tr>
+        <tr *ngIf="result.length === 0">
+          <td colspan="15">!!-- No Record Found --!!</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>

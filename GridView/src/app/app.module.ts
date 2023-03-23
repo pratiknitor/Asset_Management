@@ -11,7 +11,7 @@ import { AssetManagementModule } from './asset-management/asset-management.modul
 import { RouterModule } from '@angular/router';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
-
+import { NotificationModule } from '@progress/kendo-angular-notification';
 
 
 
@@ -28,6 +28,7 @@ import 'hammerjs';
     FormsModule,
     GridModule,
     BrowserAnimationsModule,
+    NotificationModule,
     ChartsModule
   ],
   providers: [HttpClient],

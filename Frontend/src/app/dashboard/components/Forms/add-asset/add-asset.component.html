@@ -38,7 +38,7 @@
           placeholder="Enter asset name e.g. &quot;Dell&quot;"
           name="Name"
           class="form-control"
-          pattern="^[A-Za-z][A-Za-z0-9_]{2,29}$"
+          pattern="^[A-Za-z][A-Za-z0-9_ ]{1,29}$"
           required
           #name = "ngModel"
           [(ngModel)]="asset.name"
@@ -122,7 +122,7 @@
         <label for="oem" class="form-label errorMessage" *ngIf="oem.invalid">OEM<sup class="star">*</sup></label>
         <select [(ngModel)]="asset.oem" name="oem" style="width: 96%;" #oem="ngModel" required>
           <option value="">Select OEM</option>
-          <option value="Yes" selected="selected">Yes</option>
+          <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
         <span *ngIf="oem.invalid && oem.touched" class="errorMessage">Select Valid Option</span>

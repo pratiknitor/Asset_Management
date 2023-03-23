@@ -1,47 +1,116 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotificationService } from '@progress/kendo-angular-notification';
+import { NgConfirmService } from 'ng-confirm-box';
+import { IVendor } from 'src/app/dashboard/Models/ivendor';
 import { ApplicationService } from 'src/app/services/application.service';
+import { filter, from } from 'rxjs';
 
 @Component({
   selector: 'app-submit-asset',
   templateUrl: './submit-asset.component.html',
   styleUrls: ['./submit-asset.component.css'],
 })
-export class SubmitAssetComponent {
-  flag: boolean = false;
-  transaction!: any;
-  email!: string;
-  submitDate: Date = new Date();
+export class SubmitAssetComponent implements OnInit {
+  assignedAssets: any[] = [];
+  readioSelected: any = null; //get value of radio button
+  assetTransactionId: number = 0;
+  searchText!: string;
+  vendors!: IVendor;
 
   constructor(
-    private dashboardService: ApplicationService,
-    private router: Router
+    private service: ApplicationService,
+    private router: Router,
+    private confirmService: NgConfirmService,
+    public notifiService: NotificationService
   ) {}
-  fetchAssetTransaction() {
-    console.log('method called');
-    this.dashboardService.getAssetDetailByEmail(this.email).subscribe(
+
+  ngOnInit(): void {
+    /**
+     * Get assigned asset details
+     */
+    this.service.getAssignedAssets().subscribe(
       (res) => {
-        console.log(res);
-        this.flag = true;
-        this.transaction = res;
+        this.assignedAssets = res;
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => {}
     );
+    /**
+     * Get vendors details
+     */
+    this.service.getVendors().subscribe((res) => {
+      this.vendors = res;
+    });
   }
+
   submitAsset() {
-    this.transaction.submitDate = new Date();
-    this.dashboardService
-      .submitAsset(this.transaction, this.transaction.id)
-      .subscribe(
-        (res) => {
-          console.log(res);
-          this.router.navigate([`dashboard`]);
+    if (this.readioSelected == null) {
+      this.showWarning('Please select an asset first!!!!');
+    } else {
+      this.confirmService.showConfirm(
+        'Are you sure want to Submit Asset?',
+        () => {
+          this.service
+            .deleteAssetTransactionByAssetId(this.readioSelected)
+            .subscribe(
+              (res) => {
+                this.readioSelected = null;
+                this.ngOnInit();
+                this.showInfo('successfully asset is submited !!');
+              },
+              (err) => {
+                this.showError('Unable to submit Asset !!');
+              }
+            );
         },
-        (error) => {
-          console.log(error);
-        }
+        () => {}
       );
+    }
+  }
+
+
+
+
+  /**
+   * Show error message after transaction failed.
+   */
+  public showError(data: string): void {
+    this.notifiService.show({
+      content: data,
+      hideAfter: 3000,
+      position: { horizontal: 'center', vertical: 'top' },
+      animation: { type: 'slide', duration: 400 },
+      type: { style: 'error', icon: true },
+      width: 350,
+      height: 45,
+    });
+  }
+
+  /**
+   * Show warning message for transaction.
+   */
+  public showWarning(data: string): void {
+    this.notifiService.show({
+      content: data,
+      hideAfter: 2500,
+      position: { horizontal: 'center', vertical: 'top' },
+      animation: { type: 'fade', duration: 400 },
+      type: { style: 'warning', icon: true },
+      height: 40,
+    });
+  }
+
+  /**
+   * Show information message for transaction.
+   */
+  public showInfo(data: string): void {
+    this.notifiService.show({
+      content: data,
+      hideAfter: 2500,
+      position: { horizontal: 'center', vertical: 'top' },
+      animation: { type: 'slide', duration: 400 },
+      type: { style: 'info', icon: true },
+      height: 40,
+    });
   }
 }
