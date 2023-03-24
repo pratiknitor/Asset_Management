@@ -170,6 +170,7 @@ namespace Asset_Management.Services
             {
                 var result = (await ctx.AssetDetails.ToListAsync())
                 .Where(ad => !ctx.AssetTransactions.Any(at => at.AssetId == ad.Id))
+                .OrderByDescending(v => v.Id)
                 .ToList();
 
                 if (result == null)
@@ -194,6 +195,7 @@ namespace Asset_Management.Services
             {
                 var result = (await ctx.AssetDetails.ToListAsync())
                 .Where(ad => ctx.AssetTransactions.Any(at => at.AssetId == ad.Id))
+                .OrderByDescending(v => v.Id)
                 .ToList();
 
                 if (result == null)

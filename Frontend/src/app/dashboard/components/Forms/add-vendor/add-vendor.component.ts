@@ -84,7 +84,7 @@ export class AddVendorComponent implements OnInit {
       this.dashboardService
         .editVendor(this.vendor.id, this.vendor)
         .subscribe((res) => {
-          this.showSuccess("'Vendor updated successfully in the list !!!!'")
+          this.showSuccess("'Vendor updated successfully !!!!'")
           this.router.navigate(['/dashboard/show-venders']);
         });
     }
@@ -116,7 +116,6 @@ export class AddVendorComponent implements OnInit {
       type: { style: 'error', icon: true },
       width: 350,
       height: 45,
-      closable: true,
     });
   }
 }

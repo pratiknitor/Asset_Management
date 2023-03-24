@@ -17,6 +17,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { NotificationModule } from '@progress/kendo-angular-notification';
+import { AssetTransactionPipe } from '../shared/custom-pipe/asset-transaction.pipe';
+import { UnassignedAssetsComponent } from './components/pages/unassigned-assets/unassigned-assets.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NotificationModule } from '@progress/kendo-angular-notification';
     AddVendorComponent,
     VendorsComponent,
     VendorsNamePipe,
+    AssetTransactionPipe,
     ReTableComponent,
+    UnassignedAssetsComponent,
   ],
   imports: [
     CommonModule,

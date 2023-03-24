@@ -233,7 +233,7 @@ export class ApplicationService {
    * @returns all asset transaction list
    */
   getAssetTransactions(): Observable<any> {
-    return this.httpClient.get('api/AssetTransaction/GetAllAssetTransaction');
+    return this.httpClient.get('api/AssetTransaction/GetAllAssetTransaction/get_all_list');
   }
 
   /**

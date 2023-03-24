@@ -2,6 +2,13 @@
   <div class="card">
     <div class="row">
       <div class="centre-text col-3">
+        
+      </div>
+      <div class="centre-text col-6">
+        <h2 class="centre-text" *ngIf="updateflag">Add Vendor</h2>
+        <h2 class="centre-text" *ngIf="!updateflag">Update Vendor</h2>
+      </div>
+      <div class="centre-text col-3">
         <button
           [routerLink]="['/dashboard/show-venders']"
           routerLinkActive="router-link-active"
@@ -10,18 +17,13 @@
         <i class="bi bi-arrow-return-left"></i>
         </button>
       </div>
-      <div class="centre-text col-6">
-        <h2 class="centre-text" *ngIf="updateflag">Add Vendor</h2>
-        <h2 class="centre-text" *ngIf="!updateflag">Update Vendor</h2>
-      </div>
-      
     </div>
     <br />
     <form #vendorForm="ngForm" autocomplete="off" (ngSubmit)="submitVendorDetails()">
       <div class="mb-3 leftBox">
         <label for="name" class="form-label" *ngIf="!name.invalid"
           >Name<sup class="star">*</sup></label>
-          <label for="name" class="form-label errorMessage" *ngIf="name.invalid"
+          <label for="name" class="form-label " *ngIf="name.invalid"
           >Name<sup class="star">*</sup></label>
         <input
           type="text"
@@ -42,7 +44,7 @@
       <div class="mb-3 rightBox">
         <label for="contact" class="form-label" *ngIf="!contact.invalid"
           >Contact No<sup class="star">*</sup></label>
-          <label for="contact" class="form-label errorMessage" *ngIf="contact.invalid"
+          <label for="contact" class="form-label " *ngIf="contact.invalid"
           >Contact No<sup class="star">*</sup></label>
         <input
           type="text"
@@ -62,7 +64,7 @@
       <div class="mb-2">
         <label for="address" class="form-label" *ngIf="!address.invalid">
           Address<sup class="star">*</sup></label>
-          <label for="address" class="form-label errorMessage" *ngIf="address.invalid">
+          <label for="address" class="form-label " *ngIf="address.invalid">
             Address<sup class="star">*</sup></label>
         <textarea
           type="textarea"
@@ -96,7 +98,7 @@
       <div class="mb-3 rightBox">
         <label for="termination" class="form-label" *ngIf="!termination.invalid"
           >Termination Date<sup class="star">*</sup></label>
-          <label for="termination" class="form-label errorMessage" *ngIf="termination.invalid"
+          <label for="termination" class="form-label " *ngIf="termination.invalid"
         >Termination Date<sup class="star">*</sup></label
       >
         <input

@@ -1,49 +1,51 @@
 <section class="TableContainer">
-  <div class="card">
-    <h2 class="centre-text">Assigned Asset List</h2>
-    <div class="row centre-text">
-      <div class="col-3">
-        <div class="buttonMarj">
-          <button type="submit" class="btn btn-danger" (click)="submitAsset()">
-            <i class="bi bi-trash">Submit asset</i>
+    <div class="card">
+      <h2 class="centre-text">Unassigned Asset List</h2>
+      <div class="row centre-text">
+        <div class="col-3">
+          <div class="buttonMarj">
+            <button type="submit" class="btn btn-success" (click)="assignAsset()">
+              <i class="bi bi-trash">Assign asset</i>
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <label for="search">Search</label>
+          <input
+            id="search"
+            type="text"
+            class="form-control"
+            [(ngModel)]="searchText"
+            placeholder="   🔍Start searching......"
+          />
+        </div>
+        
+        <div class="col-2 buttonMarj">
+          <button
+            [routerLink]="['/dashboard']"
+            routerLinkActive="router-link-active"
+            class="btn btn-warning"
+          >
+            <i class="bi bi-arrow-return-left"></i>
           </button>
         </div>
       </div>
-      <div class="col">
-        <label for="search">Search</label>
-        <input
-          id="search"
-          type="text"
-          class="form-control"
-          [(ngModel)]="searchText"
-          placeholder="   🔍Start searching......"
-        />
-      </div>
-      
-      <div class="col-2 buttonMarj">
-        <button
-          [routerLink]="['/dashboard']"
-          routerLinkActive="router-link-active"
-          class="btn btn-warning"
-        >
-          <i class="bi bi-arrow-return-left"></i>
-        </button>
-      </div>
-    </div>
-
-    <br />
-    <table
-      class="table tableScroll"
-      *ngIf="assignedAssets | filter : searchText as result"
-    >
+  
+      <br />
+      <table
+        class="table tableScroll"
+        *ngIf="unassugnedAssets | filter : searchText as result"
+      >
       <thead *ngIf="result.length != 0">
         <th>Sr No.</th>
-        <th>Employee Id</th>
         <th>Type</th>
         <th>Name</th>
         <th>Proprietary</th>
+        <th>Configuration</th>
         <th>ServiceTag</th>
         <th>Model</th>
+        <th>HostName</th>
+        <th>Oem</th>
         <th>ExpiryDate</th>
         <th>Owner</th>
         <th>Remarks</th>
@@ -68,11 +70,6 @@
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
-              item.id | assetTransaction : assetTransaction
-            }}</label>
-          </td>
-          <td>
-            <label class="custom-control-label" for="{{ i }}">{{
               item.tyape
             }}</label>
           </td>
@@ -88,12 +85,27 @@
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
+              item.configuration
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
               item.serviceTag
             }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.model
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.hostName
+            }}</label>
+          </td>
+          <td>
+            <label class="custom-control-label" for="{{ i }}">{{
+              item.oem
             }}</label>
           </td>
           <td>
@@ -126,6 +138,7 @@
           <td colspan="15">!!-- No Record Found --!!</td>
         </tr>
       </tbody>
-    </table>
-  </div>
-</section>
+      </table>
+    </div>
+  </section>
+  

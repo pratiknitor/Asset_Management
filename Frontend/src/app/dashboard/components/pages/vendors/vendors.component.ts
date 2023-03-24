@@ -50,7 +50,7 @@ export class VendorsComponent implements OnInit {
             this.showInfo("Vendor deleted successfully !!")
           },
           (err) => {
-            this.showError("Unable to delete vendor from list !!")
+            this.showError("Unable to delete vendor !!")
           }
         );
      },

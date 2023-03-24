@@ -14,13 +14,13 @@
       </button>
     </div>
     <div class="dropdown col-1">
-      <button class="dropbtn"><a (click)="assets()">Assets</a></button>
-      <!-- <div class="content">
+      <button class="dropbtn"><a (click)="assets()">Assets&#x25BC;</a></button>
+      <div class="content">
         <a (click)="assets()">Asset List</a>
         <a [routerLink]="['/dashboard/add-asset']">Add Asset</a>
-        <a [routerLink]="['/dashboard/asset-transaction']">Assign Asset</a>
+        <a [routerLink]="['/dashboard/unassigned-assets']">Unassigned Asset</a>
         <a [routerLink]="['/dashboard/submit-asset']">Submit Asset</a>
-      </div> -->
+      </div>
     </div>
     <div class="dropdown col-1">
       <button class="dropbtn">
@@ -32,10 +32,10 @@
       </div> -->
     </div>
     <div class="col-">
-      <a [routerLink]="['/dashboard/asset-transaction']">Assign Asset</a>
+      <!-- <a [routerLink]="['/dashboard/asset-transaction']">Assign Asset</a> -->
     </div>
     <div class="col-">
-      <a [routerLink]="['/dashboard/submit-asset']">Submit Asset</a>
+      <!-- <a [routerLink]="['/dashboard/submit-asset']">Submit Asset</a> -->
     </div>
     <div class="right col-3">
       <ul *ngIf="!flag">

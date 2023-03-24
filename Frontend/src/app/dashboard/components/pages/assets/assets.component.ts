@@ -170,7 +170,7 @@ export class AssetsComponent implements OnInit, OnChanges {
               this.showInfo("Asset deleted successfully !!")
             },
             (err) => {
-              this.showError("Unable to delete Asset from list !!")
+              this.showError("Unable to delete Asset, It is assigned to someone !!")
             });
         },
         () => {}
@@ -213,7 +213,7 @@ export class AssetsComponent implements OnInit, OnChanges {
   public showError(data : string): void {
     this.notifiService.show({
       content: data,
-      hideAfter: 3000,
+      hideAfter: 3500,
       position: { horizontal: 'center', vertical: 'top' },
       animation: { type: 'slide', duration: 400 },
       type: { style: 'error', icon: true },

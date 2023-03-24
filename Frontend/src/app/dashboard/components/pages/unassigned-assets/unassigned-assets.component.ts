@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationService } from '@progress/kendo-angular-notification';
-import { NgConfirmService } from 'ng-confirm-box';
 import { IVendor } from 'src/app/dashboard/Models/ivendor';
 import { ApplicationService } from 'src/app/services/application.service';
-
+import { NotificationService } from '@progress/kendo-angular-notification';
+import { NgConfirmService } from 'ng-confirm-box';
 
 @Component({
-  selector: 'app-submit-asset',
-  templateUrl: './submit-asset.component.html',
-  styleUrls: ['./submit-asset.component.css'],
+  selector: 'app-unassigned-assets',
+  templateUrl: './unassigned-assets.component.html',
+  styleUrls: ['./unassigned-assets.component.css']
 })
-export class SubmitAssetComponent implements OnInit {
-  assignedAssets: any[] = [];
+export class UnassignedAssetsComponent implements OnInit {
+
+  unassugnedAssets: any[] = [];
   readioSelected: any = null; //get value of radio button
-  assetTransactionId: number = 0;
   searchText!: string;
   vendors!: IVendor;
-  assetTransaction: any[] = [];
 
   constructor(
     private service: ApplicationService,
@@ -28,11 +26,11 @@ export class SubmitAssetComponent implements OnInit {
 
   ngOnInit(): void {
     /**
-     * Get assigned asset details
+     * Get unassigned asset details
      */
-    this.service.getAssignedAssets().subscribe(
+    this.service.getUnassignedAssets().subscribe(
       (res) => {
-        this.assignedAssets = res;
+        this.unassugnedAssets = res;
       },
       (err) => {}
     );
@@ -42,37 +40,15 @@ export class SubmitAssetComponent implements OnInit {
     this.service.getVendors().subscribe((res) => {
       this.vendors = res;
     });
-    /**
-     * Get asset transaction details
-     */
-    this.service.getAssetTransactions().subscribe((res) => {
-      this.assetTransaction = res;
-      console.log(res);
-    });
   }
 
-  submitAsset() {
+
+  assignAsset() {
     if (this.readioSelected == null) {
       this.showWarning('Please select an asset first!!!!');
     } else {
-      this.confirmService.showConfirm(
-        'Are you sure want to Submit?',
-        () => {
-          this.service
-            .deleteAssetTransactionByAssetId(this.readioSelected)
-            .subscribe(
-              (res) => {
-                this.readioSelected = null;
-                this.ngOnInit();
-                this.showInfo('successfully asset is submited !!');
-              },
-              (err) => {
-                this.showError('Unable to submit Asset !!');
-              }
-            );
-        },
-        () => {}
-      );
+      var id = this.readioSelected;
+      this.router.navigate(['/dashboard/asset-transaction', id]);
     }
   }
 
@@ -118,4 +94,5 @@ export class SubmitAssetComponent implements OnInit {
       height: 40,
     });
   }
+
 }

@@ -8,6 +8,7 @@ import { AssetsComponent } from './components/pages/assets/assets.component';
 import { VendorsComponent } from './components/pages/vendors/vendors.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { SubmitAssetComponent } from './components/Forms/submit-asset/submit-asset.component';
+import { UnassignedAssetsComponent } from './components/pages/unassigned-assets/unassigned-assets.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,14 @@ const routes: Routes = [
   {
     path: 'submit-asset',
     component: SubmitAssetComponent,canActivate:[MsalGuard]
+  },
+  {
+    path: 'unassigned-assets',
+    component: UnassignedAssetsComponent,canActivate:[MsalGuard]
+  },
+  {
+    path: 'asset-transaction/:id',
+    component: AssetTransactionComponent,canActivate:[MsalGuard]
   },
 ];
 

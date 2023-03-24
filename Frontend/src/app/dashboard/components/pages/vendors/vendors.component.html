@@ -11,7 +11,7 @@
         <i class="bi bi-person-plus-fill"></i>
         </button>
         <button type="submit" class="btn btn-info" (click)="commonEditVendor()">
-          <i class="bi bi-pen"></i>
+          <i class="bi bi-pen-fill"></i>
         </button>
         <button
           type="submit"
@@ -44,7 +44,7 @@
       <div class="col-2"></div>
       <div class="col-8">
       <table
-        class="table tableScroll"
+        class="table table-hover tableScroll"
         *ngIf="vendors | filter : searchText as result"
       >
         <thead *ngIf="result.length != 0">

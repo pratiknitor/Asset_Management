@@ -86,7 +86,7 @@ export class AddAssetComponent implements OnInit {
       this.dashboardService
         .editAsset(this.asset.id, this.asset)
         .subscribe((res) => {
-          this.showSuccess("'Asset updated successfully in the list !!!!'")
+          this.showSuccess("'Asset updated successfully !!!!'")
           this.router.navigate(['/dashboard/assets']);
         });
     }
@@ -118,7 +118,6 @@ export class AddAssetComponent implements OnInit {
       type: { style: 'error', icon: true },
       width: 350,
       height: 45,
-      closable: true,
     });
   }
 }

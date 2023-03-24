@@ -2,16 +2,19 @@
   <div class="card">
     <div class="row">
       <div class="centre-text col-3">
+      
+      </div>
+      <div class="centre-text col-6">
+        <h2 class="centre-text">Assign Asset</h2>
+      </div>
+      <div class="centre-text col-3">
         <button
           [routerLink]="['/dashboard']"
           routerLinkActive="router-link-active"
           class="btn btn-warning"
         >
-          <i class="bi bi-arrow-return-left"></i>
+        <i class="bi bi-arrow-return-left"></i>
         </button>
-      </div>
-      <div class="centre-text col-6">
-        <h2 class="centre-text">Assign Asset</h2>
       </div>
     </div>
     <br />
@@ -30,8 +33,9 @@
         <select
           name="assetSelection"
           [(ngModel)]="transaction.assetId"
-          style="width: 96%; height: 40%"
+          style="width: 96%; height: 40%; cursor: not-allowed;"
           required
+          [disabled]="!updateflag"
           #assetSelection="ngModel"
         >
           <option value="null">Select asset</option>
@@ -49,7 +53,7 @@
         <label for="userName" class="form-label" *ngIf="!userName.invalid"
           >User Name<sup class="star">*</sup></label
         >
-        <label for="userName" class="form-label errorMessage" *ngIf="userName.invalid"
+        <label for="userName" class="form-label " *ngIf="userName.invalid"
           >User Name<sup class="star">*</sup></label
         >
         <input
@@ -71,7 +75,7 @@
         <label for="employeeId" class="form-label" *ngIf="!employeeId.invalid"
           >Employee Id<sup class="star">*</sup></label
         >
-        <label for="employeeId" class="form-label errorMessage" *ngIf="employeeId.invalid"
+        <label for="employeeId" class="form-label " *ngIf="employeeId.invalid"
           >Employee Id<sup class="star">*</sup></label
         >
         <input
@@ -94,7 +98,7 @@
         <label for="Email" class="form-label" *ngIf="!Email.invalid"
           >Email<sup class="star">*</sup></label
         >
-        <label for="Email" class="form-label errorMessage" *ngIf="Email.invalid"
+        <label for="Email" class="form-label " *ngIf="Email.invalid"
           >Email<sup class="star">*</sup></label
         >
         <input
@@ -147,23 +151,11 @@
           [(ngModel)]="transaction.issueDate"
         />
       </div>
-      <div class="mb-3 leftBox">
-        <label for="SubmitDate" class="form-label">Submit Date</label>
-        <input
-          style="width: 96%; cursor: not-allowed"
-          type="date"
-          class="form-control"
-          name="SubmitDate"
-          min="{{ transaction.issueDate }}"
-          disabled
-          [(ngModel)]="transaction.submitDate"
-        />
-      </div>
-      <div class="mb-3 middleBox">
+      <div class="mb-3 left">
         <label for="IssuedBy" class="form-label" *ngIf="!IssuedBy.invalid"
           >Issued By<sup class="star">*</sup></label
         >
-        <label for="IssuedBy" class="form-label errorMessage" *ngIf="IssuedBy.invalid"
+        <label for="IssuedBy" class="form-label " *ngIf="IssuedBy.invalid"
           >Issued By<sup class="star">*</sup></label
         >
         <input
@@ -180,7 +172,7 @@
           >Enter valid name e.g. &quot;Sysadmin&quot;</span
         >
       </div>
-      <div class="mb-3 rightBox">
+      <div class="mb-3 right">
         <label for="Department" class="form-label" *ngIf="!Department.invalid"
           >Department<sup class="star">*</sup></label
         >

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
 import { ApplicationService } from 'src/app/services/application.service';
@@ -19,6 +19,9 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   vendorsChartData: any[] = [];
   vendors:any[] = [];
   selectVendor! : string ;
+
+  @ViewChild("chart", { read: ViewContainerRef, static: true })
+  public chartContainer!: ViewContainerRef;
 
   constructor(private service: ApplicationService, private router: Router) {
     this.labelContent = this.labelContent.bind(this);

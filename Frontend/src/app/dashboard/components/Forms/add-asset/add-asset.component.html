@@ -2,6 +2,13 @@
   <div class="card">
     <div class="row">
       <div class="centre-text col-3">
+        
+      </div>
+      <div class="centre-text col-6">
+        <h2 class="centre-text" *ngIf="!updateflag">Add Asset</h2>
+        <h2 class="centre-text" *ngIf="updateflag">Update Asset</h2>
+      </div>
+      <div class="centre-text col-3">
         <button
           [routerLink]="['/dashboard/assets']"
           routerLinkActive="router-link-active"
@@ -10,11 +17,6 @@
         <i class="bi bi-arrow-return-left"></i>
         </button>
       </div>
-      <div class="centre-text col-6">
-        <h2 class="centre-text" *ngIf="!updateflag">Add Asset</h2>
-        <h2 class="centre-text" *ngIf="updateflag">Update Asset</h2>
-      </div>
-      
     </div>
     <br>
     <form class="form" #assetForm="ngForm" autocomplete="off" (ngSubmit)="submitAsset()">
@@ -32,7 +34,7 @@
       </div>
       <div class="mb-3 middleBox">
         <label for="Name" class="form-label" *ngIf="!name.invalid">Name<sup class="star">*</sup></label>
-        <label for="Name" class="form-label errorMessage" *ngIf="name.invalid">Name<sup class="star">*</sup></label>
+        <label for="Name" class="form-label " *ngIf="name.invalid">Name<sup class="star">*</sup></label>
         <input
           type="text"
           placeholder="Enter asset name e.g. &quot;Dell&quot;"
@@ -58,7 +60,7 @@
       <br>
       <div class="mb-3 leftBox">
         <label for="configuration" class="form-label" *ngIf="!configuration.invalid">Configuration<sup class="star">*</sup></label>
-        <label for="configuration" class="form-label errorMessage" *ngIf="configuration.invalid">Configuration<sup class="star">*</sup></label>
+        <label for="configuration" class="form-label " *ngIf="configuration.invalid">Configuration<sup class="star">*</sup></label>
         <input
           style="width: 96%;"
           type="text"
@@ -74,7 +76,7 @@
       </div>
       <div class="mb-3 middleBox">
         <label for="serviceTag" class="form-label" *ngIf="!serviceTag.invalid">Service Tag<sup class="star">*</sup></label>
-        <label for="serviceTag" class="form-label errorMessage" *ngIf="serviceTag.invalid">Service Tag<sup class="star">*</sup></label>
+        <label for="serviceTag" class="form-label " *ngIf="serviceTag.invalid">Service Tag<sup class="star">*</sup></label>
         <input
           type="text"
           placeholder="e.g. &quot;NIT-WKS-0013&quot;"
@@ -89,7 +91,7 @@
       </div>
       <div class="mb-3 rightBox">
         <label for="model" class="form-label" *ngIf="!model.invalid">Model<sup class="star">*</sup></label>
-        <label for="model" class="form-label errorMessage " *ngIf="model.invalid">Model<sup class="star">*</sup></label>
+        <label for="model" class="form-label  " *ngIf="model.invalid">Model<sup class="star">*</sup></label>
         <input
         style="width: 96%;"
           type="text"
@@ -104,7 +106,7 @@
       </div>
       <div class="mb-3 leftBox">
         <label for="hostName" class="form-label" *ngIf="!hostName.invalid">Host Name<sup class="star">*</sup></label>
-        <label for="hostName" class="form-label errorMessage" *ngIf="hostName.invalid">Host Name<sup class="star">*</sup></label>
+        <label for="hostName" class="form-label " *ngIf="hostName.invalid">Host Name<sup class="star">*</sup></label>
         <input
         style="width: 96%;"
           type="text"
@@ -129,7 +131,7 @@
       </div>
       <div class="mb-3 rightBox">
         <label for="expiryDate" class="form-label" *ngIf="!expiryDate.invalid">Expiry Date<sup class="star">*</sup></label>
-        <label for="expiryDate" class="form-label errorMessage" *ngIf="expiryDate.invalid">Expiry Date<sup class="star">*</sup></label>
+        <label for="expiryDate" class="form-label " *ngIf="expiryDate.invalid">Expiry Date<sup class="star">*</sup></label>
         <input
         style="width: 96%;"
           type="date"
@@ -144,7 +146,7 @@
       </div>
       <div class="mb-3 leftBox">
         <label for="owner" class="form-label" *ngIf="!owner.invalid">Owner<sup class="star">*</sup></label>
-        <label for="owner" class="form-label errorMessage" *ngIf="owner.invalid">Owner<sup class="star">*</sup></label>
+        <label for="owner" class="form-label " *ngIf="owner.invalid">Owner<sup class="star">*</sup></label>
         <input
         style="width: 96%;"
           type="text"
@@ -159,7 +161,7 @@
       </div>
       <div class="mb-3 middleBox">
         <label for="remarks" class="form-label" *ngIf="!remarks.invalid">Remarks<sup class="star">*</sup></label>
-        <label for="remarks" class="form-label errorMessage" *ngIf="remarks.invalid">Remarks<sup class="star">*</sup></label>
+        <label for="remarks" class="form-label " *ngIf="remarks.invalid">Remarks<sup class="star">*</sup></label>
         <input
           type="text"
           placeholder="e.g. &quot;Employee_OK&quot;"
@@ -173,7 +175,7 @@
       </div>
       <div class="mb-3 rightBox">
         <label for="ram" class="form-label" *ngIf="!ram.invalid">Ram<sup class="star">*</sup></label>
-        <label for="ram" class="form-label errorMessage" *ngIf="ram.invalid">Ram<sup class="star">*</sup></label>
+        <label for="ram" class="form-label " *ngIf="ram.invalid">Ram<sup class="star">*</sup></label>
         <input
         style="width: 96%;"
           type="text"
@@ -195,6 +197,7 @@
             {{ item.name }}
           </option>
         </select>
+        <span><a [routerLink]="['/dashboard/add-vendor']">Add new vendor</a></span>
         <span *ngIf="vendor.invalid && vendor.touched" class="errorMessage">Select Valid Vendor</span>
       </div>
       <div class="centre-text mb-3" *ngIf="!updateflag">

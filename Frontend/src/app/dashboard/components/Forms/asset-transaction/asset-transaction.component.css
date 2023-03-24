@@ -16,3 +16,14 @@
     height: 90px;
     width: 33%;
 }
+
+.left{
+    float: left;
+    height: 90px;
+    width: 49%;
+}
+.right{
+    float: right;
+    height: 90px;
+    width: 49%;
+}

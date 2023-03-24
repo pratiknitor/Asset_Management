@@ -26,7 +26,7 @@
         <div class="col-sm-6">
           <div class="card text-white bg-danger mb-3">
             <div class="card-body">
-              <h5 class="card-title">Assigned Asets <i class="bi bi-laptop-fill"></i></h5>
+              <h5 class="card-title">Assigned Assets <i class="bi bi-laptop-fill"></i></h5>
               <p class="card-text" [routerLink]="['/dashboard/submit-asset']">{{totalAssets-unassignedAssets}}</p>
             </div>
           </div>
@@ -35,7 +35,7 @@
           <div class="card text-white bg-success mb-3">
             <div class="card-body">
               <h5 class="card-title">Unassigned Assets <i class="bi bi-laptop"></i></h5>
-              <p class="card-text" [routerLink]="['/dashboard/asset-transaction']">{{unassignedAssets}}</p>
+              <p class="card-text" [routerLink]="['/dashboard/unassigned-assets']">{{unassignedAssets}}</p>
             </div>
           </div>
         </div>
@@ -66,8 +66,8 @@
         </kendo-chart-series>
       </kendo-chart>
     </div>
-    <div class="col-12">
-      <kendo-chart style="height: 400px;" (seriesClick)="barChartEvent($event)"> 
+    <div class="col-12 containerChart">
+      <kendo-chart style="height: 400px;" (seriesClick)="barChartEvent($event)" #chart [popupSettings]="{ appendTo: chartContainer }"> 
         <kendo-chart-title
             text="Vendor Details"
             font="16pt sans-serif"
