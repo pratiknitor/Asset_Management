@@ -1,6 +1,6 @@
 <section class="container">
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 shadow p-3 mb-5 rounded">
       <div class="row">
         <div class="col-sm-6">
           <div
@@ -41,13 +41,14 @@
         </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-6 shadow p-3 mb-5 rounded">
       <kendo-chart (seriesClick)="pieChartEvent($event)">
         <kendo-chart-title
           text = "Asset Details"
           font = "16pt sans-serif"
           position = "bottom"
         ></kendo-chart-title>
+        <kendo-chart-area background="#d1c3c3"></kendo-chart-area>
         <kendo-chart-legend position="top"></kendo-chart-legend>
         <kendo-chart-tooltip>
           <ng-template kendoChartSeriesTooltipTemplate let-value="value">
@@ -66,13 +67,14 @@
         </kendo-chart-series>
       </kendo-chart>
     </div>
-    <div class="col-12 containerChart">
-      <kendo-chart style="height: 400px;" (seriesClick)="barChartEvent($event)" #chart [popupSettings]="{ appendTo: chartContainer }"> 
+    <div class="col-12 shadow p-3 mb-5 rounded">
+      <kendo-chart style="height: 400px;" (seriesClick)="barChartEvent($event)" > 
         <kendo-chart-title
             text="Vendor Details"
             font="16pt sans-serif"
             position="bottom"
           ></kendo-chart-title>
+          <kendo-chart-area background="#d1c3c3"></kendo-chart-area>
           <kendo-chart-tooltip>
             <ng-template kendoChartSeriesTooltipTemplate let-value="value">
               count : {{ value }}

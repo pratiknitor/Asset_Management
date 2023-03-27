@@ -148,7 +148,7 @@ export class AssetsComponent implements OnInit, OnChanges {
 
   editAsset() {
     if (this.readioSelected == null) {
-      this.showWarning("Please select an asset first!!!!");
+      this.showWarning("Please select an asset first !!!!");
     } else {
       var id = this.readioSelected;
       this.router.navigate(['/dashboard/edit-asset', id]);
@@ -157,7 +157,7 @@ export class AssetsComponent implements OnInit, OnChanges {
 
   deleteAsset() {
     if (this.readioSelected == null) {
-      this.showWarning("Please select an asset first!!!!");
+      this.showWarning("Please select an asset first !!!!");
     } else {
       this.confirmService.showConfirm(
         'Are you sure want to Delete?',
@@ -206,6 +206,12 @@ export class AssetsComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Unselect readio selection
+   */
+  unSelectReadio(){
+    this.readioSelected = null;
+  }
 
   /**
    * Show error message after transaction failed.

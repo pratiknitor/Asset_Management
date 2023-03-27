@@ -73,7 +73,7 @@ export class VendorsComponent implements OnInit {
    */
   commonDeleteVender() {
     if (this.readioSelected == null) {
-      this.showWarning("Please select a vendor first!!!!");
+      this.showWarning("Please select a vendor first !!!!");
     } else {
       this.confirmService.showConfirm("Are you sure want to Delete?",
       () => {
@@ -99,13 +99,19 @@ export class VendorsComponent implements OnInit {
    */
   commonEditVendor() {
     if (this.readioSelected == null) {
-      this.showWarning("Please select a vendor first!!!!");
+      this.showWarning("Please select a vendor first !!!!");
     } else {
       var id = this.readioSelected;
       this.router.navigate(['/dashboard/edit-vendor', id]);
     }
   }
 
+  /**
+   * Unselect readio selection
+   */
+  unSelectReadio(){
+    this.readioSelected = null;
+  }
   
   /**
    * Show error message after transaction failed.
@@ -149,4 +155,6 @@ export class VendorsComponent implements OnInit {
       height: 40,
     });
   }
+
+  
 }

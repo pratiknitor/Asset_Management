@@ -53,7 +53,7 @@ export class SubmitAssetComponent implements OnInit {
 
   submitAsset() {
     if (this.readioSelected == null) {
-      this.showWarning('Please select an asset first!!!!');
+      this.showWarning('Please select an asset first !!!!');
     } else {
       this.confirmService.showConfirm(
         'Are you sure want to Submit?',
@@ -76,6 +76,13 @@ export class SubmitAssetComponent implements OnInit {
     }
   }
 
+  /**
+   * Unselect readio selection
+   */
+  unSelectReadio(){
+    this.readioSelected = null;
+  }
+  
   /**
    * Show error message after transaction failed.
    */

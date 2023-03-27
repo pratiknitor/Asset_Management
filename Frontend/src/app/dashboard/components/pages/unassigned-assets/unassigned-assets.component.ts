@@ -45,11 +45,18 @@ export class UnassignedAssetsComponent implements OnInit {
 
   assignAsset() {
     if (this.readioSelected == null) {
-      this.showWarning('Please select an asset first!!!!');
+      this.showWarning('Please select an asset first !!!!');
     } else {
       var id = this.readioSelected;
       this.router.navigate(['/dashboard/asset-transaction', id]);
     }
+  }
+
+  /**
+   * Unselect readio selection
+   */
+  unSelectReadio(){
+    this.readioSelected = null;
   }
 
   /**

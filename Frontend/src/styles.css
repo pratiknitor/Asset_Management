@@ -18,9 +18,15 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: #d1c3c3;
   color: #333;
 }
+
+.card{
+  background-color: #d1c3c3;
+  border: hidden;
+}
+
 
 a {
   color: var(--primary-color);

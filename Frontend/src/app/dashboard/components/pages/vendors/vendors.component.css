@@ -12,11 +12,16 @@ th, td{
 }
 
 .col-8{
-    width: 65%;
+    width: 56%;
+}
+
+.col-9{
+    display: grid;
+    justify-content: left
 }
 
 .col-2{
-    width: 17%;
+    width: 22%;
 }
 
 .custom-control-label{

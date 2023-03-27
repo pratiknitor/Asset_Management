@@ -57,6 +57,14 @@ const routes: Routes = [
     path: 'asset-transaction/:id',
     component: AssetTransactionComponent,canActivate:[MsalGuard]
   },
+  {
+    path: 'assets/:string',
+    component: AssetsComponent,canActivate:[MsalGuard]
+  },
+  {
+    path: 'asset/:id',
+    component: AssetsComponent,canActivate:[MsalGuard]
+  },
 ];
 
 @NgModule({
