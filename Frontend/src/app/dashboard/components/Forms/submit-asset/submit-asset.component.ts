@@ -51,6 +51,10 @@ export class SubmitAssetComponent implements OnInit {
     });
   }
 
+  /**
+   * Submit asset to company 
+   * asset will go back to unassigned asset
+   */
   submitAsset() {
     if (this.readioSelected == null) {
       this.showWarning('Please select an asset first !!!!');

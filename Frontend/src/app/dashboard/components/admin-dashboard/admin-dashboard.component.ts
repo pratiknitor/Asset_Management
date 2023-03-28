@@ -16,6 +16,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   totalAssets: number = 0;
   totalVendors: number = 0;
   unassignedAssets: number = 0;
+  assignedAssets: number = 0;
   vendorsChartData: any[] = [];
   vendors:any[] = [];
   selectVendor! : string ;
@@ -55,6 +56,12 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
      */
     this.service.getUnassignedAssets().subscribe((res) => {
         this.unassignedAssets = res.length;
+    });
+    /**
+     * Get assigned assets count
+     */
+    this.service.getAssignedAssets().subscribe((res) => {
+      this.assignedAssets = res.length;
     });
     /**
      * Get vendors details

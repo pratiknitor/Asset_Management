@@ -3,14 +3,14 @@
     overflow: hidden;
     height: 55px;
     flex-wrap: nowrap;
-    border-bottom: solid 2px #e03838;
+    border-bottom: solid 1px #e03838;
     display: flex;
     position: fixed;
     z-index: 1;
     width: 100%;
     top: 0;
     opacity: 0.9;
-    justify-content: left;
+    /* justify-content: left; */
 }
 
 .row{
@@ -107,5 +107,4 @@ ul li{
     margin-right: 5px;
     color:wheat;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.349);
   }
