@@ -1,23 +1,23 @@
 <section class="TableContainer">
   <div class="card">
-    <h2 class="centre-text">Assigned Asset List</h2>
+    <h2 class="centre-text ">Assigned Asset List</h2>
     <div class="row centre-text">
       <div class="col-3">
         <div class="buttonMarj">
-          <button type="submit" class="btn btn-danger" (click)="submitAsset()">
+          <button type="submit" class="btn btn-danger  border border-secondary shadow rounded" (click)="submitAsset()">
             <i class="bi bi-person-down"> Submit asset</i>
           </button>
-          <button type="reset" class="btn btn-secondary" (click)="unSelectReadio()">
+          <button type="reset" class="btn btn-secondary  border border-secondary shadow rounded" (click)="unSelectReadio()">
             <i class="bi bi-bootstrap-reboot"></i>
           </button>
         </div>
       </div>
       <div class="col">
-        <label for="search">Search</label>
+        <label for="search"></label>
         <input
           id="search"
           type="text"
-          class="form-control"
+          class="form-control  border shadow rounded"
           [(ngModel)]="searchText"
           placeholder="   🔍Start searching......"
         />
@@ -27,7 +27,7 @@
         <button
           [routerLink]="['/dashboard']"
           routerLinkActive="router-link-active"
-          class="btn btn-warning"
+          class="btn btn-warning  border border-warning shadow rounded"
         >
           <i class="bi bi-arrow-return-left"></i>
         </button>
@@ -101,7 +101,7 @@
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
-              item.expiryDate | date : "MM-dd-yyyy"
+              item.expiryDate | date : "yyyy-MM-dd"
             }}</label>
           </td>
           <td>

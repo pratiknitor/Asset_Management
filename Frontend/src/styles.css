@@ -18,12 +18,12 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #d1c3c3;
+  background-color: rgb(240 255 255);
   color: #333;
 }
 
 .card{
-  background-color: #d1c3c3;
+  background-color: rgb(230 255 255);
   border: hidden;
 }
 

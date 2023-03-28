@@ -7,17 +7,17 @@
           <button
             [routerLink]="['/dashboard/add-asset']"
             routerLinkActive="router-link-active"
-            class="btn btn-success"
+            class="btn btn-success border border-secondary shadow rounded"
           >
             <i class="bi bi-patch-plus"></i>
           </button>
-          <button type="submit" class="btn btn-info" (click)="editAsset()">
+          <button type="submit" class="btn btn-info border border-info shadow rounded" (click)="editAsset()">
             <i class="bi bi-pen-fill"></i>
           </button>
-          <button type="submit" class="btn btn-danger" (click)="deleteAsset()">
+          <button type="submit" class="btn btn-danger border border-secondary shadow rounded" (click)="deleteAsset()">
             <i class="bi bi-trash"></i>
           </button>
-          <button type="reset" class="btn btn-secondary" (click)="unSelectReadio()">
+          <button type="reset" class="btn btn-secondary border border-secondary shadow rounded" (click)="unSelectReadio()">
             <i class="bi bi-bootstrap-reboot"></i>
           </button>
         </div>
@@ -27,7 +27,7 @@
         <input
           id="search"
           type="text"
-          class="form-control"
+          class="form-control shadow rounded"
           [(ngModel)]="searchText"
           placeholder="   🔍Start searching......"
         />
@@ -38,7 +38,7 @@
           id="select2"
           [(ngModel)]="selectType"
           (change)="sortByType()"
-          class="form-select"
+          class="form-select shadow rounded"
         >
           <option value="All" selected>All</option>
           <option *ngFor="let item of myTypes" [value]="item">
@@ -52,7 +52,7 @@
           id="select1"
           [(ngModel)]="selectModel"
           (change)="sortByModel()"
-          class="form-select"
+          class="form-select shadow rounded"
         >
           <option value="All" selected>All</option>
           <option *ngFor="let item of myset" [value]="item">
@@ -64,7 +64,7 @@
         <button
           [routerLink]="['/dashboard']"
           routerLinkActive="router-link-active"
-          class="btn btn-warning"
+          class="btn btn-warning border border-warning shadow rounded"
         >
           <i class="bi bi-arrow-return-left"></i>
         </button>
@@ -150,7 +150,7 @@
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
-              item.expiryDate | date : "dd-MM-yyyy"
+              item.expiryDate | date : "yyyy-MM-dd"
             }}</label>
           </td>
           <td>

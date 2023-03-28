@@ -6,7 +6,7 @@
         <button
           [routerLink]="['/dashboard/add-vendor']"
           routerLinkActive="router-link-active"
-          class="btn btn-success"
+          class="btn btn-success border border-secondary shadow rounded"
         >
           <i class="bi bi-person-plus-fill"></i>
         </button>
@@ -14,7 +14,7 @@
       <div class="centre-text col-8">
         <input
           type="text"
-          class="form-control"
+          class="form-control shadow rounded"
           [(ngModel)]="searchText"
           placeholder="   🔍Start searching......"
         />
@@ -23,7 +23,7 @@
         <button
           [routerLink]="['/dashboard']"
           routerLinkActive="router-link-active"
-          class="btn btn-warning"
+          class="btn btn-warning border border-warning shadow rounded"
         >
           <i class="bi bi-arrow-return-left"></i>
         </button>
@@ -35,7 +35,7 @@
         <div>
           <button
             type="reset"
-            class="btn btn-secondary"
+            class="btn btn-secondary border border-secondary shadow rounded"
             (click)="unSelectReadio()"
           >
             <i class="bi bi-bootstrap-reboot"></i>
@@ -45,7 +45,7 @@
         <div>
           <button
             type="submit"
-            class="btn btn-info"
+            class="btn btn-info border border-info shadow rounded"
             (click)="commonEditVendor()"
           >
             <i class="bi bi-pen-fill"></i>
@@ -55,7 +55,7 @@
         <div>
           <button
             type="submit"
-            class="btn btn-danger"
+            class="btn btn-danger border border-secondary shadow rounded"
             (click)="commonDeleteVender()"
           >
             <i class="bi bi-trash"></i>
@@ -108,12 +108,12 @@
               </td>
               <td>
                 <label class="custom-control-label" for="{{ i }}">{{
-                  item.registrationDate | date : "dd-MM-yyyy"
+                  item.registrationDate | date : "yyyy-MM-dd"
                 }}</label>
               </td>
               <td>
                 <label class="custom-control-label" for="{{ i }}">{{
-                  item.terminationDate | date : "dd-MM-yyyy"
+                  item.terminationDate | date : "yyyy-MM-dd"
                 }}</label>
               </td>
             </tr>

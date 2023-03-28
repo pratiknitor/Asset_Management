@@ -9,9 +9,9 @@
       </div>
       <div class="centre-text col-3">
         <button
-          [routerLink]="['/dashboard']"
+          [routerLink]="['/dashboard/unassigned-assets']"
           routerLinkActive="router-link-active"
-          class="btn btn-warning"
+          class="btn btn-warning border border-warning shadow rounded"
         >
         <i class="bi bi-arrow-return-left"></i>
         </button>
@@ -201,7 +201,7 @@
       <div class="centre-text mb-3">
         <input
           type="submit"
-          class="btn btn-primary"
+          class="btn btn-primary  border border-secondary shadow rounded"
           [disabled]="assignAsset.invalid"
           value="Submit"
         />
