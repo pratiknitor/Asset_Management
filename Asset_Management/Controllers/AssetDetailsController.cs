@@ -83,7 +83,6 @@ namespace Asset_Management.Controllers
                 }
                 catch (Exception ex)
                 {
-
                     return NotFound(ex.Message);
                 }
             }
