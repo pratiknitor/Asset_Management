@@ -1,8 +1,7 @@
 ﻿using Asset_Management.Models;
-using Asset_Management.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace Asset_Management.Services.Implementation
+namespace Asset_Management.Services
 {
     public class AuthService : IAuthService<User, int>
     {

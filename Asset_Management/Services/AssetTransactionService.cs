@@ -1,10 +1,9 @@
 ﻿using Asset_Management.Models;
-using Asset_Management.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace Asset_Management.Services.Implementation
+namespace Asset_Management.Services
 {
-    public class AssetTransactionService : IService<AssetTransaction, int>, IAssetTransactionService<AssetTransaction, string>
+    public class AssetTransactionService : IService<AssetTransaction, int>,IAssetTransactionService<AssetTransaction,string>
     {
         asset_managementContext ctx;
         public AssetTransactionService(asset_managementContext ctx)
@@ -30,7 +29,7 @@ namespace Asset_Management.Services.Implementation
         async Task<AssetTransaction> IAssetTransactionService<AssetTransaction, string>.DeleteAssetTransactionByAssetId(int id)
         {
             var record = (await ctx.AssetTransactions.ToListAsync()).Where(a => a.AssetId == id).SingleOrDefault();
-            if (record == null)
+            if(record==null)
                 throw new Exception("Record not found");
             ctx.AssetTransactions.Remove(record);
             await ctx.SaveChangesAsync();
@@ -75,7 +74,7 @@ namespace Asset_Management.Services.Implementation
 
         async Task<IEnumerable<AssetTransaction>> IService<AssetTransaction, int>.GetAsync()
         {
-            var result = (await ctx.AssetTransactions.ToListAsync()).OrderByDescending(v => v.Id);
+            var result = (await (ctx.AssetTransactions).ToListAsync()).OrderByDescending(v => v.Id);
             return result;
         }
 
@@ -99,7 +98,7 @@ namespace Asset_Management.Services.Implementation
         {
             try
             {
-                var records = await ctx.AssetTransactions.Where(a => a.Department.Equals(dept)).ToListAsync();
+                var records = await ctx.AssetTransactions.Where(a=>a.Department.Equals(dept)).ToListAsync();
                 return records;
             }
             catch (Exception ex)
@@ -140,9 +139,8 @@ namespace Asset_Management.Services.Implementation
 
         async Task<AssetTransaction> IService<AssetTransaction, int>.UpdateAsync(int id, AssetTransaction entity)
         {
-            try
-            {
-                var result = await ctx.AssetTransactions.FindAsync(id);
+            try { 
+                var result = await(ctx.AssetTransactions).FindAsync(id);
                 if (result == null)
                     throw new Exception("Record not found");
                 result.SubmitDate = entity.SubmitDate;
@@ -161,6 +159,6 @@ namespace Asset_Management.Services.Implementation
             {
                 throw;
             }
-        }
+}
     }
 }

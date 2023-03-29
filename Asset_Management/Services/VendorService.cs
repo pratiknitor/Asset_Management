@@ -1,25 +1,24 @@
 ﻿using Asset_Management.Models;
-using Asset_Management.Services.Interface;
+using Asset_Management.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Diagnostics;
 
-namespace Asset_Management.Services.Implementation
+namespace Asset_Management.Services
 {
     public class VendorService : IService<Vendor, int>, IVendorService<Vendor, int>
     {
         asset_managementContext ctx;
 
-        public VendorService(asset_managementContext ctx)
-        {
-            this.ctx = ctx;
+        public VendorService(asset_managementContext ctx) {
+           this.ctx = ctx;
         }
         /// <summary>
         /// Create vendor and add in database
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public async Task<Vendor> CreateAsync(Vendor entity)
+        public  async Task<Vendor> CreateAsync(Vendor entity)
         {
             try
             {
@@ -85,7 +84,7 @@ namespace Asset_Management.Services.Implementation
             catch (Exception)
             {
 
-                throw;
+                throw ;
             }
         }
 
@@ -103,7 +102,7 @@ namespace Asset_Management.Services.Implementation
                 if (record == null)
                     throw new Exception("Record not found");
                 record.ContactNo = entity.ContactNo;
-                record.Name = entity.Name;
+                record.Name= entity.Name;
                 record.RegistrationDate = entity.RegistrationDate;
                 record.TerminationDate = entity.TerminationDate;
                 record.Address = entity.Address;

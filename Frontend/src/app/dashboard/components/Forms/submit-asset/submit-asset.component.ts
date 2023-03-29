@@ -46,7 +46,6 @@ export class SubmitAssetComponent implements OnInit {
      */
     this.service.getAssetTransactions().subscribe((res) => {
       this.assetTransaction = res;
-      console.log(res);
     });
   }
 

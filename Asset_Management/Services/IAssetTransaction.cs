@@ -1,6 +1,6 @@
 ﻿using Asset_Management.Models;
 
-namespace Asset_Management.Services.Interface
+namespace Asset_Management.Services
 {
     public interface IAssetTransaction
     {

@@ -1,6 +1,6 @@
 ﻿using Asset_Management.CustomFilters;
 using Asset_Management.Models;
-using Asset_Management.Services.Interface;
+using Asset_Management.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asset_Management.Controllers
@@ -83,6 +83,7 @@ namespace Asset_Management.Controllers
                 }
                 catch (Exception ex)
                 {
+
                     return NotFound(ex.Message);
                 }
             }

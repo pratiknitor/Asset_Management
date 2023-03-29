@@ -1,5 +1,5 @@
 ﻿using Asset_Management.Models;
-using Asset_Management.Services.Interface;
+using Asset_Management.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -5,6 +5,10 @@ namespace Asset_Management.Models
 {
     public partial class Vendor
     {
+        public Vendor()
+        {
+            AssetDetails = new HashSet<AssetDetail>();
+        }
 
         public int Id { get; set; }
         public string? Name { get; set; }

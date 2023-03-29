@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Asset_Management.Services.Interface
+namespace Asset_Management.Services
 {
     public interface IAssetDetailService<TEntity, in Tpk> where TEntity : class
     {
