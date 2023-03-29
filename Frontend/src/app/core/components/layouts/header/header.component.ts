@@ -17,7 +17,6 @@ import { ApplicationService } from 'src/app/services/application.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   token: any;
   flag: any = false;
   sidebarExpanded = false;
@@ -71,8 +70,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
-  assets(){
-    this.service.assetType.next("All");
+  assets() {
+    this.service.assetType.next('All');
     this.service.setVendorId.next(0);
     this.router.navigate(['/dashboard/assets']);
   }

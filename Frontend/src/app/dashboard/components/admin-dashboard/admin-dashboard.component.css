@@ -1,4 +1,4 @@
-.card{
+.card {
     height: 130px;
     text-align: center;
 }
@@ -8,10 +8,10 @@ p {
     cursor: pointer;
 }
 
-.col-sm-6{
+.col-sm-6 {
     margin-top: 25px;
 }
 
 .containerChart {
     transform: perspective(450px) rotateY(8deg) scale(0.9);
-  }
+}

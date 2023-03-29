@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'],
 })
-export class LandingComponent{
-
+export class LandingComponent {
   constructor() {}
-
 }

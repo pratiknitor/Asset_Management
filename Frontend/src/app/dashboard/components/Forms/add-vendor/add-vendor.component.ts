@@ -77,14 +77,14 @@ export class AddVendorComponent implements OnInit {
   submitVendorDetails() {
     if (this.updateflag) {
       this.dashboardService.addVendor(this.vendor).subscribe((res) => {
-        this.showSuccess("'Vendor added successfully to the list !!!!'")
+        this.showSuccess("'Vendor added successfully to the list !!!!'");
         this.router.navigate(['dashboard/show-venders']);
       });
     } else {
       this.dashboardService
         .editVendor(this.vendor.id, this.vendor)
         .subscribe((res) => {
-          this.showSuccess("'Vendor updated successfully !!!!'")
+          this.showSuccess("'Vendor updated successfully !!!!'");
           this.router.navigate(['/dashboard/show-venders']);
         });
     }
@@ -93,7 +93,7 @@ export class AddVendorComponent implements OnInit {
   /**
    * Show success message after transaction compliance.
    */
-  public showSuccess(data : string): void {
+  public showSuccess(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 2500,
@@ -107,7 +107,7 @@ export class AddVendorComponent implements OnInit {
   /**
    * Show error message after transaction failed.
    */
-  public showError(data : string): void {
+  public showError(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 3000,

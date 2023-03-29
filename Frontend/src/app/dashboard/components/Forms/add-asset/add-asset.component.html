@@ -1,29 +1,25 @@
 <section class="container">
   <div class="card shadow p-3 mb-5 rounded">
     <div class="row">
-      <div class="centre-text col-3">
-        
-      </div>
+      <div class="centre-text col-3"></div>
       <div class="centre-text col-6">
         <h2 class="centre-text" *ngIf="!updateflag">Add Asset</h2>
         <h2 class="centre-text" *ngIf="updateflag">Update Asset</h2>
       </div>
       <div class="centre-text col-3">
-        <button
-          [routerLink]="['/dashboard/assets']"
-          routerLinkActive="router-link-active"
-          class="btn btn-warning border border-warning shadow rounded"
-        >
-        <i class="bi bi-arrow-return-left"></i>
+        <button [routerLink]="['/dashboard/assets']" routerLinkActive="router-link-active"
+          class="btn btn-warning border border-warning shadow rounded">
+          <i class="bi bi-arrow-return-left"></i>
         </button>
       </div>
     </div>
-    <br>
+    <br />
     <form class="form" #assetForm="ngForm" autocomplete="off" (ngSubmit)="submitAsset()">
       <div class="mb-3 leftBox">
         <label for="Type" class="form-label" *ngIf="!type.invalid">Type of Asset<sup class="star">*</sup></label>
-        <label for="Type" class="form-label errorMessage" *ngIf="type.invalid">Type of Asset<sup class="star">*</sup></label>
-        <select [(ngModel)]="asset.tyape" name="Type" style="width: 96%;" #type="ngModel" required>
+        <label for="Type" class="form-label errorMessage" *ngIf="type.invalid">Type of Asset<sup
+            class="star">*</sup></label>
+        <select [(ngModel)]="asset.tyape" name="Type" style="width: 96%" #type="ngModel" required>
           <option value="">Select type</option>
           <option value="LAPTOP">LAPTOP</option>
           <option value="MAC">MAC</option>
@@ -34,95 +30,64 @@
       </div>
       <div class="mb-3 middleBox">
         <label for="Name" class="form-label" *ngIf="!name.invalid">Name<sup class="star">*</sup></label>
-        <label for="Name" class="form-label " *ngIf="name.invalid">Name<sup class="star">*</sup></label>
-        <input
-          type="text"
-          placeholder="Enter asset name e.g. &quot;Dell&quot;"
-          name="Name"
-          class="form-control"
-          pattern="^[A-Za-z][A-Za-z0-9_ ]{1,29}$"
-          required
-          #name = "ngModel"
-          [(ngModel)]="asset.name"
-        />
+        <label for="Name" class="form-label" *ngIf="name.invalid">Name<sup class="star">*</sup></label>
+        <input type="text" placeholder='Enter asset name e.g. "Dell"' name="Name" class="form-control"
+          pattern="^[A-Za-z][A-Za-z0-9_ ]{1,29}$" required #name="ngModel" [(ngModel)]="asset.name" />
         <span *ngIf="name.invalid && name.touched" class="errorMessage">Enter valid name e.g.&quot;Dell&quot;</span>
       </div>
       <div class="mb-3 rightBox">
-        <label for="Proprietary" class="form-label" *ngIf="!Proprietary.invalid">Proprietary<sup class="star">*</sup></label>
-        <label for="Proprietary" class="form-label errorMessage" *ngIf="Proprietary.invalid">Proprietary<sup class="star">*</sup></label>
-        <select [(ngModel)]="asset.proprietary" name="Proprietary" style="width: 96%;" #Proprietary="ngModel" required>
+        <label for="Proprietary" class="form-label" *ngIf="!Proprietary.invalid">Proprietary<sup
+            class="star">*</sup></label>
+        <label for="Proprietary" class="form-label errorMessage" *ngIf="Proprietary.invalid">Proprietary<sup
+            class="star">*</sup></label>
+        <select [(ngModel)]="asset.proprietary" name="Proprietary" style="width: 96%" #Proprietary="ngModel" required>
           <option value="">Select proprietary</option>
           <option value="OWN" selected="selected">OWN</option>
           <option value="RENT">RENT</option>
         </select>
         <span *ngIf="Proprietary.invalid && Proprietary.touched" class="errorMessage">Select Valid Proprietary</span>
       </div>
-      <br>
+      <br />
       <div class="mb-3 leftBox">
-        <label for="configuration" class="form-label" *ngIf="!configuration.invalid">Configuration<sup class="star">*</sup></label>
-        <label for="configuration" class="form-label " *ngIf="configuration.invalid">Configuration<sup class="star">*</sup></label>
-        <input
-          style="width: 96%;"
-          type="text"
-          placeholder="e.g. &quot;Intel Core i3-3110M @2GHz&quot;"
-          name="configuration"
-          class="form-control"
-          required
-          #configuration="ngModel"
-          [(ngModel)]="asset.configuration"
-        />
-        <span *ngIf="configuration.invalid && configuration.touched" class="errorMessage">Enter valid configuration e.g.&quot;i3&quot;</span>
-
+        <label for="configuration" class="form-label" *ngIf="!configuration.invalid">Configuration<sup
+            class="star">*</sup></label>
+        <label for="configuration" class="form-label" *ngIf="configuration.invalid">Configuration<sup
+            class="star">*</sup></label>
+        <input style="width: 96%" type="text" placeholder='e.g. "Intel Core i3-3110M @2GHz"' name="configuration"
+          class="form-control" required #configuration="ngModel" [(ngModel)]="asset.configuration" />
+        <span *ngIf="configuration.invalid && configuration.touched" class="errorMessage">Enter valid configuration
+          e.g.&quot;i3&quot;</span>
       </div>
       <div class="mb-3 middleBox">
-        <label for="serviceTag" class="form-label" *ngIf="!serviceTag.invalid">Service Tag<sup class="star">*</sup></label>
-        <label for="serviceTag" class="form-label " *ngIf="serviceTag.invalid">Service Tag<sup class="star">*</sup></label>
-        <input
-          type="text"
-          placeholder="e.g. &quot;NIT-WKS-0013&quot;"
-          name="serviceTag"
-          class="form-control"
-          required
-          #serviceTag="ngModel"
-          [(ngModel)]="asset.serviceTag"
-        />
-        <span *ngIf="serviceTag.invalid && serviceTag.touched" class="errorMessage">Enter valid service Tag e.g.&quot;NIT-WKS-0013&quot;</span>
-
+        <label for="serviceTag" class="form-label" *ngIf="!serviceTag.invalid">Service Tag<sup
+            class="star">*</sup></label>
+        <label for="serviceTag" class="form-label" *ngIf="serviceTag.invalid">Service Tag<sup
+            class="star">*</sup></label>
+        <input type="text" placeholder='e.g. "NIT-WKS-0013"' name="serviceTag" class="form-control" required
+          #serviceTag="ngModel" [(ngModel)]="asset.serviceTag" />
+        <span *ngIf="serviceTag.invalid && serviceTag.touched" class="errorMessage">Enter valid service Tag
+          e.g.&quot;NIT-WKS-0013&quot;</span>
       </div>
       <div class="mb-3 rightBox">
         <label for="model" class="form-label" *ngIf="!model.invalid">Model<sup class="star">*</sup></label>
-        <label for="model" class="form-label  " *ngIf="model.invalid">Model<sup class="star">*</sup></label>
-        <input
-        style="width: 96%;"
-          type="text"
-          placeholder="e.g. &quot;DELL VOSTRO 2520&quot;"
-          name="model"
-          class="form-control"
-          required
-          #model="ngModel"
-          [(ngModel)]="asset.model"
-        />
-        <span *ngIf="model.invalid && model.touched" class="errorMessage">Enter valid model e.g.&quot;DELL VOSTRO 2520&quot;</span>
+        <label for="model" class="form-label" *ngIf="model.invalid">Model<sup class="star">*</sup></label>
+        <input style="width: 96%" type="text" placeholder='e.g. "DELL VOSTRO 2520"' name="model" class="form-control"
+          required #model="ngModel" [(ngModel)]="asset.model" />
+        <span *ngIf="model.invalid && model.touched" class="errorMessage">Enter valid model e.g.&quot;DELL VOSTRO
+          2520&quot;</span>
       </div>
       <div class="mb-3 leftBox">
         <label for="hostName" class="form-label" *ngIf="!hostName.invalid">Host Name<sup class="star">*</sup></label>
-        <label for="hostName" class="form-label " *ngIf="hostName.invalid">Host Name<sup class="star">*</sup></label>
-        <input
-        style="width: 96%;"
-          type="text"
-          placeholder="e.g. &quot;NIT-LPT-0040&quot;"
-          name="hostName"
-          class="form-control"
-          required
-          #hostName="ngModel"
-          [(ngModel)]="asset.hostName"
-        />
-        <span *ngIf="hostName.invalid && hostName.touched" class="errorMessage">Enter valid host name e.g.&quot;NIT-LPT-0040&quot;</span>
+        <label for="hostName" class="form-label" *ngIf="hostName.invalid">Host Name<sup class="star">*</sup></label>
+        <input style="width: 96%" type="text" placeholder='e.g. "NIT-LPT-0040"' name="hostName" class="form-control"
+          required #hostName="ngModel" [(ngModel)]="asset.hostName" />
+        <span *ngIf="hostName.invalid && hostName.touched" class="errorMessage">Enter valid host name
+          e.g.&quot;NIT-LPT-0040&quot;</span>
       </div>
       <div class="mb-3 middleBox">
         <label for="oem" class="form-label" *ngIf="!oem.invalid">OEM<sup class="star">*</sup></label>
         <label for="oem" class="form-label errorMessage" *ngIf="oem.invalid">OEM<sup class="star">*</sup></label>
-        <select [(ngModel)]="asset.oem" name="oem" style="width: 96%;" #oem="ngModel" required>
+        <select [(ngModel)]="asset.oem" name="oem" style="width: 96%" #oem="ngModel" required>
           <option value="">Select OEM</option>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
@@ -130,68 +95,42 @@
         <span *ngIf="oem.invalid && oem.touched" class="errorMessage">Select Valid Option</span>
       </div>
       <div class="mb-3 rightBox">
-        <label for="expiryDate" class="form-label" *ngIf="!expiryDate.invalid">Expiry Date<sup class="star">*</sup></label>
-        <label for="expiryDate" class="form-label " *ngIf="expiryDate.invalid">Expiry Date<sup class="star">*</sup></label>
-        <input
-        style="width: 96%;"
-          type="date"
-          name="expiryDate"
-          class="form-control"
-          min="{{todayDate}}"
-          required
-          #expiryDate="ngModel"
-          [(ngModel)]="asset.expiryDate"
-        />
+        <label for="expiryDate" class="form-label" *ngIf="!expiryDate.invalid">Expiry Date<sup
+            class="star">*</sup></label>
+        <label for="expiryDate" class="form-label" *ngIf="expiryDate.invalid">Expiry Date<sup
+            class="star">*</sup></label>
+        <input style="width: 96%" type="date" name="expiryDate" class="form-control" min="{{ todayDate }}" required
+          #expiryDate="ngModel" [(ngModel)]="asset.expiryDate" />
         <span *ngIf="expiryDate.invalid && expiryDate.touched" class="errorMessage">Select Valid Date</span>
       </div>
       <div class="mb-3 leftBox">
         <label for="owner" class="form-label" *ngIf="!owner.invalid">Owner<sup class="star">*</sup></label>
-        <label for="owner" class="form-label " *ngIf="owner.invalid">Owner<sup class="star">*</sup></label>
-        <input
-        style="width: 96%;"
-          type="text"
-          placeholder="e.g. &quot;Sysadmin&quot;"
-          name="owner"
-          class="form-control"
-          required
-          #owner="ngModel"
-          [(ngModel)]="asset.owner"
-        />
-        <span *ngIf="owner.invalid && owner.touched" class="errorMessage">Enter valid owner name e.g.&quot;Sysadmin&quot;</span>
+        <label for="owner" class="form-label" *ngIf="owner.invalid">Owner<sup class="star">*</sup></label>
+        <input style="width: 96%" type="text" placeholder='e.g. "Sysadmin"' name="owner" class="form-control" required
+          #owner="ngModel" [(ngModel)]="asset.owner" />
+        <span *ngIf="owner.invalid && owner.touched" class="errorMessage">Enter valid owner name
+          e.g.&quot;Sysadmin&quot;</span>
       </div>
       <div class="mb-3 middleBox">
         <label for="remarks" class="form-label" *ngIf="!remarks.invalid">Remarks<sup class="star">*</sup></label>
-        <label for="remarks" class="form-label " *ngIf="remarks.invalid">Remarks<sup class="star">*</sup></label>
-        <input
-          type="text"
-          placeholder="e.g. &quot;Employee_OK&quot;"
-          name="remarks"
-          class="form-control"
-          required
-          #remarks="ngModel"
-          [(ngModel)]="asset.remarks"
-        />
-        <span *ngIf="remarks.invalid && remarks.touched" class="errorMessage">Enter valid remarks e.g.&quot;Employee_OK&quot;</span>
+        <label for="remarks" class="form-label" *ngIf="remarks.invalid">Remarks<sup class="star">*</sup></label>
+        <input type="text" placeholder='e.g. "Employee_OK"' name="remarks" class="form-control" required
+          #remarks="ngModel" [(ngModel)]="asset.remarks" />
+        <span *ngIf="remarks.invalid && remarks.touched" class="errorMessage">Enter valid remarks
+          e.g.&quot;Employee_OK&quot;</span>
       </div>
       <div class="mb-3 rightBox">
         <label for="ram" class="form-label" *ngIf="!ram.invalid">Ram<sup class="star">*</sup></label>
-        <label for="ram" class="form-label " *ngIf="ram.invalid">Ram<sup class="star">*</sup></label>
-        <input
-        style="width: 96%;"
-          type="text"
-          placeholder="e.g. &quot;512MB | 36GB | 1.5TB &quot;"
-          name="ram"
-          class="form-control"
-          required
-          pattern = "^[1-9]+(\.[0-9]+)?(MB|GB|TB|Mb|Tb|Gb|mb|tb|gb)$"
-          #ram="ngModel"
-          [(ngModel)]="asset.ram"
-        />
-        <span *ngIf="ram.invalid && ram.touched" class="errorMessage">Enter Valid RAM e.g. &quot;512MB | 36GB | 1.5TB &quot;</span>
+        <label for="ram" class="form-label" *ngIf="ram.invalid">Ram<sup class="star">*</sup></label>
+        <input style="width: 96%" type="text" placeholder='e.g. "512MB | 36GB | 1.5TB "' name="ram" class="form-control"
+          required pattern="^[1-9]+(\.[0-9]+)?(MB|GB|TB|Mb|Tb|Gb|mb|tb|gb)$" #ram="ngModel" [(ngModel)]="asset.ram" />
+        <span *ngIf="ram.invalid && ram.touched" class="errorMessage">Enter Valid RAM e.g. &quot;512MB | 36GB | 1.5TB
+          &quot;</span>
       </div>
       <div class="mb-3">
         <label for="vendorId" class="form-label" *ngIf="!vendor.invalid">Select Vendor<sup class="star">*</sup></label>
-        <label for="vendorId" class="form-label errorMessage" *ngIf="vendor.invalid">Select Vendor<sup class="star">*</sup></label>
+        <label for="vendorId" class="form-label errorMessage" *ngIf="vendor.invalid">Select Vendor<sup
+            class="star">*</sup></label>
         <select [(ngModel)]="asset.vendorId" name="vendorId" required #vendor="ngModel">
           <option *ngFor="let item of vendors" value="{{ item.id }}">
             {{ item.name }}
@@ -201,20 +140,12 @@
         <span *ngIf="vendor.invalid && vendor.touched" class="errorMessage">Select Valid Vendor</span>
       </div>
       <div class="centre-text mb-3" *ngIf="!updateflag">
-        <input
-          type="submit"
-          class="btn btn-primary border border-secondary shadow rounded"
-          value="Submit"
-          [disabled]="assetForm.invalid"
-        />
+        <input type="submit" class="btn btn-primary border border-secondary shadow rounded" value="Submit"
+          [disabled]="assetForm.invalid" />
       </div>
       <div class="centre-text mb-3" *ngIf="updateflag">
-          <input
-            type="submit"
-            class="btn btn-success border border-secondary shadow rounded"
-            value="Update"
-            [disabled]="assetForm.invalid"
-          />
+        <input type="submit" class="btn btn-success border border-secondary shadow rounded" value="Update"
+          [disabled]="assetForm.invalid" />
       </div>
       <div class="centre-text errorMessage" *ngIf="assetForm.invalid">
         Fill all required fields

@@ -1,35 +1,37 @@
-.footer{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  height: 20px;
-  background-color: #343a40;
-  opacity: 0.9;
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #343a40;
+    opacity: 0.9;
 }
 
 .leftbox {
-    float:left;
-    width:30%;
+    float: left;
+    width: 30%;
     font-size: 13px;
 }
-.middlebox{
-    float:left;
+
+.middlebox {
+    float: left;
     font-size: 13px;
-    width:35%;
+    width: 35%;
     text-align: center;
 }
-.rightbox{
-    float:right;
-    width:15%;
+
+.rightbox {
+    float: right;
+    width: 15%;
     font-size: 13px;
     text-align: left;
 }
 
-a{
+a {
     color: gold;
 }
 
-a:hover{
+a:hover {
     color: rgb(132, 132, 243);
 }

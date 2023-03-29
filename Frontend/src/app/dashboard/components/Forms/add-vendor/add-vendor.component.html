@@ -2,138 +2,75 @@
   <div class="card shadow p-3 mb-5 rounded">
     <div class="row">
       <div class="centre-text col-3">
-        
+
       </div>
       <div class="centre-text col-6">
         <h2 class="centre-text" *ngIf="updateflag">Add Vendor</h2>
         <h2 class="centre-text" *ngIf="!updateflag">Update Vendor</h2>
       </div>
       <div class="centre-text col-3">
-        <button
-          [routerLink]="['/dashboard/show-venders']"
-          routerLinkActive="router-link-active"
-          class="btn btn-warning border border-warning shadow rounded"
-        >
-        <i class="bi bi-arrow-return-left"></i>
+        <button [routerLink]="['/dashboard/show-venders']" routerLinkActive="router-link-active"
+          class="btn btn-warning border border-warning shadow rounded">
+          <i class="bi bi-arrow-return-left"></i>
         </button>
       </div>
     </div>
     <br />
     <form #vendorForm="ngForm" autocomplete="off" (ngSubmit)="submitVendorDetails()">
       <div class="mb-3 leftBox">
-        <label for="name" class="form-label" *ngIf="!name.invalid"
-          >Name<sup class="star">*</sup></label>
-          <label for="name" class="form-label " *ngIf="name.invalid"
-          >Name<sup class="star">*</sup></label>
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          id="name"
-          required
-          #name="ngModel"
-          pattern="^[A-Za-z][A-Za-z0-9_ ]{1,29}$"
-          placeholder="Enter name  e.g. &quot;Pratik Balkunde&quot;"
-          [(ngModel)]="vendor.name"
-        />
-        <span *ngIf="name.invalid && name.touched" class="errorMessage"
-          >Enter valid name e.g. &quot;Pratik Balkunde&quot;</span
-        >
+        <label for="name" class="form-label" *ngIf="!name.invalid">Name<sup class="star">*</sup></label>
+        <label for="name" class="form-label " *ngIf="name.invalid">Name<sup class="star">*</sup></label>
+        <input type="text" class="form-control" name="name" id="name" required #name="ngModel"
+          pattern="^[A-Za-z][A-Za-z0-9_ ]{1,29}$" placeholder="Enter name  e.g. &quot;Pratik Balkunde&quot;"
+          [(ngModel)]="vendor.name" />
+        <span *ngIf="name.invalid && name.touched" class="errorMessage">Enter valid name e.g. &quot;Pratik
+          Balkunde&quot;</span>
       </div>
 
       <div class="mb-3 rightBox">
-        <label for="contact" class="form-label" *ngIf="!contact.invalid"
-          >Contact No<sup class="star">*</sup></label>
-          <label for="contact" class="form-label " *ngIf="contact.invalid"
-          >Contact No<sup class="star">*</sup></label>
-        <input
-          type="text"
-          class="form-control"
-          name="contact"
-          id="contact"
-          required
-          pattern="^((\\+91-?)|0)?[0-9]{10}$"
-          #contact="ngModel"
-          placeholder="Enter contact number  e.g. &quot;9876543210&quot;"
-          [(ngModel)]="vendor.contactNo"
-        />
-        <span *ngIf="contact.invalid && contact.touched" class="errorMessage"
-          >Enter valid contact number e.g. &quot;9876543210&quot;</span
-        >
+        <label for="contact" class="form-label" *ngIf="!contact.invalid">Contact No<sup class="star">*</sup></label>
+        <label for="contact" class="form-label " *ngIf="contact.invalid">Contact No<sup class="star">*</sup></label>
+        <input type="text" class="form-control" name="contact" id="contact" required pattern="^((\\+91-?)|0)?[0-9]{10}$"
+          #contact="ngModel" placeholder="Enter contact number  e.g. &quot;9876543210&quot;"
+          [(ngModel)]="vendor.contactNo" />
+        <span *ngIf="contact.invalid && contact.touched" class="errorMessage">Enter valid contact number e.g.
+          &quot;9876543210&quot;</span>
       </div>
       <div class="mb-2">
         <label for="address" class="form-label" *ngIf="!address.invalid">
           Address<sup class="star">*</sup></label>
-          <label for="address" class="form-label " *ngIf="address.invalid">
-            Address<sup class="star">*</sup></label>
-        <textarea
-          type="textarea"
-          class="form-control"
-          name="address"
-          id="address"
-          required
-          minlength="4"
+        <label for="address" class="form-label " *ngIf="address.invalid">
+          Address<sup class="star">*</sup></label>
+        <textarea type="textarea" class="form-control" name="address" id="address" required minlength="4"
           #address="ngModel"
           placeholder="Enter Complete address e.g. &quot;Embassy Tech Zone, Hinjewadi, Phase II, Pune&quot;"
-          [(ngModel)]="vendor.address"
-        ></textarea>
-        <span *ngIf="address.invalid && address.touched" class="errorMessage"
-          >Enter valid address e.g. &quot;Embassy Tech Zone, Hinjewadi, Phase II, Pune&quot;</span
-        >
+          [(ngModel)]="vendor.address"></textarea>
+        <span *ngIf="address.invalid && address.touched" class="errorMessage">Enter valid address e.g. &quot;Embassy
+          Tech Zone, Hinjewadi, Phase II, Pune&quot;</span>
       </div>
       <div class="mb-3 leftBox">
-        <label for="registration" class="form-label"
-          >Registration Date<sup class="star">*</sup></label
-        >
-        <input
-          type="date"
-          class="form-control"
-          name="registration"
-          id="registration"
-          style=" cursor: not-allowed;"
-          disabled
-          [(ngModel)]="vendor.registrationDate"
-        />
+        <label for="registration" class="form-label">Registration Date<sup class="star">*</sup></label>
+        <input type="date" class="form-control" name="registration" id="registration" style=" cursor: not-allowed;"
+          disabled [(ngModel)]="vendor.registrationDate" />
       </div>
       <div class="mb-3 rightBox">
-        <label for="termination" class="form-label" *ngIf="!termination.invalid"
-          >Termination Date<sup class="star">*</sup></label>
-          <label for="termination" class="form-label " *ngIf="termination.invalid"
-        >Termination Date<sup class="star">*</sup></label
-      >
-        <input
-          type="date"
-          class="form-control"
-          name="termination"
-          id="termination"
-          required
-          min="{{ vendor.registrationDate }}"
-          placeholder="Select termination date"
-          #termination="ngModel"
-          [(ngModel)]="vendor.terminationDate"
-        />
-        <span
-          *ngIf="termination.invalid && termination.touched"
-          class="errorMessage"
-          >Select valid date</span
-        >
+        <label for="termination" class="form-label" *ngIf="!termination.invalid">Termination Date<sup
+            class="star">*</sup></label>
+        <label for="termination" class="form-label " *ngIf="termination.invalid">Termination Date<sup
+            class="star">*</sup></label>
+        <input type="date" class="form-control" name="termination" id="termination" required
+          min="{{ vendor.registrationDate }}" placeholder="Select termination date" #termination="ngModel"
+          [(ngModel)]="vendor.terminationDate" />
+        <span *ngIf="termination.invalid && termination.touched" class="errorMessage">Select valid date</span>
       </div>
       <div class="centre-text mb-3" *ngIf="updateflag">
-        <input
-          type="submit"
-          class="btn btn-primary border border-secondary shadow rounded"
-          value="Submit"
-          [disabled]="vendorForm.invalid"
-        />
+        <input type="submit" class="btn btn-primary border border-secondary shadow rounded" value="Submit"
+          [disabled]="vendorForm.invalid" />
       </div>
-      
+
       <div class="centre-text mb-3" *ngIf="!updateflag">
-        <input
-          type="submit"
-          class="btn btn-success border border-secondary shadow rounded"
-          value="Update"
-          [disabled]="vendorForm.invalid"
-        />
+        <input type="submit" class="btn btn-success border border-secondary shadow rounded" value="Update"
+          [disabled]="vendorForm.invalid" />
       </div>
       <div class="centre-text errorMessage" *ngIf="vendorForm.invalid">
         Fill all required fields

@@ -12,7 +12,6 @@ import { NotificationService } from '@progress/kendo-angular-notification';
   styleUrls: ['./add-asset.component.css'],
 })
 export class AddAssetComponent implements OnInit {
-
   vendors: any;
   todayDate: string = formatDate(new Date(), 'yyyy-MM-dd', 'en_US').toString();
   updateflag: boolean = false;
@@ -51,19 +50,21 @@ export class AddAssetComponent implements OnInit {
      * this is because directly we can not convert number to boolean directly
      */
     this.updateflag = !!this.id;
-    if(this.updateflag){
-      this.dashboardService.getAsset(this.id).subscribe((res) => {
-        this.asset = res;
-        this.asset.expiryDate = formatDate(
-          this.asset.expiryDate,
-          'yyyy-MM-dd',
-          'en_US'
-        ).toString();
-      },
-      (err) => {
-        this.showError(err.code + ' ' + err.errorMsg);
-        this.router.navigate(['dashboard/assets']);
-      })
+    if (this.updateflag) {
+      this.dashboardService.getAsset(this.id).subscribe(
+        (res) => {
+          this.asset = res;
+          this.asset.expiryDate = formatDate(
+            this.asset.expiryDate,
+            'yyyy-MM-dd',
+            'en_US'
+          ).toString();
+        },
+        (err) => {
+          this.showError(err.code + ' ' + err.errorMsg);
+          this.router.navigate(['dashboard/assets']);
+        }
+      );
     }
     this.dashboardService.getVendors().subscribe((res) => {
       this.vendors = res;
@@ -78,7 +79,7 @@ export class AddAssetComponent implements OnInit {
   submitAsset(): void {
     if (!this.updateflag) {
       this.dashboardService.addAsset(this.asset).subscribe((response) => {
-        this.showSuccess("'Asset added successfully to the list !!!!'")
+        this.showSuccess("'Asset added successfully to the list !!!!'");
         this.router.navigate(['/dashboard/assets']);
       });
     } else {
@@ -86,7 +87,7 @@ export class AddAssetComponent implements OnInit {
       this.dashboardService
         .editAsset(this.asset.id, this.asset)
         .subscribe((res) => {
-          this.showSuccess("'Asset updated successfully !!!!'")
+          this.showSuccess("'Asset updated successfully !!!!'");
           this.router.navigate(['/dashboard/assets']);
         });
     }
@@ -95,7 +96,7 @@ export class AddAssetComponent implements OnInit {
   /**
    * Show success message after transaction compliance.
    */
-  public showSuccess(data : string): void {
+  public showSuccess(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 2500,
@@ -109,7 +110,7 @@ export class AddAssetComponent implements OnInit {
   /**
    * Show error message after transaction failed.
    */
-  public showError(data : string): void {
+  public showError(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 3000,

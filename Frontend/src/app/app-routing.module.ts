@@ -11,12 +11,14 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () =>
-      import('./users/users.module').then((m) => m.UsersModule),canActivate:[MsalGuard]
+      import('./users/users.module').then((m) => m.UsersModule),
+    canActivate: [MsalGuard],
   },
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),canActivate:[MsalGuard]
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canActivate: [MsalGuard],
   },
 ];
 

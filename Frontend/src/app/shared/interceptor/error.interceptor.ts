@@ -48,7 +48,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           );
           this.router.navigate(['']);
         }
-        
+
         return throwError({
           errorMsg: err.error,
           code: err.status,

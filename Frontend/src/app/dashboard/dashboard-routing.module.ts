@@ -13,57 +13,68 @@ import { UnassignedAssetsComponent } from './components/pages/unassigned-assets/
 const routes: Routes = [
   {
     path: '',
-    component: AdminDashboardComponent,canActivate:[MsalGuard]
+    component: AdminDashboardComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'asset-transaction',
-    component: AssetTransactionComponent,canActivate:[MsalGuard]
+    component: AssetTransactionComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'add-asset',
-    component: AddAssetComponent,canActivate:[MsalGuard]
+    component: AddAssetComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'assets',
-    component: AssetsComponent,canActivate:[MsalGuard]
+    component: AssetsComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'add-vendor',
-    component: AddVendorComponent,canActivate:[MsalGuard]
+    component: AddVendorComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'show-venders',
-    component: VendorsComponent,canActivate:[MsalGuard]
+    component: VendorsComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'edit-vendor/:id',
     component: AddVendorComponent,
-    canActivate:[MsalGuard]
+    canActivate: [MsalGuard],
   },
   {
     path: 'edit-asset/:id',
     component: AddAssetComponent,
-    canActivate:[MsalGuard]
+    canActivate: [MsalGuard],
   },
   {
     path: 'submit-asset',
-    component: SubmitAssetComponent,canActivate:[MsalGuard]
+    component: SubmitAssetComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'unassigned-assets',
-    component: UnassignedAssetsComponent,canActivate:[MsalGuard]
+    component: UnassignedAssetsComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'asset-transaction/:id',
-    component: AssetTransactionComponent,canActivate:[MsalGuard]
+    component: AssetTransactionComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'assets/:string',
-    component: AssetsComponent,canActivate:[MsalGuard]
+    component: AssetsComponent,
+    canActivate: [MsalGuard],
   },
   {
     path: 'asset/:id',
-    component: AssetsComponent,canActivate:[MsalGuard]
+    component: AssetsComponent,
+    canActivate: [MsalGuard],
   },
 ];
 

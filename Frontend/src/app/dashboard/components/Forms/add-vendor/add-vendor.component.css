@@ -1,12 +1,14 @@
-.card{
+.card {
     padding: 20px;
 }
-.leftBox{
+
+.leftBox {
     float: left;
     height: 90px;
     width: 49%;
 }
-.rightBox{
+
+.rightBox {
     float: right;
     height: 90px;
     width: 49%;

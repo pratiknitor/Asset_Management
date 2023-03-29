@@ -3,10 +3,7 @@
     <div class="col-6 shadow p-3 mb-5 rounded">
       <div class="row">
         <div class="col-sm-6">
-          <div
-            class="card text-white bg-secondary mb-3"
-            style="max-width: 18rem"
-          >
+          <div class="card text-white bg-secondary mb-3" style="max-width: 18rem">
             <div class="card-body">
               <h5 class="card-title">Assets <i class="bi bi-pc-display"></i></h5>
               <p class="card-text" [routerLink]="['/dashboard/assets']">{{totalAssets}}</p>
@@ -43,11 +40,7 @@
     </div>
     <div class="col-6 shadow p-3 mb-5 rounded">
       <kendo-chart (seriesClick)="pieChartEvent($event)">
-        <kendo-chart-title
-          text = "Asset Details"
-          font = "16pt sans-serif"
-          position = "bottom"
-        ></kendo-chart-title>
+        <kendo-chart-title text="Asset Details" font="16pt sans-serif" position="bottom"></kendo-chart-title>
         <kendo-chart-area background="rgb(230 255 255)"></kendo-chart-area>
         <kendo-chart-legend position="top"></kendo-chart-legend>
         <kendo-chart-tooltip>
@@ -56,38 +49,27 @@
           </ng-template>
         </kendo-chart-tooltip>
         <kendo-chart-series>
-          <kendo-chart-series-item
-            type="pie"
-            [data]="assetsCount"
-            field="count"
-            categoryField="type"
-            [labels]="{ visible: true, content: labelContent }"
-          >
+          <kendo-chart-series-item type="pie" [data]="assetsCount" field="count" categoryField="type"
+            [labels]="{ visible: true, content: labelContent }">
           </kendo-chart-series-item>
         </kendo-chart-series>
       </kendo-chart>
     </div>
     <div class="col-12 shadow p-3 mb-5 rounded">
-      <kendo-chart style="height: 400px;" (seriesClick)="barChartEvent($event)" > 
-        <kendo-chart-title
-            text="Vendor Details"
-            font="16pt sans-serif"
-            position="bottom"
-          ></kendo-chart-title>
-          <kendo-chart-area background="rgb(230 255 255)"></kendo-chart-area>
-          <kendo-chart-tooltip>
-            <ng-template kendoChartSeriesTooltipTemplate let-value="value">
-              count : {{ value }}
-            </ng-template>
-          </kendo-chart-tooltip>
+      <kendo-chart style="height: 400px;" (seriesClick)="barChartEvent($event)">
+        <kendo-chart-title text="Vendor Details" font="16pt sans-serif" position="bottom"></kendo-chart-title>
+        <kendo-chart-area background="rgb(230 255 255)"></kendo-chart-area>
+        <kendo-chart-tooltip>
+          <ng-template kendoChartSeriesTooltipTemplate let-value="value">
+            count : {{ value }}
+          </ng-template>
+        </kendo-chart-tooltip>
         <kendo-chart-series>
-          <kendo-chart-series-item [data]="vendorsChartData"
-            field="count"
-            categoryField="name">
+          <kendo-chart-series-item [data]="vendorsChartData" field="count" categoryField="name">
           </kendo-chart-series-item>
         </kendo-chart-series>
       </kendo-chart>
     </div>
   </div>
-  
+
 </section>

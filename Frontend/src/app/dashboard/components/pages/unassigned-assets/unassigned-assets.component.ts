@@ -8,10 +8,9 @@ import { NgConfirmService } from 'ng-confirm-box';
 @Component({
   selector: 'app-unassigned-assets',
   templateUrl: './unassigned-assets.component.html',
-  styleUrls: ['./unassigned-assets.component.css']
+  styleUrls: ['./unassigned-assets.component.css'],
 })
 export class UnassignedAssetsComponent implements OnInit {
-
   unassugnedAssets: any[] = [];
   readioSelected: any = null; //get value of radio button
   searchText!: string;
@@ -42,7 +41,6 @@ export class UnassignedAssetsComponent implements OnInit {
     });
   }
 
-
   assignAsset() {
     if (this.readioSelected == null) {
       this.showWarning('Please select an asset first !!!!');
@@ -55,7 +53,7 @@ export class UnassignedAssetsComponent implements OnInit {
   /**
    * Unselect readio selection
    */
-  unSelectReadio(){
+  unSelectReadio() {
     this.readioSelected = null;
   }
 
@@ -101,5 +99,4 @@ export class UnassignedAssetsComponent implements OnInit {
       height: 40,
     });
   }
-
 }

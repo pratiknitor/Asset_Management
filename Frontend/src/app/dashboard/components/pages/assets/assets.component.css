@@ -1,30 +1,31 @@
-.leftBox{
+.leftBox {
     float: left;
     height: 90px;
 }
-.rightBox{
+
+.rightBox {
     float: right;
     height: 90px;
     width: 80%;
 }
 
-.card{
+.card {
     width: 96%;
     margin-left: 35px;
 }
 
-.row{
+.row {
     margin-top: 0px;
 }
 
-.tableScroll{
+.tableScroll {
     width: inherit
 }
 
-.buttonMarj{
+.buttonMarj {
     margin-top: 25px;
 }
 
-.custom-control-label{
+.custom-control-label {
     cursor: pointer;
 }

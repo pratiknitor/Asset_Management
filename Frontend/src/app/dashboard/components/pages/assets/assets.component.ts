@@ -30,10 +30,9 @@ export class AssetsComponent implements OnInit, OnChanges {
   searchText!: string;
   @ViewChild('searchString') search!: ElementRef;
   vendors!: IVendor;
-  readioSelected: any = null;//get value of radio button
-  selectVendor!: number;//get value of vendor id if avalable
+  readioSelected: any = null; //get value of radio button
+  selectVendor!: number; //get value of vendor id if avalable
   assetList: any[] = [];
- 
 
   constructor(
     private dashboardService: ApplicationService,
@@ -59,21 +58,16 @@ export class AssetsComponent implements OnInit, OnChanges {
           this.myTypes.add(this.assets[i].tyape);
         }
       }
-      this.dashboardService.assetType.subscribe(
-        (res) => {
-          this.selectType = res;
-          this.sortByType();
+      this.dashboardService.assetType.subscribe((res) => {
+        this.selectType = res;
+        this.sortByType();
+      });
+      this.dashboardService.setVendorId.subscribe((res) => {
+        this.selectVendor = res;
+        if (this.selectVendor != 0) {
+          this.sortByVendor();
         }
-      )
-      this.dashboardService.setVendorId.subscribe(
-        (res) => {
-          this.selectVendor = res;
-          if(this.selectVendor!=0)
-          {
-            this.sortByVendor();
-          }
-        }
-      )
+      });
     });
 
     this.dashboardService.getVendors().subscribe((res) => {
@@ -148,7 +142,7 @@ export class AssetsComponent implements OnInit, OnChanges {
 
   editAsset() {
     if (this.readioSelected == null) {
-      this.showWarning("Please select an asset first !!!!");
+      this.showWarning('Please select an asset first !!!!');
     } else {
       var id = this.readioSelected;
       this.router.navigate(['/dashboard/edit-asset', id]);
@@ -157,21 +151,23 @@ export class AssetsComponent implements OnInit, OnChanges {
 
   deleteAsset() {
     if (this.readioSelected == null) {
-      this.showWarning("Please select an asset first !!!!");
+      this.showWarning('Please select an asset first !!!!');
     } else {
       this.confirmService.showConfirm(
         'Are you sure want to Delete?',
         () => {
-          this.dashboardService
-            .deleteAsset(this.readioSelected)
-            .subscribe((res) => {
+          this.dashboardService.deleteAsset(this.readioSelected).subscribe(
+            (res) => {
               this.readioSelected = null;
               this.ngOnInit();
-              this.showInfo("Asset deleted successfully !!")
+              this.showInfo('Asset deleted successfully !!');
             },
             (err) => {
-              this.showError("Unable to delete Asset, It is assigned to someone !!")
-            });
+              this.showError(
+                'Unable to delete Asset, It is assigned to someone !!'
+              );
+            }
+          );
         },
         () => {}
       );
@@ -188,10 +184,7 @@ export class AssetsComponent implements OnInit, OnChanges {
       this.selectModel = 'All';
       //use filters
       let x = from(this.assets).pipe(
-        filter(
-          (assetsFlter) =>
-            assetsFlter.vendorId === this.selectVendor
-        )
+        filter((assetsFlter) => assetsFlter.vendorId === this.selectVendor)
       );
       //subscribe to pipe of filter
       x.subscribe((result) => {
@@ -209,14 +202,14 @@ export class AssetsComponent implements OnInit, OnChanges {
   /**
    * Unselect readio selection
    */
-  unSelectReadio(){
+  unSelectReadio() {
     this.readioSelected = null;
   }
 
   /**
    * Show error message after transaction failed.
    */
-  public showError(data : string): void {
+  public showError(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 3500,
@@ -227,11 +220,11 @@ export class AssetsComponent implements OnInit, OnChanges {
       height: 45,
     });
   }
-  
+
   /**
    * Show warning message for transaction.
    */
-  public showWarning(data : string): void {
+  public showWarning(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 2500,
@@ -245,7 +238,7 @@ export class AssetsComponent implements OnInit, OnChanges {
   /**
    * Show information message for transaction.
    */
-  public showInfo(data : string): void {
+  public showInfo(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 2500,
@@ -255,5 +248,4 @@ export class AssetsComponent implements OnInit, OnChanges {
       height: 40,
     });
   }
-
 }

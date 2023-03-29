@@ -1,17 +1,20 @@
-.card{
+.card {
     padding: 20px;
 }
-.leftBox{
+
+.leftBox {
     float: left;
     height: 90px;
     width: 32%;
 }
-.middleBox{
+
+.middleBox {
     float: left;
     height: 90px;
     width: 34%;
 }
-.rightBox{
+
+.rightBox {
     float: right;
     height: 90px;
     width: 33%;

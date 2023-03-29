@@ -5,7 +5,6 @@ import { NgConfirmService } from 'ng-confirm-box';
 import { IVendor } from 'src/app/dashboard/Models/ivendor';
 import { ApplicationService } from 'src/app/services/application.service';
 
-
 @Component({
   selector: 'app-submit-asset',
   templateUrl: './submit-asset.component.html',
@@ -52,7 +51,7 @@ export class SubmitAssetComponent implements OnInit {
   }
 
   /**
-   * Submit asset to company 
+   * Submit asset to company
    * asset will go back to unassigned asset
    */
   submitAsset() {
@@ -83,10 +82,10 @@ export class SubmitAssetComponent implements OnInit {
   /**
    * Unselect readio selection
    */
-  unSelectReadio(){
+  unSelectReadio() {
     this.readioSelected = null;
   }
-  
+
   /**
    * Show error message after transaction failed.
    */

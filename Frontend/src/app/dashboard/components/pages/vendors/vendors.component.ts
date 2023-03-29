@@ -14,7 +14,7 @@ export class VendorsComponent implements OnInit {
   vendors!: IVendor;
   searchText!: string;
   error: any = {};
-  readioSelected: any = null;//get value of readio button
+  readioSelected: any = null; //get value of readio button
 
   constructor(
     private dashboardService: ApplicationService,
@@ -42,21 +42,21 @@ export class VendorsComponent implements OnInit {
    * To delete specific vendorby id
    */
   deleteVender(data: number) {
-    this.confirmService.showConfirm("Are you sure want to Delete?",
+    this.confirmService.showConfirm(
+      'Are you sure want to Delete?',
       () => {
         this.dashboardService.deleteVender(data).subscribe(
           (res) => {
             this.vendors = res;
-            this.showInfo("Vendor deleted successfully !!")
+            this.showInfo('Vendor deleted successfully !!');
           },
           (err) => {
-            this.showError("Unable to delete vendor !!")
+            this.showError('Unable to delete vendor !!');
           }
         );
-     },
-     () => {
-      
-     })
+      },
+      () => {}
+    );
   }
 
   /**
@@ -73,24 +73,24 @@ export class VendorsComponent implements OnInit {
    */
   commonDeleteVender() {
     if (this.readioSelected == null) {
-      this.showWarning("Please select a vendor first !!!!");
+      this.showWarning('Please select a vendor first !!!!');
     } else {
-      this.confirmService.showConfirm("Are you sure want to Delete?",
-      () => {
-        this.dashboardService.deleteVender(this.readioSelected).subscribe(
-          (res) => {
-            this.readioSelected = null;
-            this.vendors = res;
-            this.showInfo("Vendor deleted successfully !!")
-          },
-          (err) => {
-            this.showError("Unable to delete vendor from list !!")
-          }
-        );
-     },
-     () => {
-      
-     })
+      this.confirmService.showConfirm(
+        'Are you sure want to Delete?',
+        () => {
+          this.dashboardService.deleteVender(this.readioSelected).subscribe(
+            (res) => {
+              this.readioSelected = null;
+              this.vendors = res;
+              this.showInfo('Vendor deleted successfully !!');
+            },
+            (err) => {
+              this.showError('Unable to delete vendor from list !!');
+            }
+          );
+        },
+        () => {}
+      );
     }
   }
 
@@ -99,7 +99,7 @@ export class VendorsComponent implements OnInit {
    */
   commonEditVendor() {
     if (this.readioSelected == null) {
-      this.showWarning("Please select a vendor first !!!!");
+      this.showWarning('Please select a vendor first !!!!');
     } else {
       var id = this.readioSelected;
       this.router.navigate(['/dashboard/edit-vendor', id]);
@@ -109,14 +109,14 @@ export class VendorsComponent implements OnInit {
   /**
    * Unselect readio selection
    */
-  unSelectReadio(){
+  unSelectReadio() {
     this.readioSelected = null;
   }
-  
+
   /**
    * Show error message after transaction failed.
    */
-  public showError(data : string): void {
+  public showError(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 3000,
@@ -127,11 +127,11 @@ export class VendorsComponent implements OnInit {
       height: 45,
     });
   }
-  
+
   /**
    * Show warning message for transaction.
    */
-  public showWarning(data : string): void {
+  public showWarning(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 2500,
@@ -145,7 +145,7 @@ export class VendorsComponent implements OnInit {
   /**
    * Show information message for transaction.
    */
-  public showInfo(data : string): void {
+  public showInfo(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 2500,
@@ -155,6 +155,4 @@ export class VendorsComponent implements OnInit {
       height: 40,
     });
   }
-
-  
 }

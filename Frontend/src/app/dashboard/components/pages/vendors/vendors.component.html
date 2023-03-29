@@ -3,28 +3,18 @@
     <h2 class="centre-text">Vendor List</h2>
     <div class="row">
       <div class="col-2" style="text-align: center">
-        <button
-          [routerLink]="['/dashboard/add-vendor']"
-          routerLinkActive="router-link-active"
-          class="btn btn-success border border-secondary shadow rounded"
-        >
+        <button [routerLink]="['/dashboard/add-vendor']" routerLinkActive="router-link-active"
+          class="btn btn-success border border-secondary shadow rounded">
           <i class="bi bi-person-plus-fill"></i>
         </button>
       </div>
       <div class="centre-text col-8">
-        <input
-          type="text"
-          class="form-control shadow rounded"
-          [(ngModel)]="searchText"
-          placeholder="   🔍Start searching......"
-        />
+        <input type="text" class="form-control shadow rounded" [(ngModel)]="searchText"
+          placeholder="   🔍Start searching......" />
       </div>
       <div class="col-2">
-        <button
-          [routerLink]="['/dashboard']"
-          routerLinkActive="router-link-active"
-          class="btn btn-warning border border-warning shadow rounded"
-        >
+        <button [routerLink]="['/dashboard']" routerLinkActive="router-link-active"
+          class="btn btn-warning border border-warning shadow rounded">
           <i class="bi bi-arrow-return-left"></i>
         </button>
       </div>
@@ -33,40 +23,27 @@
     <div class="row">
       <div class="col-2 centre-text">
         <div>
-          <button
-            type="reset"
-            class="btn btn-secondary border border-secondary shadow rounded"
-            (click)="unSelectReadio()"
-          >
+          <button type="reset" class="btn btn-secondary border border-secondary shadow rounded"
+            (click)="unSelectReadio()">
             <i class="bi bi-bootstrap-reboot"></i>
           </button>
         </div>
         <br>
         <div>
-          <button
-            type="submit"
-            class="btn btn-info border border-info shadow rounded"
-            (click)="commonEditVendor()"
-          >
+          <button type="submit" class="btn btn-info border border-info shadow rounded" (click)="commonEditVendor()">
             <i class="bi bi-pen-fill"></i>
           </button>
         </div>
         <br>
         <div>
-          <button
-            type="submit"
-            class="btn btn-danger border border-secondary shadow rounded"
-            (click)="commonDeleteVender()"
-          >
+          <button type="submit" class="btn btn-danger border border-secondary shadow rounded"
+            (click)="commonDeleteVender()">
             <i class="bi bi-trash"></i>
           </button>
         </div>
       </div>
       <div class="col-8">
-        <table
-          class="table table-hover tableScroll mb-4"
-          *ngIf="vendors | filter : searchText as result"
-        >
+        <table class="table table-hover tableScroll mb-4" *ngIf="vendors | filter : searchText as result">
           <thead *ngIf="result.length != 0">
             <th>Sr No.</th>
             <th>Name</th>
@@ -78,15 +55,8 @@
           <tbody>
             <tr *ngFor="let item of result; let i = index">
               <td>
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="a"
-                  value="{{ item.id }}"
-                  id="{{ i }}"
-                  [(ngModel)]="readioSelected"
-                  style="cursor: pointer"
-                />
+                <input class="form-check-input" type="radio" name="a" value="{{ item.id }}" id="{{ i }}"
+                  [(ngModel)]="readioSelected" style="cursor: pointer" />
                 <label class="custom-control-label" for="{{ i }}">
                   &nbsp;{{ i + 1 }}
                 </label>
@@ -94,27 +64,27 @@
               <td>
                 <label class="custom-control-label" for="{{ i }}">{{
                   item.name
-                }}</label>
+                  }}</label>
               </td>
               <td>
                 <label class="custom-control-label" for="{{ i }}">{{
                   item.contactNo
-                }}</label>
+                  }}</label>
               </td>
               <td>
                 <label class="custom-control-label" for="{{ i }}">{{
                   item.address
-                }}</label>
+                  }}</label>
               </td>
               <td>
                 <label class="custom-control-label" for="{{ i }}">{{
                   item.registrationDate | date : "yyyy-MM-dd"
-                }}</label>
+                  }}</label>
               </td>
               <td>
                 <label class="custom-control-label" for="{{ i }}">{{
                   item.terminationDate | date : "yyyy-MM-dd"
-                }}</label>
+                  }}</label>
               </td>
             </tr>
             <tr *ngIf="result.length === 0" style="justify-content: center;">

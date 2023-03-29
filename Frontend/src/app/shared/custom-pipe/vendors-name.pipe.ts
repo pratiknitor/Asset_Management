@@ -2,19 +2,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { IVendor } from 'src/app/dashboard/Models/ivendor';
 
 @Pipe({
-  name: 'vendorsName'
+  name: 'vendorsName',
 })
 export class VendorsNamePipe implements PipeTransform {
-
   name: string = '';
 
   transform(value: number, vendorList: any): string {
-    vendorList.forEach(( element : any) => {
-      if (element.id  === value) {
+    vendorList.forEach((element: any) => {
+      if (element.id === value) {
         this.name = element.name;
       }
     });
     return this.name;
   }
-
 }

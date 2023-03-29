@@ -1,29 +1,30 @@
-th, td{
+th,
+td {
     text-align: center;
 }
 
-.card{
+.card {
     width: 96%;
     margin-left: 35px;
 }
 
-.row{
+.row {
     margin-top: 0px;
 }
 
-.col-8{
+.col-8 {
     width: 56%;
 }
 
-.col-9{
+.col-9 {
     display: grid;
     justify-content: left
 }
 
-.col-2{
+.col-2 {
     width: 22%;
 }
 
-.custom-control-label{
+.custom-control-label {
     cursor: pointer;
 }

@@ -13,7 +13,7 @@
     /* justify-content: left; */
 }
 
-.row{
+.row {
     margin-left: 0;
 }
 
@@ -25,16 +25,16 @@ h1 {
     font-size: calc(0.5rem + 1.8vw);
 }
 
-.col-5{
+.col-5 {
     width: 23.666667%;
 }
 
-.col-3{
+.col-3 {
     width: 55%;
     /* width: 35%; */
 }
 
-.col-1{
+.col-1 {
     width: 7%;
 }
 
@@ -101,10 +101,11 @@ ul {
     display: flex;
     justify-content: flex-end;
 }
-ul li{
+
+ul li {
     display: inline;
-    padding:5px 15px;
+    padding: 5px 15px;
     margin-right: 5px;
-    color:wheat;
+    color: wheat;
     cursor: pointer;
-  }
+}

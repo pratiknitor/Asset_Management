@@ -4,11 +4,8 @@
     <div class="row centre-text">
       <div class="col-3">
         <div class="buttonMarj">
-          <button
-            [routerLink]="['/dashboard/add-asset']"
-            routerLinkActive="router-link-active"
-            class="btn btn-success border border-secondary shadow rounded"
-          >
+          <button [routerLink]="['/dashboard/add-asset']" routerLinkActive="router-link-active"
+            class="btn btn-success border border-secondary shadow rounded">
             <i class="bi bi-patch-plus"></i>
           </button>
           <button type="submit" class="btn btn-info border border-info shadow rounded" (click)="editAsset()">
@@ -17,29 +14,20 @@
           <button type="submit" class="btn btn-danger border border-secondary shadow rounded" (click)="deleteAsset()">
             <i class="bi bi-trash"></i>
           </button>
-          <button type="reset" class="btn btn-secondary border border-secondary shadow rounded" (click)="unSelectReadio()">
+          <button type="reset" class="btn btn-secondary border border-secondary shadow rounded"
+            (click)="unSelectReadio()">
             <i class="bi bi-bootstrap-reboot"></i>
           </button>
         </div>
       </div>
       <div class="col-3">
         <label for="search">Search</label>
-        <input
-          id="search"
-          type="text"
-          class="form-control shadow rounded"
-          [(ngModel)]="searchText"
-          placeholder="   🔍Start searching......"
-        />
+        <input id="search" type="text" class="form-control shadow rounded" [(ngModel)]="searchText"
+          placeholder="   🔍Start searching......" />
       </div>
       <div class="col-2">
         <label for="select2">Select Type</label>
-        <select
-          id="select2"
-          [(ngModel)]="selectType"
-          (change)="sortByType()"
-          class="form-select shadow rounded"
-        >
+        <select id="select2" [(ngModel)]="selectType" (change)="sortByType()" class="form-select shadow rounded">
           <option value="All" selected>All</option>
           <option *ngFor="let item of myTypes" [value]="item">
             {{ item }}
@@ -48,12 +36,7 @@
       </div>
       <div class="col-2">
         <label for="select1">Select Model</label>
-        <select
-          id="select1"
-          [(ngModel)]="selectModel"
-          (change)="sortByModel()"
-          class="form-select shadow rounded"
-        >
+        <select id="select1" [(ngModel)]="selectModel" (change)="sortByModel()" class="form-select shadow rounded">
           <option value="All" selected>All</option>
           <option *ngFor="let item of myset" [value]="item">
             {{ item }}
@@ -61,21 +44,15 @@
         </select>
       </div>
       <div class="col-2 buttonMarj">
-        <button
-          [routerLink]="['/dashboard']"
-          routerLinkActive="router-link-active"
-          class="btn btn-warning border border-warning shadow rounded"
-        >
+        <button [routerLink]="['/dashboard']" routerLinkActive="router-link-active"
+          class="btn btn-warning border border-warning shadow rounded">
           <i class="bi bi-arrow-return-left"></i>
         </button>
       </div>
     </div>
 
     <br />
-    <table
-      class="table table-hover tableScroll mb-4"
-      *ngIf="assets | filter : searchText as result"
-    >
+    <table class="table table-hover tableScroll mb-4" *ngIf="assets | filter : searchText as result">
       <thead *ngIf="result.length != 0">
         <th>Sr No.</th>
         <th>Type</th>
@@ -95,15 +72,8 @@
       <tbody>
         <tr *ngFor="let item of result; let i = index">
           <td>
-            <input
-              class="form-check-input"
-              type="radio"
-              name="a"
-              value="{{ item.id }}"
-              id="{{ i }}"
-              [(ngModel)]="readioSelected"
-              style="cursor: pointer"
-            />
+            <input class="form-check-input" type="radio" name="a" value="{{ item.id }}" id="{{ i }}"
+              [(ngModel)]="readioSelected" style="cursor: pointer" />
             <label class="custom-control-label" for="{{ i }}">
               &nbsp;{{ i + 1 }}
             </label>
@@ -111,67 +81,67 @@
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.tyape
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.name
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.proprietary
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.configuration
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.serviceTag
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.model
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.hostName
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.oem
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.expiryDate | date : "yyyy-MM-dd"
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.owner
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.remarks
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.ram
-            }}</label>
+              }}</label>
           </td>
           <td>
             <label class="custom-control-label" for="{{ i }}">{{
               item.vendorId | vendorsName : vendors
-            }}</label>
+              }}</label>
           </td>
         </tr>
         <tr *ngIf="result.length === 0">

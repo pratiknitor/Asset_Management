@@ -12,7 +12,6 @@ import { NotificationService } from '@progress/kendo-angular-notification';
   styleUrls: ['./asset-transaction.component.css'],
 })
 export class AssetTransactionComponent implements OnInit {
-
   transaction: IAssetTransaction = {
     userId: 0,
     empId: '',
@@ -48,16 +47,14 @@ export class AssetTransactionComponent implements OnInit {
      * because directly we can not convert number to boolean
      */
     this.updateflag = !this.id;
-    if(!this.updateflag)
-    {
+    if (!this.updateflag) {
       this.dashboardService.getAsset(this.id).subscribe(
-        (res) => {
-        },
+        (res) => {},
         (err) => {
           this.showError(err.code + ' ' + err.errorMsg);
           this.router.navigate([`/dashboard/unassigned-assets`]);
         }
-      )
+      );
       this.transaction.assetId = this.id;
     }
     /**
@@ -67,8 +64,7 @@ export class AssetTransactionComponent implements OnInit {
       (res) => {
         this.assets = res;
       },
-      (err) => {
-      }
+      (err) => {}
     );
   }
 
@@ -78,7 +74,7 @@ export class AssetTransactionComponent implements OnInit {
   addAssetTransaction() {
     this.dashboardService.assignAsset(this.transaction).subscribe(
       (res) => {
-        this.showSuccess("Asset assign successfully !!!!")
+        this.showSuccess('Asset assign successfully !!!!');
         this.router.navigate([`/dashboard/unassigned-assets`]);
       },
       (error) => {
@@ -86,12 +82,11 @@ export class AssetTransactionComponent implements OnInit {
       }
     );
   }
-  
-  
+
   /**
    * Show success message after transaction compliance.
    */
-  public showSuccess(data : string): void {
+  public showSuccess(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 2500,
@@ -101,11 +96,11 @@ export class AssetTransactionComponent implements OnInit {
       height: 40,
     });
   }
-  
+
   /**
    * Show error message after transaction failed.
    */
-  public showError(data : string): void {
+  public showError(data: string): void {
     this.notifiService.show({
       content: data,
       hideAfter: 3000,

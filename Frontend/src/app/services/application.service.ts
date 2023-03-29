@@ -233,7 +233,9 @@ export class ApplicationService {
    * @returns all asset transaction list
    */
   getAssetTransactions(): Observable<any> {
-    return this.httpClient.get('api/AssetTransaction/GetAllAssetTransaction/get_all_list');
+    return this.httpClient.get(
+      'api/AssetTransaction/GetAllAssetTransaction/get_all_list'
+    );
   }
 
   /**
@@ -241,8 +243,10 @@ export class ApplicationService {
    * @param id id of asset transaction
    * @returns assigned assets list
    */
-  submitAssetTransaction(id:any): Observable<any> {
-    return this.httpClient.delete(`api/AssetTransaction/DeleteAssetTransaction/${id}`);
+  submitAssetTransaction(id: any): Observable<any> {
+    return this.httpClient.delete(
+      `api/AssetTransaction/DeleteAssetTransaction/${id}`
+    );
   }
 
   /**
@@ -250,7 +254,9 @@ export class ApplicationService {
    * @param id id of asset
    * @returns assigned assets list
    */
-  deleteAssetTransactionByAssetId(id:any): Observable<any> {
-    return this.httpClient.delete(`api/AssetTransaction/DeleteAssetTransactionByAsset/${id}`);
+  deleteAssetTransactionByAssetId(id: any): Observable<any> {
+    return this.httpClient.delete(
+      `api/AssetTransaction/DeleteAssetTransactionByAsset/${id}`
+    );
   }
 }
