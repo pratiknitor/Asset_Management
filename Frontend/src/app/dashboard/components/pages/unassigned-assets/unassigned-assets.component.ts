@@ -31,7 +31,10 @@ export class UnassignedAssetsComponent implements OnInit {
       (res) => {
         this.unassugnedAssets = res;
       },
-      (err) => {}
+      (err) => {
+        this.showError(err.errorMsg.statucCode + ' ' + err.errorMsg.message);
+          this.router.navigate(['/dashboard']);
+      }
     );
     /**
      * Get vendors details

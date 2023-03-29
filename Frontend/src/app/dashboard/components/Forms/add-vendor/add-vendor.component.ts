@@ -77,14 +77,14 @@ export class AddVendorComponent implements OnInit {
   submitVendorDetails() {
     if (this.updateflag) {
       this.dashboardService.addVendor(this.vendor).subscribe((res) => {
-        this.showSuccess("'Vendor added successfully to the list !!!!'");
+        this.showSuccess("Vendor added successfully !!!!");
         this.router.navigate(['dashboard/show-venders']);
       });
     } else {
       this.dashboardService
         .editVendor(this.vendor.id, this.vendor)
         .subscribe((res) => {
-          this.showSuccess("'Vendor updated successfully !!!!'");
+          this.showSuccess("Vendor updated successfully !!!!");
           this.router.navigate(['/dashboard/show-venders']);
         });
     }

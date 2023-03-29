@@ -17,23 +17,13 @@ namespace Asset_Management.Services.Implementation
         }
         async Task<AssetDetail> IService<AssetDetail, int>.CreateAsync(AssetDetail entity)
         {
-            try
-            {
                 var record = await ctx.AssetDetails.AddAsync(entity);
                 await ctx.SaveChangesAsync();
                 return record.Entity;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         async Task<AssetDetail> IService<AssetDetail, int>.DeleteAsync(int id)
         {
-            try
-            {
                 var record = await ctx.AssetDetails.FindAsync(id);
                 if (record != null)
                 {
@@ -45,17 +35,10 @@ namespace Asset_Management.Services.Implementation
                 {
                     return record;
                 }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         async Task<IEnumerable<AssetDetail>> IService<AssetDetail, int>.GetAsync()
         {
-            try
-            {
                 var records = (await ctx.AssetDetails.ToListAsync()).OrderByDescending(v => v.Id);
 
                 if (records == null)
@@ -66,62 +49,30 @@ namespace Asset_Management.Services.Implementation
                 {
                     return records;
                 }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         async Task<AssetDetail> IService<AssetDetail, int>.GetAsync(int id)
         {
-            try
-            {
                 var record = await ctx.AssetDetails.FindAsync(id);
                 if (record == null)
                     throw new Exception("Record not found");
                 return record;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         async Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetByTypeAsync(string type)
         {
-            try
-            {
                 var records = await ctx.AssetDetails.Where(a => a.Tyape.Equals(type)).ToListAsync();
                 return records;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         async Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetByVendorAsync(string vendor)
         {
-            try
-            {
                 var records = await ctx.AssetDetails.Where(a => a.VendorId == Convert.ToInt32(vendor)).ToListAsync();
                 return records;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         async Task<AssetDetail> IService<AssetDetail, int>.UpdateAsync(int id, AssetDetail entity)
         {
-            try
-            {
                 var record = await ctx.AssetDetails.FindAsync(id);
                 if (record == null)
                     throw new Exception("Record not found");
@@ -141,19 +92,18 @@ namespace Asset_Management.Services.Implementation
                 record.Tyape = entity.Tyape;
                 await ctx.SaveChangesAsync();
                 return record;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
+
+        /// <summary>
+        /// Count the assets by type.
+        /// </summary>
+        /// <returns></returns>
         async Task<IEnumerable> IAssetDetailService<AssetDetail, string>.GetCountOfAssets()
         {
-
+            ///get all assets
             var Total = await ctx.AssetDetails.ToListAsync();
-
+            ///group assets by there type
             var list = from a in Total
                        group a by a.Tyape into g
                        select new
@@ -165,11 +115,15 @@ namespace Asset_Management.Services.Implementation
             return list;
         }
 
+        /// <summary>
+        /// Get list of unassigned assets
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         async Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetUnassignedAsset()
         {
-            try
-            {
                 var result = (await ctx.AssetDetails.ToListAsync())
+                ///Find the assets whose asset id's are missing from the asset transaction table.
                 .Where(ad => !ctx.AssetTransactions.Any(at => at.AssetId == ad.Id))
                 .OrderByDescending(v => v.Id)
                 .ToList();
@@ -182,19 +136,17 @@ namespace Asset_Management.Services.Implementation
                 {
                     return result;
                 }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
+        /// <summary>
+        /// Get assigned assets
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         async Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetassignedAsset()
         {
-            try
-            {
                 var result = (await ctx.AssetDetails.ToListAsync())
+                ///Find the assets whose asset id's are in the asset transaction table
                 .Where(ad => ctx.AssetTransactions.Any(at => at.AssetId == ad.Id))
                 .OrderByDescending(v => v.Id)
                 .ToList();
@@ -207,12 +159,6 @@ namespace Asset_Management.Services.Implementation
                 {
                     return result;
                 }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
     }
 }

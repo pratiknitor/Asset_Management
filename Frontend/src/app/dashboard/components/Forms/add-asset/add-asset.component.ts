@@ -79,7 +79,7 @@ export class AddAssetComponent implements OnInit {
   submitAsset(): void {
     if (!this.updateflag) {
       this.dashboardService.addAsset(this.asset).subscribe((response) => {
-        this.showSuccess("'Asset added successfully to the list !!!!'");
+        this.showSuccess("Asset added successfully !!!!");
         this.router.navigate(['/dashboard/assets']);
       });
     } else {
@@ -87,7 +87,7 @@ export class AddAssetComponent implements OnInit {
       this.dashboardService
         .editAsset(this.asset.id, this.asset)
         .subscribe((res) => {
-          this.showSuccess("'Asset updated successfully !!!!'");
+          this.showSuccess("Asset updated successfully !!!!");
           this.router.navigate(['/dashboard/assets']);
         });
     }

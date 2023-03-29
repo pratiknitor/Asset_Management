@@ -27,15 +27,7 @@ namespace Asset_Management.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAssetById(int id)
         {
-            try
-            {
                 return Ok(await assetService.GetAsync(id));
-            }
-            catch (Exception ex)
-            {
-
-                return NotFound(ex.Message);
-            }
         }
 
         [HttpPost]
@@ -56,15 +48,8 @@ namespace Asset_Management.Controllers
         public async Task<IActionResult> UpdateAsset(int id,AssetDetail assetDetail)
         {
             if (ModelState.IsValid)
-            {
-                try { 
+            { 
                 return Ok(await assetService.UpdateAsync(id, assetDetail));
-                }
-                catch (Exception ex)
-                {
-
-                    return NotFound(ex.Message);
-                }
             }
             else
             {
@@ -77,15 +62,8 @@ namespace Asset_Management.Controllers
         {
             if (id > 0 )
             {
-                try { 
                 await assetService.DeleteAsync(id);
                 return Ok(await assetService.GetAsync());
-                }
-                catch (Exception ex)
-                {
-
-                    return NotFound(ex.Message);
-                }
             }
             else
             {
@@ -120,6 +98,9 @@ namespace Asset_Management.Controllers
             }
         }
 
+        /// <summary>
+        /// Count the assets by type.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetAssetCount()
         {
@@ -127,12 +108,18 @@ namespace Asset_Management.Controllers
 
         }
 
+        /// <summary>
+        /// Get list of unassigned assets
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetUnassignedAsset()
         {
             return Ok(await assetDetailsService.GetUnassignedAsset());
         }
 
+        /// <summary>
+        /// Get assigned assets
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetAssignedAsset()
         {

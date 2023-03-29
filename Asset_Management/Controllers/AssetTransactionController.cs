@@ -95,6 +95,11 @@ namespace Asset_Management.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete asset transaction by asset id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAssetTransactionByAsset(int id)
         {

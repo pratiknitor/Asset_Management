@@ -49,16 +49,8 @@ namespace Asset_Management.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVenderById(int id)
         {
-            try
-            {
                 var record = await vendorService.GetAsync(id);
                 return Ok(record);
-            }
-            catch (Exception ex)
-            {
-
-                return NotFound(ex.Message);
-            }
         }
 
         /// <summary>
@@ -93,17 +85,10 @@ namespace Asset_Management.Controllers
         public async Task<IActionResult> UpdateVender(int id, Vendor data)
         {
             if (ModelState.IsValid)
-            {
-                try { 
+            { 
                 var record = await vendorService.UpdateAsync(id,data);
                 
                     return Ok(record);
-                }
-                catch (Exception ex)
-                {
-
-                    return NotFound(ex.Message);
-                }
 
             }
             else
@@ -120,17 +105,9 @@ namespace Asset_Management.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVender(int id)
         {
-            try { 
             var record = await vendorService.DeleteAsync(id);
            
                 return Ok(await vendorService.GetAsync());
-            }
-            catch (Exception ex)
-            {
-
-                return NotFound(ex.Message);
-            }
-
         }
 
         /// <summary>

@@ -21,20 +21,13 @@ namespace Asset_Management.Services.Implementation
         /// <returns></returns>
         public async Task<Vendor> CreateAsync(Vendor entity)
         {
-            try
-            {
                 var cat = (await ctx.Vendors.ToListAsync()).Where(c => c.Id == entity.Id).FirstOrDefault();
                 if (cat != null)
                     throw new Exception($"CatedoryId : {entity.Id} is already exist");
                 var record = await ctx.Vendors.AddAsync(entity);
                 await ctx.SaveChangesAsync();
                 return record.Entity;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            
         }
 
         /// <summary>
@@ -44,19 +37,13 @@ namespace Asset_Management.Services.Implementation
         /// <returns></returns>
         public async Task<Vendor> DeleteAsync(int id)
         {
-            try
-            {
                 var record = await ctx.Vendors.FindAsync(id);
                 if (record == null)
                     throw new Exception("Record is not found");
                 ctx.Vendors.Remove(record);
                 await ctx.SaveChangesAsync();
                 return record;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            
         }
 
         /// <summary>
@@ -75,18 +62,10 @@ namespace Asset_Management.Services.Implementation
         /// <returns></returns>
         public async Task<Vendor> GetAsync(int id)
         {
-            try
-            {
                 var record = await ctx.Vendors.FindAsync(id);
                 if (record == null)
                     throw new Exception("Record not found");
                 return record;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         /// <summary>
@@ -97,8 +76,6 @@ namespace Asset_Management.Services.Implementation
         /// <returns></returns>
         public async Task<Vendor> UpdateAsync(int id, Vendor entity)
         {
-            try
-            {
                 var record = await ctx.Vendors.FindAsync(id);
                 if (record == null)
                     throw new Exception("Record not found");
@@ -109,12 +86,6 @@ namespace Asset_Management.Services.Implementation
                 record.Address = entity.Address;
                 await ctx.SaveChangesAsync();
                 return record;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         /// <summary>
