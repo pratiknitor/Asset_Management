@@ -62,7 +62,7 @@ export class AddVendorComponent implements OnInit {
           ).toString();
         },
         (err) => {
-          this.showError(err.code + ' ' + err.errorMsg);
+          this.showError(err.errorMsg.statucCode + ' ' + err.errorMsg.message);
           this.router.navigate(['dashboard/show-venders']);
         }
       );

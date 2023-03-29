@@ -21,7 +21,7 @@
         <label for="name" class="form-label" *ngIf="!name.invalid">Name<sup class="star">*</sup></label>
         <label for="name" class="form-label " *ngIf="name.invalid">Name<sup class="star">*</sup></label>
         <input type="text" class="form-control" name="name" id="name" required #name="ngModel"
-          pattern="^[A-Za-z][A-Za-z0-9_ ]{1,29}$" placeholder="Enter name  e.g. &quot;Pratik Balkunde&quot;"
+          pattern="^[A-Za-z][A-Za-z0-9_ ]{1,29}$" placeholder="e.g. &quot;Pratik Balkunde&quot;"
           [(ngModel)]="vendor.name" />
         <span *ngIf="name.invalid && name.touched" class="errorMessage">Enter valid name e.g. &quot;Pratik
           Balkunde&quot;</span>
@@ -31,7 +31,7 @@
         <label for="contact" class="form-label" *ngIf="!contact.invalid">Contact No<sup class="star">*</sup></label>
         <label for="contact" class="form-label " *ngIf="contact.invalid">Contact No<sup class="star">*</sup></label>
         <input type="text" class="form-control" name="contact" id="contact" required pattern="^((\\+91-?)|0)?[0-9]{10}$"
-          #contact="ngModel" placeholder="Enter contact number  e.g. &quot;9876543210&quot;"
+          #contact="ngModel" placeholder="e.g. &quot;9876543210&quot;"
           [(ngModel)]="vendor.contactNo" />
         <span *ngIf="contact.invalid && contact.touched" class="errorMessage">Enter valid contact number e.g.
           &quot;9876543210&quot;</span>
@@ -43,7 +43,7 @@
           Address<sup class="star">*</sup></label>
         <textarea type="textarea" class="form-control" name="address" id="address" required minlength="4"
           #address="ngModel"
-          placeholder="Enter Complete address e.g. &quot;Embassy Tech Zone, Hinjewadi, Phase II, Pune&quot;"
+          placeholder="e.g. &quot;Embassy Tech Zone, Hinjewadi, Phase II, Pune&quot;"
           [(ngModel)]="vendor.address"></textarea>
         <span *ngIf="address.invalid && address.touched" class="errorMessage">Enter valid address e.g. &quot;Embassy
           Tech Zone, Hinjewadi, Phase II, Pune&quot;</span>
