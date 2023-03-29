@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Asset_Management.Services
+namespace Asset_Management.Services.Interface
 {
     public interface IVendorService<TEntity, in Tpk> where TEntity : class
     {

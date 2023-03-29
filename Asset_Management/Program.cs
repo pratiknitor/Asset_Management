@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Asset_Management.Models;
-using Asset_Management.Services;
 using Asset_Management;
 using Asset_Management.CustomFilters;
+using Asset_Management.Services.Interface;
+using Asset_Management.Services.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 

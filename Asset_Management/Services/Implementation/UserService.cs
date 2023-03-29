@@ -1,13 +1,14 @@
 ﻿using Asset_Management.Models;
+using Asset_Management.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
 
-namespace Asset_Management.Services
+namespace Asset_Management.Services.Implementation
 {
     public class UserService : IService<User, int>
     {
         asset_managementContext ctx;
-        public UserService(asset_managementContext con) 
+        public UserService(asset_managementContext con)
         {
             ctx = con;
         }
@@ -42,17 +43,17 @@ namespace Asset_Management.Services
         async Task<User> IService<User, int>.GetAsync(int id)
         {
             var user = await ctx.Users.FindAsync(id);
-            
-                if (user != null)
-                {
-                    return user;
-                }
-                else
-                {
-                    throw new Exception("User Not Found");
-                }
-            
-            
+
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                throw new Exception("User Not Found");
+            }
+
+
         }
 
         async Task<User> IService<User, int>.UpdateAsync(int id, User entity)
@@ -62,8 +63,8 @@ namespace Asset_Management.Services
             {
                 user.Email = entity.Email;
                 user.Password = entity.Password;
-                
-                
+
+
                 await ctx.SaveChangesAsync();
                 return user;
             }
