@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
 import { ApplicationService } from 'src/app/services/application.service';
@@ -18,15 +24,15 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   unassignedAssets: number = 0;
   assignedAssets: number = 0;
   vendorsChartData: any[] = [];
-  vendors:any[] = [];
-  selectVendor! : string ;
+  vendors: any[] = [];
+  selectVendor!: string;
 
-  @ViewChild("chart", { read: ViewContainerRef, static: true })
+  @ViewChild('chart', { read: ViewContainerRef, static: true })
   public chartContainer!: ViewContainerRef;
 
   constructor(private service: ApplicationService, private router: Router) {
     this.labelContent = this.labelContent.bind(this);
-    this.service.assetType.next("All");
+    this.service.assetType.next('All');
     this.service.setVendorId.next(0);
   }
 
@@ -48,14 +54,14 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     /**
      * Get vendors count of all
      */
-    this.service.getVendors().subscribe((res) =>{
+    this.service.getVendors().subscribe((res) => {
       this.totalVendors = res.length;
     });
     /**
      * Get unassigned assets count of all type
      */
     this.service.getUnassignedAssets().subscribe((res) => {
-        this.unassignedAssets = res.length;
+      this.unassignedAssets = res.length;
     });
     /**
      * Get assigned assets count
@@ -82,7 +88,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
    * Get details of single piece of pie chat.
    * @param e get details from single piece of chart.
    */
-  pieChartEvent(e:any){
+  pieChartEvent(e: any) {
     this.service.assetType.next(e.category);
     this.router.navigate(['/dashboard/assets']);
   }
@@ -91,14 +97,14 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
    * Get details of single column of bar chat.
    * @param e get details from single column of chart.
    */
-  barChartEvent(e:any){
+  barChartEvent(e: any) {
     this.selectVendor = e.category;
     this.service.getVendors().subscribe((res) => {
       this.vendors = res;
       let x = from(this.vendors).pipe(
         filter(
           (findVendorId) =>
-          findVendorId.name.toLowerCase() === this.selectVendor.toLowerCase()
+            findVendorId.name.toLowerCase() === this.selectVendor.toLowerCase()
         )
       );
       //subscribe to pipe of filter
@@ -106,6 +112,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
         this.service.setVendorId.next(result.id);
         this.router.navigate(['/dashboard/assets']);
       });
-    })
+    });
   }
 }

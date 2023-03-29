@@ -1,11 +1,10 @@
-﻿
-using Asset_Management.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Asset_Management.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using Microsoft.Identity.Web.Resource;
+using Asset_Management.Services.Interface;
 
 namespace Asset_Management.Controllers
 {

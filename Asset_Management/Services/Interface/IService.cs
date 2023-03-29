@@ -1,4 +1,4 @@
-﻿namespace Asset_Management.Services
+﻿namespace Asset_Management.Services.Interface
 {
     public interface IService<TEntity, in Tpk> where TEntity : class
     {
