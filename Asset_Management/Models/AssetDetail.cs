@@ -5,11 +5,6 @@ namespace Asset_Management.Models
 {
     public partial class AssetDetail
     {
-        public AssetDetail()
-        {
-            AssetTransactions = new HashSet<AssetTransaction>();
-        }
-
         public int Id { get; set; }
         public string? Tyape { get; set; }
         public string? Name { get; set; }
