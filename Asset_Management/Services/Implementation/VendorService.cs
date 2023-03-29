@@ -117,10 +117,17 @@ namespace Asset_Management.Services.Implementation
             }
         }
 
+        /// <summary>
+        /// Provide information of the asset count for each vendor.
+        /// </summary>
+        /// <returns></returns>
         async Task<IEnumerable> IVendorService<Vendor, int>.GetVendorsData()
         {
+            ///Get all vendors
             var vendors = await ctx.Vendors.ToListAsync();
+            ///Get all assets
             var assets = await ctx.AssetDetails.ToListAsync();
+            ///Use a join where we compare the vendor's ID to the asset's vendor ID.
             var assetlist = from v in vendors
                             join a in assets on v.Id equals a.VendorId
                             select new
@@ -128,6 +135,8 @@ namespace Asset_Management.Services.Implementation
                                 v.Name,
                                 a
                             };
+            ///assetList contains the vendor's name and information about their assets.
+            ///Hence, group those assets with the same vendor.
             var status = from asset in assetlist
                          group asset by asset.Name into grp
                          select new
@@ -135,6 +144,7 @@ namespace Asset_Management.Services.Implementation
                              name = grp.Key,
                              count = grp.Count(),
                          };
+            ///return a list of items with the vendor's name and the total value of his assets.
             return status.ToList();
         }
 

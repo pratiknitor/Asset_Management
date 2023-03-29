@@ -134,7 +134,7 @@ namespace Asset_Management.Controllers
         }
 
         /// <summary>
-        /// Get vendors details
+        /// Provide information of the asset count for each vendor.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
