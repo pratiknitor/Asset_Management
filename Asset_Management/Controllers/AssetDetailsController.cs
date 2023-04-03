@@ -21,7 +21,8 @@ namespace Asset_Management.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAssets()
         {
-            return Ok(await assetService.GetAsync());
+            var result = await assetService.GetAsync();
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

@@ -106,6 +106,9 @@ namespace Asset_Management.Services.Implementation
                                 v.Name,
                                 a
                             };
+            ///This is example of lambda of above query of join
+            //var assetlist = (await ctx.Vendors.ToListAsync()).Join((await ctx.AssetDetails.ToListAsync()), v => v.Id, a => a.VendorId, (v, a) => new { v.Name, a });
+
             ///assetList contains the vendor's name and information about their assets.
             ///Hence, group those assets with the same vendor.
             var status = from asset in assetlist
@@ -115,6 +118,9 @@ namespace Asset_Management.Services.Implementation
                              name = grp.Key,
                              count = grp.Count(),
                          };
+            ///This is example of lambda of above query of group by
+            //var status = assetlist.GroupBy(a => a.Name).Select(o => new { name = o.Key, count = o.Count() });
+
             ///return a list of items with the vendor's name and the total value of his assets.
             return status.ToList();
         }
