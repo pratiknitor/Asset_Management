@@ -105,9 +105,16 @@ namespace Asset_Management.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVender(int id)
         {
-            var record = await vendorService.DeleteAsync(id);
+            if (id > 0)
+            {
+                var record = await vendorService.DeleteAsync(id);
            
                 return Ok(await vendorService.GetAsync());
+            }
+            else
+            {
+                return BadRequest("Delete failed");
+            }
         }
 
         /// <summary>

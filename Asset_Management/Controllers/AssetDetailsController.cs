@@ -68,7 +68,7 @@ namespace Asset_Management.Controllers
             }
             else
             {
-                return BadRequest("Delete faild");
+                return BadRequest("Delete failed");
             }
         }
 

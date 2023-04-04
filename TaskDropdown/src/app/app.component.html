@@ -1,0 +1,74 @@
+<div class="card">
+  <form [formGroup]="myForm" (ngSubmit)="addInList()">
+    <div class="mb-2 mt-2">
+      <label for="name">Name<sup class="star">*</sup> : </label>&nbsp;&nbsp;
+      <input id="name" type="text" formControlName="name" required /><br />
+      <span
+        class="errorMessage"
+        *ngIf="
+          myForm.controls['name'].invalid &&
+          (myForm.controls['name'].dirty || myForm.controls['name'].touched)
+        "
+      >
+        Name is required
+      </span>
+    </div>
+    <div class="mb-2 mt-2">
+      <label for="einNumber">EIN Number : </label>&nbsp;&nbsp;
+      <input id="einNumber" type="text" formControlName="einNumber" />
+    </div>
+    <div class="mb-2 mt-2">
+      <label for="licenceNumber">Licence Number : </label>&nbsp;&nbsp;
+      <input id="licenceNumber" type="text" formControlName="licenceNumber" />
+    </div>
+    <div class="mb-2 mt-2">
+      <label for="state">State<sup class="star" *ngIf="myForm.controls['licenceNumber'].dirty &&
+        !!myForm.value.licenceNumber &&
+        !myForm.value.state">*</sup> : </label>&nbsp;&nbsp;
+      <kendo-combobox
+        [data]="listItems"
+        [disabled]="!myForm.value.licenceNumber"
+        formControlName="state"
+        [required]="!!myForm.value.licenceNumber"
+      ></kendo-combobox
+      ><br />
+      <span
+        class="errorMessage"
+        *ngIf="
+          myForm.controls['licenceNumber'].dirty &&
+          !!myForm.value.licenceNumber &&
+          !myForm.value.state
+        "
+      >
+        Selection is required
+      </span>
+    </div>
+    {{ !myForm.value.licenceNumber }}
+    <div class="mb-2 mt-2">
+      <button type="submit" [disabled]="!myForm.valid" class="btn btn-primary">
+        Add in List</button
+      >&nbsp;&nbsp;
+      <button type="button" (click)="clearForm()" class="btn btn-warning">
+        Clear
+      </button>
+    </div>
+  </form>
+  <div class="card">
+    <table class="table table-primary">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th>EIN Number</th>
+          <th>Licence Number</th>
+          <th>State</th>
+        </tr>
+        <tr *ngFor="let item of list">
+          <td>{{ item.name }}</td>
+          <td>{{ item.einNumber }}</td>
+          <td>{{ item.licenceNumber }}</td>
+          <td>{{ item.state }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
