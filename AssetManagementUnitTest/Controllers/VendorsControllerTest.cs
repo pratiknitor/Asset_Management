@@ -93,7 +93,7 @@ namespace AssetManagementUnitTest.Controllers
             var TypeMissingItem = new Vendor()
             {
                 Id = 3,
-                Name = "Test3",
+                //Name = "Test3",
                 Address = "Pune",
                 ContactNo = "1234567890",
                 RegistrationDate = DateTime.Now,
@@ -180,6 +180,70 @@ namespace AssetManagementUnitTest.Controllers
             var count = Assert.IsType<List<Vendor>>(OkResult.Value).Count();
             //Assert
             Assert.Equal(1, count);
+        }
+
+        /// <summary>
+        /// From here we are testing update vendor method
+        /// </summary>
+        [Fact]
+        public async void UpdateVendor_ReturnBadRequest()
+        {
+            //Arrange
+            int id = 2;
+            var TypeMissingItem = new Vendor()
+            {
+                //Name = "Test3",
+                Address = "Pune",
+                ContactNo = "1234567890",
+                RegistrationDate = DateTime.Now,
+                TerminationDate = DateTime.Parse("12/12/2024")
+            };
+            _VendorController.ModelState.AddModelError("Name", "Required");
+            //Act
+            var BadResult = await _VendorController.UpdateVender(id, TypeMissingItem);
+            //Assert
+            Assert.IsType<BadRequestObjectResult>(BadResult as BadRequestObjectResult);
+        }
+
+        [Fact]
+        public async void UpdateVendor_ExceptionResult()
+        {
+            //Arrange
+            int id = 22;
+            var ven = new Vendor()
+            {
+                //Name = "Test3",
+                Address = "Pune",
+                ContactNo = "1234567890",
+                RegistrationDate = DateTime.Now,
+                TerminationDate = DateTime.Parse("12/12/2024")
+            };
+            //Act
+            var ex = Assert.ThrowsAsync<Exception>(async () => await _VendorController.UpdateVender(id,ven));
+            //Assert
+            Assert.Equal("Record not found", ex.Result.Message);
+        }
+
+        [Fact]
+        public async void UpdateVendor_OkResult()
+        {
+            //Arrange
+            int id = 2;
+            var ven = new Vendor()
+            {
+                Name = "Test Update",
+                Address = "Pune",
+                ContactNo = "1234567890",
+                RegistrationDate = DateTime.Now,
+                TerminationDate = DateTime.Parse("12/12/2024")
+            };
+            //Act
+            var UpdateResponse = await _VendorController.UpdateVender(id, ven) as OkObjectResult;
+            var vendor = UpdateResponse.Value as Vendor;
+
+            //Assert
+            Assert.IsType<Vendor>(vendor);
+            Assert.Equal("Test Update", vendor.Name);
         }
     }
 }
