@@ -11,7 +11,8 @@ namespace AssetManagementUnitTest.Services
 {
     public class TempDataOfVendors : IService<Vendor, int>, IVendorService<Vendor, int>
     {
-        private List<Vendor> VendorList;
+        public List<Vendor> VendorList;
+        public TempDataOfAssets assets;
 
         public TempDataOfVendors()
         {
@@ -36,6 +37,7 @@ namespace AssetManagementUnitTest.Services
                     TerminationDate= DateTime.Parse("11/11/2024")
                 }
             };
+            assets = new TempDataOfAssets();
         }
 
         public Task<Vendor> CreateAsync(Vendor entity)
@@ -85,9 +87,16 @@ namespace AssetManagementUnitTest.Services
             return await Task.FromResult(result);
         }
 
-        Task<IEnumerable> IVendorService<Vendor, int>.GetVendorsData()
+        async Task<IEnumerable> IVendorService<Vendor, int>.GetVendorsData()
         {
-            throw new NotImplementedException();
+            var assetList = await assets.GetAsync();
+            var vendors = await GetAsync();
+
+            var vendorAssets =  vendors.Join(assetList, v => v.Id, a => a.VendorId, (v, a) => new { v.Name, a });
+
+            var status = vendorAssets.GroupBy(a => a.Name).Select(o => new { name = o.Key, count = o.Count() });
+
+            return await Task.FromResult(status);
         }
     }
 }

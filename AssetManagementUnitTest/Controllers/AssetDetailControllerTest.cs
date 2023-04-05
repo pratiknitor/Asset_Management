@@ -206,5 +206,143 @@ namespace AssetManagementUnitTest.Controllers
             //Assert
             Assert.Equal(1, count);
         }
+
+        /// <summary>
+        /// From here we are testing update asset method
+        /// </summary>
+        [Fact]
+        public async void UpdateAsset_ReturnBadRequest()
+        {
+            //Arrange
+            int id = 2;
+            var TypeMissingItem = new AssetDetail()
+            {
+                //Tyape = "Laptop",
+                Name = "Lenovo",
+                Proprietary = "OWN",
+                Configuration = "i5 250GHz",
+                ServiceTag = "Nit-Levo",
+                Model = "Lenovo",
+                HostName = "Admin",
+                Oem = "YES",
+                ExpiryDate = DateTime.Now,
+                Owner = "Admin",
+                Remarks = "Good",
+                Ram = "24Gb",
+                VendorId = 1
+            };
+            _controller.ModelState.AddModelError("Tyape", "Required");
+
+            //Act
+            var BadResult = await _controller.UpdateAsset(id, TypeMissingItem);
+
+            //Assert
+            Assert.IsType<BadRequestObjectResult>(BadResult as BadRequestObjectResult);
+        }
+
+        [Fact]
+        public async void UpdateAsset_ExceptionResult()
+        {
+            //Arrange
+            int id = 22;
+            var asset = new AssetDetail()
+            {
+                Tyape = "Laptop",
+                Name = "Lenovo",
+                Proprietary = "OWN",
+                Configuration = "i5 250GHz",
+                ServiceTag = "Nit-Levo",
+                Model = "Lenovo",
+                HostName = "Admin",
+                Oem = "YES",
+                ExpiryDate = DateTime.Now,
+                Owner = "Admin",
+                Remarks = "Good",
+                Ram = "24Gb",
+                VendorId = 1
+            };
+
+            //Act
+            var ex = Assert.ThrowsAsync<Exception>(async () => await _controller.UpdateAsset(id, asset));
+
+            //Assert
+            Assert.Equal("Record not found", ex.Result.Message);
+        }
+
+        [Fact]
+        public async void UpdateAsset_OkResult()
+        {
+            //Arrange
+            int id = 2;
+            var asset = new AssetDetail()
+            {
+                Tyape = "Laptop",
+                Name = "Lenovo",
+                Proprietary = "OWN",
+                Configuration = "i5 250GHz",
+                ServiceTag = "Nit-Levo",
+                Model = "Lenovo",
+                HostName = "Admin",
+                Oem = "YES",
+                ExpiryDate = DateTime.Now,
+                Owner = "Admin",
+                Remarks = "Good",
+                Ram = "24Gb",
+                VendorId = 1
+            };
+
+            //Act
+            var UpdateResponse = await _controller.UpdateAsset(id, asset) as OkObjectResult;
+            var res = UpdateResponse.Value as AssetDetail;
+
+            //Assert
+            Assert.IsType<AssetDetail>(res);
+            Assert.Equal("Laptop", res.Tyape);
+        }
+
+        /// <summary>
+        /// From here we are testing assigned asset.
+        /// </summary>
+        [Fact]
+        public async void GetAssignedAsset_OkResult()
+        {
+            //Act
+            var Ok_Result = await _controller.GetAssignedAsset() as OkObjectResult;
+            var count = Ok_Result.Value.GetType().GetProperty("Count").GetValue(Ok_Result.Value);
+
+            //Assert
+            Assert.IsType<OkObjectResult>(Ok_Result as OkObjectResult);
+            Assert.Equal(1, count);
+        }
+
+        /// <summary>
+        /// From here we are testing unassigned asset.
+        /// </summary>
+        [Fact]
+        public async void GetUnassignedAsset_OkResult()
+        {
+            //Act
+            var Ok_Result = await _controller.GetUnassignedAsset() as OkObjectResult;
+            var count = Ok_Result.Value.GetType().GetProperty("Count").GetValue(Ok_Result.Value);
+
+            //Assert
+            Assert.IsType<OkObjectResult>(Ok_Result as OkObjectResult);
+            Assert.Equal(1, count);
+        }
+
+        /// <summary>
+        /// From here we are testing count asset.
+        /// </summary>
+        [Fact]
+        public async void GetAssetCount_OkResult()
+        {
+            //Act
+            var Ok_Result = await _controller.GetAssetCount() as OkObjectResult;
+            var count = Ok_Result.Value.GetType().GetProperty("Count").GetValue(Ok_Result.Value);
+
+            //Assert
+            Assert.IsType<OkObjectResult>(Ok_Result as OkObjectResult);
+            Assert.Equal(2, count);
+        }
     }
 }

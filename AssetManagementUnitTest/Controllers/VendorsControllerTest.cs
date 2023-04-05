@@ -5,6 +5,7 @@ using AssetManagementUnitTest.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -245,5 +246,20 @@ namespace AssetManagementUnitTest.Controllers
             Assert.IsType<Vendor>(vendor);
             Assert.Equal("Test Update", vendor.Name);
         }
+
+        /// <summary>
+        /// From here we are testing asset count for each vendor.
+        /// </summary>
+        [Fact]
+        public async void GetVendorsData_OkResult()
+        {
+            //Act
+            var Ok_Result = await _VendorController.GetVendorsData();
+
+
+            //Assert
+            Assert.IsType<OkObjectResult>(Ok_Result as OkObjectResult);
+        }
+
     }
 }

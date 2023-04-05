@@ -13,7 +13,8 @@ namespace AssetManagementUnitTest.Services
 {
     public class TempDataOfAssets : IService<AssetDetail, int> , IAssetDetailService<AssetDetail, string>
     {
-        private List<AssetDetail> AssetList;
+        public List<AssetDetail> AssetList;
+        public TempDataOfAssetTransaction Transaction;
         public TempDataOfAssets()
         {
             AssetList = new List<AssetDetail>()
@@ -53,6 +54,7 @@ namespace AssetManagementUnitTest.Services
                     VendorId = 1
                 }
             };
+            Transaction = new TempDataOfAssetTransaction();
         }
 
         public Task<AssetDetail> CreateAsync(AssetDetail entity)
@@ -87,14 +89,46 @@ namespace AssetManagementUnitTest.Services
             return await Task.FromResult(result);
         }
 
-        public Task<AssetDetail> UpdateAsync(int id, AssetDetail entity)
+        public async Task<AssetDetail> UpdateAsync(int id, AssetDetail entity)
         {
-            throw new NotImplementedException();
+            var result = AssetList.Where(x => x.Id == id).SingleOrDefault();
+            if (result == null)
+            {
+                throw new Exception("Record not found");
+            }
+            result.Tyape = entity.Tyape;
+            result.Name = entity.Name;
+            result.Proprietary = entity.Proprietary;
+            result.Configuration = entity.Configuration;
+            result.ServiceTag = entity.ServiceTag;
+            result.Model = entity.Model;
+            result.HostName = entity.HostName;
+            result.Oem = entity.Oem;
+            result.ExpiryDate = entity.ExpiryDate;
+            result.Owner = entity.Owner;
+            result.Remarks = entity.Remarks;
+            result.Ram = entity.Ram;
+            result.VendorId = entity.VendorId;
+            return await Task.FromResult(result);
         }
 
-        Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetassignedAsset()
+        async Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetassignedAsset()
         {
-            throw new NotImplementedException();
+            var t = await Transaction.GetAsync();
+            var result = (await GetAsync())
+                ///Find the assets whose asset id's are in the asset transaction table
+                .Where(ad => t.Any(at => at.AssetId == ad.Id))
+                .OrderByDescending(v => v.Id)
+                .ToList();
+
+            if (result == null)
+            {
+                throw new Exception("Records not Found");
+            }
+            else
+            {
+                return await Task.FromResult(result);
+            }
         }
 
         Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetByTypeAsync(string type)
@@ -107,14 +141,30 @@ namespace AssetManagementUnitTest.Services
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable> IAssetDetailService<AssetDetail, string>.GetCountOfAssets()
+        async Task<IEnumerable> IAssetDetailService<AssetDetail, string>.GetCountOfAssets()
         {
-            throw new NotImplementedException();
+            var Total = await GetAsync();
+            var result = Total.GroupBy(a => a.Tyape).Select(o => new {type = o.Key, count = o.Count()}).ToList();
+            return await Task.FromResult(result);
         }
 
-        Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetUnassignedAsset()
+        async Task<IEnumerable<AssetDetail>> IAssetDetailService<AssetDetail, string>.GetUnassignedAsset()
         {
-            throw new NotImplementedException();
+            var t = await Transaction.GetAsync();
+            var result = (await GetAsync())
+                ///Find the assets whose asset id's are in the asset transaction table
+                .Where(ad => !t.Any(at => at.AssetId == ad.Id))
+                .OrderByDescending(v => v.Id)
+                .ToList();
+
+            if (result == null)
+            {
+                throw new Exception("Records not Found");
+            }
+            else
+            {
+                return await Task.FromResult(result);
+            }
         }
     }
 }
