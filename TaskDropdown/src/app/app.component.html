@@ -22,8 +22,7 @@
       <input id="licenceNumber" type="text" formControlName="licenceNumber" />
     </div>
     <div class="mb-2 mt-2">
-      <label for="state">State<sup class="star" *ngIf="myForm.controls['licenceNumber'].dirty &&
-        !!myForm.value.licenceNumber &&
+      <label for="state">State<sup class="star" *ngIf="!!myForm.value.licenceNumber &&
         !myForm.value.state">*</sup> : </label>&nbsp;&nbsp;
       <kendo-combobox
         [data]="listItems"
@@ -35,7 +34,6 @@
       <span
         class="errorMessage"
         *ngIf="
-          myForm.controls['licenceNumber'].dirty &&
           !!myForm.value.licenceNumber &&
           !myForm.value.state
         "
