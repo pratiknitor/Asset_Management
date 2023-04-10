@@ -1,4 +1,4 @@
-//1 The first few lines of the code import various namespaces from the .NET framework
+//1 Import various namespaces from the .NET framework
 //and external libraries that will be used in the application.
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

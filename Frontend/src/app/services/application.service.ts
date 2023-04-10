@@ -13,6 +13,9 @@ const headers = { headers: { 'Content-Type': 'application/json' } };
   providedIn: 'root',
 })
 export class ApplicationService {
+  /**
+   * Shared Service
+   */
   emitAsset = new Subject<IAsset>();
   emitupdateflag = new Subject<boolean>();
   emitTransaction = new Subject<IAssetTransaction>();
@@ -24,6 +27,9 @@ export class ApplicationService {
 
   constructor(private httpClient: HttpClient) {}
 
+  /**
+   * Normal Service
+   */
   /**
    * Regster user
    * @param register registration details
